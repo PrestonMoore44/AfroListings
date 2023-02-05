@@ -1,0 +1,33 @@
+.loginContainer {
+	z-index: 10000;
+	background-color: rgba(0,0,0,.5);
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	top:0;
+	margin:0 auto;
+}
+
+.createListingModalContainer {
+	position: absolute;
+	background-color: white;
+	border-radius: 6px;
+	width:960px;
+	height:600px;
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.closeContainer {
+	cursor: pointer;
+	position: absolute;
+	top:0;
+	right:0;
+	margin: 20px;
+}
+
+.formContainer {
+	margin: 20px 50px;
+}

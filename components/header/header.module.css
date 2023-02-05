@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+.profilePic {
+	border-radius: 50%;
+	height:25px;
+	width:25px;
+	border:1px solid white;
+	display: table-cell;
+	vertical-align: center;
+	margin-top: 5px;
+}
+.profilePicAlt {
+	margin: auto;
+	height:25px;
+	width:25px;
+	border-radius: 50%;
+	border:1px solid white;
+	background-color: #5C42E5;
+	margin-top: 5px;
+	line-height: 25px;
+    vertical-align: middle;
+}
+.headerContainer {
+	height:35px;
+	background-color: #1c1d1f;;
+	color:white;
+	position: fixed;
+	z-index: 3;
+	line-height: 35px;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 125px;
+	top:0;
+	width:100%;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.leftContainer {
+	width:200px;
+}
+.rightContainer {
+	display: flex;
+	align-items: flex-end;
+}
+
+.rightItem {
+	margin:0 20px;
+	height:100%;
+	cursor: pointer;
+	position: relative;
+}
+
+.rightItemAlt {
+	text-align: center;
+	margin:0 20px;
+	height:100%;
+	width:68px;
+	cursor: pointer;
+	position: relative;	
+}
+
+.rightItem:hover {
+	text-decoration: underline;
+}
+.active {
+	text-decoration: underline;
+}
+.rightItem:hover .toggle {
+	color:#F3AA70 !important;
+}
+
+.toggle {
+	padding-left: 7px;
+	color:white;
+}
+
+.hoverOptionsContainer {
+	position: absolute;
+	top:0;
+	right:0;
+	margin-top: 35px;
+	display: block;
+	line-height: 36px;
+	width: 200px;
+	background-color: white;
+	border-radius: 3px;
+}
+
+.hoverOptionsContainer div {
+	cursor: pointer;
+	color:black;
+	text-align: left;
+	height: 36px;
+	padding:0 20px;
+    display: flex;
+    margin: auto;
+    align-items:center;
+    font-size: 14px;
+}
+
+.hoverOptionsContainer div:hover {
+	background-color: #F2F2F2;
+	border-radius: inherit;
+}
+
+.profileItems {
+	padding-left: 15px;
+}

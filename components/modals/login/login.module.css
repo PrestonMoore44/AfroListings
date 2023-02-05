@@ -1,0 +1,101 @@
+.loginErrContainer {
+	border:1px solid tomato;
+	border-radius: 4px;
+	background-color: #FFE8E4;
+	padding:20px 30px;
+	font-size: 13px;
+	margin-bottom: 20px;
+}
+.bottomContainer {
+	min-height: 365px;
+}
+
+.privacy {
+	color:#767676 !important;
+	font-size: 13px;
+	width:100%;
+}
+.signInBtn {
+	align-self: flex-end;
+}
+.errHeader {
+	font-weight: bolder;
+}
+.container {
+	min-height: 365px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.reset {
+	color:dodgerblue !important;
+	cursor: pointer;
+}
+.needAccount {
+	font-size: 13px;
+}
+
+.needAccount a {
+	color:dodgerblue !important;
+	cursor: pointer;
+}
+
+.loginContainer {
+	position: fixed;
+	width:100%;
+	height:100%;
+	background-color: rgba(0,0,0,.4);
+	z-index: 300;
+	top:0;
+}
+
+.loginBody {
+	padding: 50px;
+    position: relative;
+    width: 400px;
+    min-height: 500px;
+    border-radius: 12px;
+    background: white;
+    left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+.loginBody small {
+	color:tomato;
+	font-size: 13px;
+	position: absolute;
+}
+.closeContainer {
+	cursor: pointer;
+	position: absolute;
+	top:0;
+	right:0;
+	margin: 20px;
+}
+.fullWidth {
+	width: 300px;
+}
+.orContainer {
+	text-align: center;
+	color:#d2d2d2;
+	margin: 50px 0;
+	justify-content: space-between;
+	display: flex;
+}
+
+.orContainerBorder {
+	border-top: 1px solid #edeff1;
+    width: 40%;
+}
+
+.orItem {
+	width: 20%;
+	margin-top: -9px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    color: #878a8c;
+    text-transform: uppercase;
+}
