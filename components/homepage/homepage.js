@@ -21,6 +21,62 @@ const Homepage = () => {
 	const arr = [];
 	let start = false;
 	const dataArr = [3, 4, 5, 3, 3, 3, 2, 1, 7, 3, 5, 9, 1, 9, 9, 9, 9, 9, 9]; // test [9,9,9]
+	const businessArr = [
+		{
+			src: "/tutor.jpeg",
+			desc: "Private tutoring with Nancy",
+		},
+		{
+			src: "/creditOption.jpeg",
+			desc: "5 star credit repair at Valley Wide Credit Repair",
+		},
+		{
+			src: "/stylist.jpg",
+			desc: "Licensed stylist specializing in braids, and dreadlocks",
+		},
+	];
+	const restArr = [
+		{
+			src: "/rest_1.jpg",
+			desc: "Private tutoring with Nancy",
+		},
+		{
+			src: "/rest_2.jpg",
+			desc: "5 star credit repair at Valley Wide Credit Repair",
+		},
+		{
+			src: "/rest_3.jpg",
+			desc: "Licensed stylist specializing in braids, and dreadlocks",
+		},
+	];
+	const housingArr = [
+		{
+			src: "/housing_1.jpg",
+			desc: "Private tutoring with Nancy",
+		},
+		{
+			src: "/housing_2.jpg",
+			desc: "5 star credit repair at Valley Wide Credit Repair",
+		},
+		{
+			src: "/housing_3.jpg",
+			desc: "Licensed stylist specializing in braids, and dreadlocks",
+		},
+	];
+	const politicsArr = [
+		{
+			src: "/politics_1.jpg",
+			desc: "Private tutoring with Nancy",
+		},
+		{
+			src: "/politics_2.jpg",
+			desc: "5 star credit repair at Valley Wide Credit Repair",
+		},
+		{
+			src: "/politics_3.jpg",
+			desc: "Licensed stylist specializing in braids, and dreadlocks",
+		},
+	];
 	for (let i = dataArr.length - 1; i >= 0; i--) {
 		if (dataArr[i] >= 9) {
 			start = true;
@@ -59,6 +115,11 @@ const Homepage = () => {
 		console.log(" Hello ", categories);
 	}, []);
 
+	const handleCategoryChange = (value) => {
+		setShowCategories(value.length);
+		setType(value);
+	};
+
 	const findLocation = async () => {
 		const data = await geoLocation();
 		console.log(data, " Locations ");
@@ -80,7 +141,9 @@ const Homepage = () => {
 			<div className={styles.homepageContainer}>
 				<div className={styles.homepageOverlay}>
 					<div className={`position-relative`}>
-						<h1>Afro Business, Afro Education, Afro Community</h1>
+						<div className={styles.titleText}>
+							Afro Business, Afro Education, Afro Community
+						</div>
 						<h5 className="m-3">
 							Highest Rated Afro Business Services Directory
 							Worldwide, The Best Afro Travel, Afro Education
@@ -98,8 +161,9 @@ const Homepage = () => {
 									type="search"
 									id="inputItemSearch"
 									autoComplete="false"
-									onFocus={() => setShowCategories(true)}
-									onChange={(e) => setType(e.target.value)}
+									onChange={(e) =>
+										handleCategoryChange(e.target.value)
+									}
 									value={type}
 									placeholder="Ex: business, service, food"
 								/>
@@ -159,11 +223,67 @@ const Homepage = () => {
 					></source>
 				</video>
 			</div>
-			<div className={styles.style_container}>
-				<h1>Trending Afro Businesses</h1>
-			</div>
-			<div className={styles.style_container}>
-				<h1>Trending Afro Restaurants and Catering</h1>
+			<div className={styles.containerTitle}>
+				<div className="my-5">
+					<h2>Afro Businesses</h2>
+					<div className={styles.style_container}>
+						{businessArr.map((it, ind) => (
+							<div className={styles.containerImgHold}>
+								<img
+									className={styles.containerImg}
+									key={ind}
+									src={it.src}
+								/>
+								<p>{it.desc}</p>
+							</div>
+						))}
+					</div>
+				</div>
+				<div className="my-1">
+					<h2>Afro Restaurants and Catering</h2>
+					<div className={styles.style_container}>
+						{restArr.map((it, ind) => (
+							<div className={styles.containerImgHold}>
+								<img
+									className={styles.containerImg}
+									key={ind}
+									src={it.src}
+								/>
+								<p>{it.desc}</p>
+							</div>
+						))}
+					</div>
+				</div>
+				<div className="my-1">
+					<h2>Afro Real Estate and Housing</h2>
+					<div className={styles.style_container}>
+						{housingArr.map((it, ind) => (
+							<div className={styles.containerImgHold}>
+								<img
+									className={styles.containerImg}
+									key={ind}
+									src={it.src}
+								/>
+								<p>{it.desc}</p>
+							</div>
+						))}
+					</div>
+				</div>
+				<div className="my-1">
+					<h2>Afro Politics and Social Media</h2>
+					<div className={styles.style_container}>
+						{politicsArr.map((it, ind) => (
+							<div className={styles.containerImgHold}>
+								<img
+									className={styles.containerImg}
+									key={ind}
+									src={it.src}
+								/>
+								<p>{it.desc}</p>
+							</div>
+						))}
+					</div>
+				</div>
 			</div>
 		</div>
 	);

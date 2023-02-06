@@ -157,13 +157,12 @@
   background-color: #d4660f !important;
 }
 .style_container {
-  width: 80%;
   background-color: white;
-  border: 1px solid #dedede;
   border-radius: 3px;
-  padding: 50px;
+  padding-top: 25px;
   height: 300px;
-  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .rightSide {
@@ -242,4 +241,33 @@
 }
 
 .smallContainer img:hover {
+}
+.containerTitle {
+  width: 80%;
+  height: auto;
+  margin: 20px auto;
+}
+
+.titleText {
+  font-weight: 400;
+  font-size: 48px !important;
+}
+
+.containerImg {
+  height: 200px;
+  width: 300px;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+
+.containerImgHold {
+  border-radius: 5px;
+  width: 300px;
+  display: block;
+  cursor: pointer;
+}
+
+.containerImgHold:hover p {
+  color: #188fff;
+  text-decoration: underline;
 }
