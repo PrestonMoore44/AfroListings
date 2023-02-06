@@ -225,7 +225,9 @@ const Homepage = () => {
 			</div>
 			<div className={styles.containerTitle}>
 				<div className="my-5">
-					<h2>Afro Businesses</h2>
+					<h2>
+						<a href="business-listings">Afro Businesses</a>
+					</h2>
 					<div className={styles.style_container}>
 						{businessArr.map((it, ind) => (
 							<div className={styles.containerImgHold}>
