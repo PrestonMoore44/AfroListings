@@ -84,6 +84,12 @@
   z-index: 1;
 }
 
+.titleItem {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 20px;
+  display: flex;
+}
 .img {
   height: 100%;
   width: 58% !important;
@@ -156,11 +162,13 @@
 .btn:visited {
   background-color: #d4660f !important;
 }
+.entireItemContainer {
+  margin-top: 40px;
+}
 .style_container {
-  background-color: white;
   border-radius: 3px;
   padding-top: 25px;
-  height: 300px;
+  height: 350px;
   display: flex;
   justify-content: space-between;
 }
@@ -254,20 +262,99 @@
 }
 
 .containerImg {
-  height: 200px;
-  width: 300px;
-  border-radius: 2px;
-  margin-bottom: 10px;
+  height: 150px;
+  width: 250px;
+  border-radius: 5px;
 }
 
 .containerImgHold {
   border-radius: 5px;
-  width: 300px;
+  width: 250px;
+  background-color: #fbfcfb;
   display: block;
   cursor: pointer;
+  border-radius: 10px;
+}
+.titleContainerTitle {
+  width: 96%;
+}
+.titleContainerOption {
+  width: 4%;
+}
+.containerImgHold:hover .titleContainer .titleContainerTitle {
+  color: #00c6e5;
+}
+.containerBodyLow {
+  padding: 10px;
+}
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.titleContainer div {
+  font-size: 17px;
+  -webkit-line-clamp: 3;
+  line-height: 24px;
+  font-weight: 600;
+}
+.containerImgHold small {
+  font-size: 14px;
+  -webkit-line-clamp: 3;
+  line-height: 20px;
+}
+.containerImgHold:hover p {
+  color: #00c6e5;
+}
+.bottomSection {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  height: 45px;
+  border-bottom: 1px solid #d8d8d8;
 }
 
-.containerImgHold:hover p {
-  color: #188fff;
-  text-decoration: underline;
+.bottomSection p {
+  color: #cccccc;
+  padding: 0 7px;
+  line-height: 30px;
+  height: auto;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 450;
+}
+
+.bottomSection p:hover {
+  color: #00c6e5;
+}
+
+.chevronHolder {
+  position: absolute;
+  bottom: 30px;
+  text-align: center;
+  left: 0;
+  right: 0;
+  font-weight: 900;
+  font-size: 30px;
+  height: 25px;
+}
+.chevronHolder i {
+  top: 0px;
+  width: 100px;
+  transform: translate(0, -50%);
+  position: absolute;
+  left: 50%;
+  transition: transform 0.2s ease-in-out;
+  margin-left: -50px;
+  cursor: pointer;
+}
+.chevronHolder i:hover {
+  transform: translate3d(0px, 1px, 0px);
+}
+
+.smallMe small {
+  font-weight: 400;
+  font-size: 12px;
+  color: #7c7c7c;
 }
