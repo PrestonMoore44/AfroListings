@@ -19,6 +19,7 @@ import { CardPopup } from "./card-popup/card-popup";
 
 // Hooks useEffect, useConext, useState, useRef, useLayoutEffect, useTransition
 const Homepage = () => {
+	const router = useRouter();
 	const dataRef = useRef();
 	const arr = [];
 	let start = false;
@@ -68,10 +69,10 @@ const Homepage = () => {
 			desc: "Licensed stylist specializing in braids, and dreadlocks",
 		},
 		{
-			src: "/stylist.jpg",
-			user: "Kesha Kay",
-			title: "Is Your Hair Ready For The Big Event",
-			desc: "Licensed stylist specializing in braids, and dreadlocks",
+			src: "/business_4.jpg",
+			user: "Don McStashinbuggle",
+			title: "Guaranteed Issue Whole Life Policy Up To 1 Million",
+			desc: "Licensed insurance agent to secure generational wealth for your family",
 		},
 	];
 	const restArr = [
@@ -94,10 +95,10 @@ const Homepage = () => {
 			desc: "Traditional Souther Cousine with a midwest twist",
 		},
 		{
-			src: "/rest_3.jpg",
-			user: "Wendy's Kitchen",
-			title: "Wendy's Southern Kitchen Is The Best in the Midwest",
-			desc: "Traditional Souther Cousine with a midwest twist",
+			src: "/rest_4.jpg",
+			user: "Carl Kitchens",
+			title: "Have You Tasted What The Hype is About At Cartel's Kitchen",
+			desc: "Our signature fried wings and thigs are quickly becoming legendary",
 		},
 	];
 	const housingArr = [
@@ -120,10 +121,10 @@ const Homepage = () => {
 			desc: "Two story apartment with spacious patio and attached garage",
 		},
 		{
-			src: "/housing_3.jpg",
-			user: "AJ For The Win",
-			title: "2 Bedroom 1.5 Bath Apartment For Rent in Anticoch",
-			desc: "Two story apartment with spacious patio and attached garage",
+			src: "/housing_4.jpg",
+			user: "New Beginnings Properties LLC",
+			title: "4 Bedroom 2 Bath Home for Sale in Clovis",
+			desc: "Over 2500 square feet of modern living with a hint of country charm",
 		},
 	];
 	const politicsArr = [
@@ -143,13 +144,13 @@ const Homepage = () => {
 			src: "/politics_3.jpg",
 			user: "Tremale Jacobs",
 			title: "Why Mattlock Belives He Has The Winning Ticket",
-			desc: "Licensed stylist specializing in braids, and dreadlocks",
+			desc: "We belive in results and let our actions do the talking",
 		},
 		{
-			src: "/politics_3.jpg",
-			user: "Tremale Jacobs",
-			title: "Why Mattlock Belives He Has The Winning Ticket",
-			desc: "Licensed stylist specializing in braids, and dreadlocks",
+			src: "/politics_4.jpg",
+			user: "Black Insider",
+			title: "Why These Two California Politians Are Causing a Stir This Election Season",
+			desc: "Looking for solutions in 2023? Look no further than these two local activist running for office",
 		},
 	];
 	for (let i = dataArr.length - 1; i >= 0; i--) {
@@ -187,6 +188,10 @@ const Homepage = () => {
 		// }, 250);
 		console.log(" Hello ", categories);
 	}, []);
+
+	const navigateAway = (url) => {
+		router.push(url);
+	};
 
 	const handleCategoryChange = (value) => {
 		setShowCategories(value.length);
@@ -352,7 +357,9 @@ const Homepage = () => {
 						))}
 					</div>
 					<div className={styles.bottomSection}>
-						<p>View All Business Listings</p>
+						<p onClick={() => navigateAway("business-listings")}>
+							View All Business Listings
+						</p>
 					</div>
 				</div>
 				<div className={styles.entireItemContainer}>
@@ -421,7 +428,11 @@ const Homepage = () => {
 							</div>
 						))}
 					</div>
-					<div className={styles.bottomSection}></div>
+					<div className={styles.bottomSection}>
+						<p onClick={() => navigateAway("business-listings")}>
+							View All Restaurants and Catering Listings
+						</p>
+					</div>
 				</div>
 				<div className={styles.entireItemContainer}>
 					<div className={styles.titleItem}>
@@ -474,7 +485,11 @@ const Homepage = () => {
 							</div>
 						))}
 					</div>
-					<div className={styles.bottomSection}></div>
+					<div className={styles.bottomSection}>
+						<p onClick={() => navigateAway("housing-listings")}>
+							View All Housing Listings
+						</p>
+					</div>
 				</div>
 				<div className={styles.entireItemContainer}>
 					<div className={styles.titleItem}>
@@ -529,7 +544,11 @@ const Homepage = () => {
 							</div>
 						))}
 					</div>
-					<div className={styles.bottomSection}></div>
+					<div className={styles.bottomSection}>
+						<p onClick={() => navigateAway("housing-listings")}>
+							View All Politic Listings
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
