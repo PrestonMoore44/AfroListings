@@ -276,10 +276,13 @@
   border-radius: 10px;
 }
 .titleContainerTitle {
-  width: 96%;
+  width: 95%;
 }
 .titleContainerOption {
-  width: 4%;
+  width: 5%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 .containerImgHold:hover .titleContainer .titleContainerTitle {
   color: #00c6e5;
