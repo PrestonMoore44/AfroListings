@@ -3,21 +3,20 @@
 	border-radius: 50%;
 	height: 25px;
 	width: 25px;
-	border: 1px solid white;
+	border: 1px solid black;
 	display: table-cell;
 	vertical-align: center;
 	margin-top: 5px;
 }
 .profilePicAlt {
 	margin: auto;
-	height: 25px;
-	width: 25px;
-	border-radius: 50%;
-	border: 1px solid white;
-	background-color: #5c42e5;
-	margin-top: 5px;
-	line-height: 25px;
+	color: #373737;
+	font-size: 20px;
 	vertical-align: middle;
+	color: black;
+}
+.profilePicAlt:hover {
+	color: black;
 }
 .headerContainer {
 	height: 35px;
@@ -72,12 +71,12 @@
 
 .toggle {
 	padding-left: 7px;
-	color: white;
+	color: black;
 }
 
 .hoverOptionsContainer {
 	border: 1px solid #ededed;
-	background: white;
+	background: black;
 	border-radius: 5px;
 	padding: 7px 0;
 	position: absolute;

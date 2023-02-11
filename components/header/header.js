@@ -74,7 +74,7 @@ const Header = () => {
 							router.pathname === "/news" ? styles.active : null
 						}`}
 					>
-						Politics
+						Media Influencers
 					</div>
 					<div
 						onClick={() => viewEducation()}
@@ -130,7 +130,7 @@ const Header = () => {
 									</div>
 								) : (
 									<div className={styles.profilePicAlt}>
-										{user.username[0].toUpperCase()}
+										<i class="bi bi-person-circle"></i>
 									</div>
 								)}
 								{hoverItem === "Profile" && (

@@ -12,7 +12,10 @@ const handle = app.getRequestHandler();
 var pg = require("pg");
 pg.defaults.ssl = false;
 var connectionString = process.env.CONNECTION_STRING;
-const client = new pg.Client(connectionString);
+const client = new pg.Client({
+  connectionString,
+  ssl: { rejectUnauthorized: false },
+});
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -57,22 +60,37 @@ app
         res.end(JSON.stringify({}));
       }
     });
-
-    server.post("/saveUser", (req, res) => {
+    // email varchar(100),\
+    // fn varchar(50),\
+    // ln varchar(50),\
+    // type varchar(50),\
+    // username varchar(100),\
+    // pw varchar(150),\
+    // creationdate varchar(100))",
+    server.post("/saveUser", async (req, res) => {
       const { email, username, password, picture } = req.headers;
       const hash = bcrypt.hashSync(password, saltRounds);
-      client.query(
-        "INSERT INTO users(username, type, email, pw, picture) VALUES ($1,$2,$3,$4,$5) RETURNING ID",
-        [username, "standard", email, hash, picture],
-        (e, resp) => {
-          // Encrypt password later...
-          if (e) console.log(e, " Error insterting new user");
-          console.log(resp, " Resp ");
-          res.end(
-            JSON.stringify(resp?.rows && resp?.rows?.length ? resp.rows[0] : {})
-          );
-        }
-      );
+      const user = await client.query("SELECT * FROM users WHERE email=($1)", [
+        email.trim(),
+      ]);
+      if (!user.rows.length) {
+        client.query(
+          "INSERT INTO users(username, type, email, pw, picture) VALUES ($1,$2,$3,$4,$5) RETURNING ID",
+          [username, "standard", email, hash, picture],
+          (e, resp) => {
+            // Encrypt password later...
+            if (e) console.log(e, " Error insterting new user");
+            console.log(resp, " Resp ");
+            res.end(
+              JSON.stringify(
+                resp?.rows && resp?.rows?.length ? resp.rows[0] : {}
+              )
+            );
+          }
+        );
+      } else {
+        res.end(JSON.stringify({}));
+      }
     });
   })
   .catch((ex) => {
