@@ -76,6 +76,10 @@
 }
 
 .hoverOptionsContainer {
+	border: 1px solid #ededed;
+	background: white;
+	border-radius: 5px;
+	padding: 7px 0;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -96,7 +100,11 @@
 	display: flex;
 	margin: auto;
 	align-items: center;
-	font-size: 14px;
+	display: flex;
+	font-family: "Roboto", "Noto", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-weight: 600 !important;
+	line-height: 36px;
 }
 
 .hoverOptionsContainer div:hover {

@@ -15,7 +15,8 @@ import { geoLocation } from "../../services/userServices";
 import { BiLocationPlus } from "react-icons/bi";
 import { categories } from "../../services/static-data";
 import { AppTheme } from "../../pages/_app";
-import { CardPopup } from "./card-popup/card-popup";
+import CardPopup from "./card-popup/card-popup";
+import SingleCard from "../single-card/single-card";
 import {
 	businessArr,
 	restArr,
@@ -221,68 +222,7 @@ const Homepage = () => {
 					</div>
 					<div className={styles.style_container}>
 						{businessArr.map((it, ind) => (
-							<div
-								onMouseEnter={() =>
-									setBusinessCtrl(
-										businessCtrl.map(
-											(iti, nd) => ind === nd
-										)
-									)
-								}
-								onMouseLeave={() =>
-									setBusinessCtrl(
-										businessCtrl.map((iti, nd) => false)
-									)
-								}
-								className={styles.containerImgHold}
-							>
-								<img
-									className={styles.containerImg}
-									key={ind}
-									src={it.src}
-								/>
-								<div className={styles.containerBodyLow}>
-									<div className={styles.smallMe}>
-										<small>{it.user}</small>
-									</div>
-									<div className={styles.titleContainer}>
-										<div
-											className={
-												styles.titleContainerTitle
-											}
-										>
-											{it.title}
-										</div>
-										{!!showBusinessItem[ind] && (
-											<CardPopup />
-										)}
-										<div
-											className={
-												styles.titleContainerOption
-											}
-										>
-											{(!!businessCtrl[ind] ||
-												!!showBusinessItem[ind]) && (
-												<i
-													onClick={() =>
-														setShowBusinessItem(
-															showBusinessItem.map(
-																(item, index) =>
-																	index ===
-																	ind
-																		? !item
-																		: false
-															)
-														)
-													}
-													className="bi bi-three-dots-vertical"
-												></i>
-											)}
-										</div>
-									</div>
-									<small>{it.desc}</small>
-								</div>
-							</div>
+							<SingleCard item={it} ind={ind}></SingleCard>
 						))}
 					</div>
 					<div className={styles.bottomSection}>
@@ -297,64 +237,7 @@ const Homepage = () => {
 					</div>
 					<div className={styles.style_container}>
 						{restArr.map((it, ind) => (
-							<div
-								onMouseEnter={() =>
-									setfoodCtrl(
-										foodCtrl.map((iti, nd) => ind === nd)
-									)
-								}
-								onMouseLeave={() =>
-									setfoodCtrl(
-										foodCtrl.map((iti, nd) => false)
-									)
-								}
-								className={styles.containerImgHold}
-							>
-								<img
-									className={styles.containerImg}
-									key={ind}
-									src={it.src}
-								/>
-								<div className={styles.containerBodyLow}>
-									<div className={styles.smallMe}>
-										<small>{it.user}</small>
-									</div>
-									<div className={styles.titleContainer}>
-										<div
-											className={
-												styles.titleContainerTitle
-											}
-										>
-											{it.title}
-										</div>
-										{!!showFoodItem[ind] && <CardPopup />}
-										<div
-											className={
-												styles.titleContainerOption
-											}
-										>
-											{(!!foodCtrl[ind] ||
-												!!showFoodItem[ind]) && (
-												<i
-													onClick={() =>
-														setShowFoodItem(
-															showFoodItem.map(
-																(item, index) =>
-																	index ===
-																	ind
-																		? !item
-																		: false
-															)
-														)
-													}
-													className="bi bi-three-dots-vertical"
-												></i>
-											)}
-										</div>
-									</div>
-									<small>{it.desc}</small>
-								</div>
-							</div>
+							<SingleCard item={it} ind={ind}></SingleCard>
 						))}
 					</div>
 					<div className={styles.bottomSection}>
@@ -369,66 +252,7 @@ const Homepage = () => {
 					</div>
 					<div className={styles.style_container}>
 						{housingArr.map((it, ind) => (
-							<div
-								onMouseEnter={() =>
-									setHousingCtrl(
-										housingCtrl.map((iti, nd) => ind === nd)
-									)
-								}
-								onMouseLeave={() =>
-									setHousingCtrl(
-										housingCtrl.map((iti, nd) => false)
-									)
-								}
-								className={styles.containerImgHold}
-							>
-								<img
-									className={styles.containerImg}
-									key={ind}
-									src={it.src}
-								/>
-								<div className={styles.containerBodyLow}>
-									<div className={styles.smallMe}>
-										<small>{it.user}</small>
-									</div>
-									<div className={styles.titleContainer}>
-										<div
-											className={
-												styles.titleContainerTitle
-											}
-										>
-											{it.title}
-										</div>
-										{!!showRealEstateItem[ind] && (
-											<CardPopup />
-										)}
-										<div
-											className={
-												styles.titleContainerOption
-											}
-										>
-											{(!!housingCtrl[ind] ||
-												!!showRealEstateItem[ind]) && (
-												<i
-													onClick={() =>
-														setShowRealEstateItem(
-															showRealEstateItem.map(
-																(item, index) =>
-																	index ===
-																	ind
-																		? !item
-																		: false
-															)
-														)
-													}
-													className="bi bi-three-dots-vertical"
-												></i>
-											)}
-										</div>
-									</div>
-									<small>{it.desc}</small>
-								</div>
-							</div>
+							<SingleCard item={it} ind={ind}></SingleCard>
 						))}
 					</div>
 					<div className={styles.bottomSection}>
@@ -443,68 +267,7 @@ const Homepage = () => {
 					</div>
 					<div className={styles.style_container}>
 						{politicsArr.map((it, ind) => (
-							<div
-								onMouseEnter={() =>
-									setPoliticsCtrl(
-										politicsCtrl.map(
-											(iti, nd) => ind === nd
-										)
-									)
-								}
-								onMouseLeave={() =>
-									setPoliticsCtrl(
-										politicsCtrl.map((iti, nd) => false)
-									)
-								}
-								className={styles.containerImgHold}
-							>
-								<img
-									className={styles.containerImg}
-									key={ind}
-									src={it.src}
-								/>
-								<div className={styles.containerBodyLow}>
-									<div className={styles.smallMe}>
-										<small>{it.user}</small>
-									</div>
-									<div className={styles.titleContainer}>
-										<div
-											className={
-												styles.titleContainerTitle
-											}
-										>
-											{it.title}
-										</div>
-										{!!showPoliticsItem[ind] && (
-											<CardPopup />
-										)}
-										<div
-											className={
-												styles.titleContainerOption
-											}
-										>
-											{(!!politicsCtrl[ind] ||
-												!!showPoliticsItem[ind]) && (
-												<i
-													onClick={() =>
-														setShowPoliticsItem(
-															showPoliticsItem.map(
-																(item, index) =>
-																	index ===
-																	ind
-																		? !item
-																		: false
-															)
-														)
-													}
-													className="bi bi-three-dots-vertical"
-												></i>
-											)}
-										</div>
-									</div>
-									<small>{it.desc}</small>
-								</div>
-							</div>
+							<SingleCard item={it} ind={ind}></SingleCard>
 						))}
 					</div>
 					<div className={styles.bottomSection}>
