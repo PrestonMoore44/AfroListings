@@ -18,15 +18,20 @@ const Header = () => {
 	const dispatch = useDispatch();
 	const user = useSelector((store) => store.user);
 	useEffect(() => {
-		console.log(user, " User from store  from header ");
+		//console.log(user, " User from store  from header ");
 	}, [user]);
 
 	const home = () => router.push("/");
-	const viewBusiness = () => router.push("/business-listings");
-	const viewEducation = () => router.push("/education-listings");
-	const viewHousing = () => router.push("/housing-listings");
-	const viewTravel = () => router.push("/travel-listings");
-	const viewNews = () => router.push("/news");
+	// const viewBusiness = () => router.push("/business-listings");
+	// const viewEducation = () => router.push("/education-listings");
+	// const viewHousing = () => router.push("/housing-listings");
+	// const viewTravel = () => router.push("/travel-listings");
+	// const viewNews = () => router.push("/news");
+	const viewBusiness = () => router.push("/");
+	const viewEducation = () => router.push("/");
+	const viewHousing = () => router.push("/");
+	const viewTravel = () => router.push("/");
+	const viewNews = () => router.push("/");
 
 	const signOut = () => {
 		dispatch({

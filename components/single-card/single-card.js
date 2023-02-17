@@ -23,8 +23,7 @@ const SingleCard = ({ item, ind }) => {
 		false,
 	]);
 
-	const { src, user, title, desc, type } = item;
-	console.log(src, user, title, desc, type, item);
+	const { url: src, username, title, description } = item;
 	return (
 		<div
 			onMouseEnter={() =>
@@ -38,7 +37,7 @@ const SingleCard = ({ item, ind }) => {
 			<img className={styles.containerImg} key={ind} src={src} />
 			<div className={styles.containerBodyLow}>
 				<div className={styles.smallMe}>
-					<small>{user}</small>
+					<small>{username}</small>
 				</div>
 				<div className={styles.titleContainer}>
 					<div className={styles.titleContainerTitle}>{title}</div>
@@ -59,7 +58,7 @@ const SingleCard = ({ item, ind }) => {
 						)}
 					</div>
 				</div>
-				<small>{desc}</small>
+				<small>{description}</small>
 			</div>
 		</div>
 	);

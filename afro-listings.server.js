@@ -10,10 +10,11 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 var pg = require("pg");
-pg.defaults.ssl = false;
-var connectionString = process.env.CONNECTION_STRING;
+pg.defaults.ssl = true;
+var connectionString =
+  "postgres://gmarhpkkaewwzl:eecd6dd38b7a47ca042db24d3e57fc8a04f614f0747808e6f77273bf7cc40674@ec2-52-204-195-41.compute-1.amazonaws.com:5432/ddt2lq49iioqla";
 const client = new pg.Client({
-  connectionString,
+  connectionString: connectionString,
   ssl: { rejectUnauthorized: false },
 });
 const bcrypt = require("bcrypt");
@@ -49,6 +50,31 @@ app
       console.log(" Ready on... port", this, server.settings.env);
     });
 
+    //     const data = await client.query(
+    //         "INSERT INTO listing(userid, type, title, description, zip, likes, shares, bookmarks, city, creationdate) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id",
+    //         [userid, type, title, desc, zip, 0, 0, 0, city, new Date()]
+    //     );
+    //     console.log(data.rows[0].id);
+    //     const media = await client.query(
+    //         "INSERT INTO media(type, format, postid, url) VALUES($1, $2, $3, $4)",
+    //         ["image", ".jpg", data.rows[0].id, src]
+    //     );
+    // }
+
+    server.post("/listings", async (req, res) => {
+      console.log(" Hello world ");
+      const data = await client.query(
+        "SELECT users.username, listing.id, listing.city, listing.subtype, listing.userid, listing.title, listing.description, listing.type, listing.zip,\
+        listing.likes, listing.shares, listing.bookmarks, listing.creationdate, media.type AS mediatype, media.format, media.url \
+        FROM listing INNER JOIN media ON listing.id = media.postid INNER JOIN users ON listing.userid = users.id"
+      ); // Fetch by email then check encrypted password
+      if (data.rows.length) {
+        res.end(JSON.stringify(data.rows));
+      } else {
+        res.end(JSON.stringify({}));
+      }
+    });
+
     server.post("/login", async (req, res) => {
       const { email, password } = req.headers;
       const user = await client.query("SELECT * FROM users WHERE email=($1)", [
@@ -60,13 +86,7 @@ app
         res.end(JSON.stringify({}));
       }
     });
-    // email varchar(100),\
-    // fn varchar(50),\
-    // ln varchar(50),\
-    // type varchar(50),\
-    // username varchar(100),\
-    // pw varchar(150),\
-    // creationdate varchar(100))",
+
     server.post("/saveUser", async (req, res) => {
       const { email, username, password, picture } = req.headers;
       const hash = bcrypt.hashSync(password, saltRounds);

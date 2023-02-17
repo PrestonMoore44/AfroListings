@@ -74,7 +74,7 @@
   position: relative;
   top: 0;
   width: 100vw;
-  height: 92vh;
+  height: 88vh;
   overflow: hidden;
   text-align: center;
   display: flex;
@@ -84,6 +84,9 @@
   z-index: 1;
 }
 
+.homepageAltHeight {
+  height: calc(50vh + 50px);
+}
 .titleItem {
   font-size: 17px;
   font-weight: 600;
@@ -122,6 +125,17 @@
   height: 100%;
   width: 100%;
   z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.backgroundImg {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  object-position: 0 -50px;
   position: absolute;
   top: 0;
   left: 0;
@@ -268,7 +282,6 @@
 }
 
 .containerImgHold {
-  margin: 0 auto;
   border-radius: 5px;
   width: 250px;
   background-color: #fbfcfb;

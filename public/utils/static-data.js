@@ -1,3 +1,13 @@
+export const pageTitles = {
+	"/": {
+		title: "Afro Business, Afro Education, Afro Community",
+		subTitle: "Largest Black Owned Businesses Directory Worldwide",
+	},
+	"/business-listings": {
+		title: "Value Where it Matters Most",
+	},
+};
+
 export const businessArr = [
 	{
 		src: "/tutor.jpeg",
@@ -52,7 +62,7 @@ export const restArr = [
 ];
 export const housingArr = [
 	{
-		src: "/housing_1.jpg",
+		src: "https://newbucketpj.s3.us-west-1.amazonaws.com/housing_1.jpg",
 		user: "Paramount Properties LLC",
 		title: "Modern 1 Bedroom Studio in Heart of Downtown",
 		desc: "In the heart of the much desired downtown district",

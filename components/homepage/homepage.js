@@ -12,23 +12,21 @@ import jwt_decode from "jwt-decode";
 import { Button } from "@material-ui/core";
 import styles from "./homepage.module.css";
 import { geoLocation } from "../../services/userServices";
-import { BiLocationPlus } from "react-icons/bi";
 import { categories } from "../../services/static-data";
 import { AppTheme } from "../../pages/_app";
 import CardPopup from "./card-popup/card-popup";
 import SingleCard from "../single-card/single-card";
-import {
-	businessArr,
-	restArr,
-	housingArr,
-	politicsArr,
-} from "../../public/utils/static-data";
-
+import Cover from "../cover/cover";
+import { getListings } from "../../lib/services/listings-service";
 // Hooks useEffect, useConext, useState, useRef, useLayoutEffect, useTransition
+
 const Homepage = () => {
 	const router = useRouter();
 	const dataRef = useRef();
-	const arr = [];
+	const [businessArr, setBusinessArr] = useState([]);
+	const [housingArr, setHousingArr] = useState([]);
+	const [politicsArr, setPoliticsArr] = useState([]);
+	const [restArr, setRestArr] = useState([]);
 	let start = false;
 
 	// Item control by 4 categories --->
@@ -98,9 +96,21 @@ const Homepage = () => {
 	const passedIn = useContext(AppTheme);
 
 	useEffect(() => {
-		inputRef.current.focus();
+		fetchListings();
+		inputRef?.current?.focus();
 		var item = document.getElementById("inputItemSearch");
 	}, []);
+
+	const fetchListings = async () => {
+		console.log(" Grabbing listings... ");
+		let data = await getListings();
+		setBusinessArr(data.filter(({ type }) => type === "business"));
+		setPoliticsArr(data.filter(({ type }) => type === "politics"));
+		setRestArr(data.filter(({ type }) => type === "food"));
+		setHousingArr(data.filter(({ type }) => type === "housing"));
+		// setListings(data);
+		console.log(data, " Listings? ");
+	};
 
 	const navigateAway = (url) => {
 		router.push(url);
@@ -129,92 +139,17 @@ const Homepage = () => {
 
 	return (
 		<div className={styles.homepageContainerMain}>
-			<div className={styles.homepageContainer}>
-				<div className={styles.homepageOverlay}>
-					<div className={`position-relative`}>
-						<div className={styles.titleText}>
-							Afro Business, Afro Education, Afro Community
-						</div>
-						<h5 className="m-3">
-							Largest Black Owned Businesses Directory Worldwide
-						</h5>
-						<div
-							className={`${styles.searchContainer} p-3 mt-3 form-inline`}
-						>
-							<div
-								className={`${styles.itemHolder} form-group m-2 rounded`}
-							>
-								<span>Type</span>
-								<input
-									ref={inputRef}
-									type="search"
-									id="inputItemSearch"
-									autoComplete="false"
-									onChange={(e) =>
-										handleCategoryChange(e.target.value)
-									}
-									value={type}
-									placeholder="Ex: business, service, food"
-								/>
-								<div
-									className={`${styles.categoriesContainer} ${
-										showCategories ? styles.display : null
-									}`}
-								>
-									{categories.map(function (item, i) {
-										return (
-											<div
-												key={i}
-												onClick={() =>
-													setCategory(item)
-												}
-											>
-												{item}
-											</div>
-										);
-									})}
-								</div>
-							</div>
-							<div
-								className={`${styles.itemHolder} form-group m-2 rounded`}
-							>
-								<span>Location</span>
-								<span
-									onClick={findLocation}
-									className={styles.iconHolder}
-								>
-									<BiLocationPlus></BiLocationPlus>
-								</span>
-								<input
-									className={styles.itemHolderLast}
-									type="search"
-									autoComplete="false"
-									onChange={(e) =>
-										setLocation(e.target.value)
-									}
-									value={location}
-									placeholder="Zip code, city or state"
-								/>
-							</div>
-							<Button
-								className={`${styles.btn} m-2`}
-								variant="contained"
-							>
-								Search
-							</Button>
-						</div>
-					</div>
-					<div className={styles.chevronHolder}>
-						<i class="bi bi-chevron-down" onClick={scrollDown}></i>
-					</div>
-				</div>
-				<video autoPlay muted loop id="myVideo">
-					<source
-						src="https://newbucketpj.s3.us-west-1.amazonaws.com/BGMovieMin.mp4"
-						type="video/mp4"
-					></source>
-				</video>
-			</div>
+			<Cover
+				scrollDown={scrollDown}
+				inputRef={inputRef}
+				type={type}
+				categories={categories}
+				setType={setType}
+				showCategories={showCategories}
+				setCategory={setCategory}
+				handleCategoryChange={handleCategoryChange}
+				bgMedia="https://newbucketpj.s3.us-west-1.amazonaws.com/BGMovieMin.mp4"
+			></Cover>
 			<div className={styles.containerTitle} ref={dataRef}>
 				<div className={styles.entireItemContainer}>
 					<div className={styles.titleItem}>
@@ -222,7 +157,11 @@ const Homepage = () => {
 					</div>
 					<div className={styles.style_container}>
 						{businessArr.map((it, ind) => (
-							<SingleCard item={it} ind={ind}></SingleCard>
+							<SingleCard
+								item={it}
+								ind={ind}
+								categories={categories}
+							></SingleCard>
 						))}
 					</div>
 					<div className={styles.bottomSection}>
