@@ -85,10 +85,17 @@
 }
 
 .titleItem {
-  font-size: 17px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 900;
   line-height: 20px;
   display: flex;
+}
+
+.titleItem::before {
+  margin-top: -30px;
+  position: absolute;
+  content: "_____";
+  color: #d00707;
 }
 .img {
   height: 100%;

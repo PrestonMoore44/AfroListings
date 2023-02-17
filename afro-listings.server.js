@@ -11,8 +11,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 var pg = require("pg");
 pg.defaults.ssl = true;
-var connectionString =
-  "postgres://gmarhpkkaewwzl:eecd6dd38b7a47ca042db24d3e57fc8a04f614f0747808e6f77273bf7cc40674@ec2-52-204-195-41.compute-1.amazonaws.com:5432/ddt2lq49iioqla";
+var connectionString = process.env.CONNECTION_STRING;
 const client = new pg.Client({
   connectionString: connectionString,
   ssl: { rejectUnauthorized: false },

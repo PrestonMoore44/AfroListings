@@ -19,15 +19,8 @@ const BusinessListings = () => {
 	const fetchListings = async () => {
 		console.log(" Grabbing listings... ");
 		let data = await getListings();
-		setListings(data);
+		setListings(data.filter((it) => it.type === "business"));
 		console.log(data, " Listings? ");
-	};
-	const profile = () => {
-		console.log(" Profile view ");
-	};
-
-	const halp = () => {
-		console.log(" Help and Support ");
 	};
 
 	return (
@@ -43,6 +36,7 @@ const BusinessListings = () => {
 				<div className={styles.bussinessCenter}></div>
 				<div className={styles.bussinessSides}></div>
 			</div>
+			<div className={styles.sectionTitle}>BUSINESS</div>
 			<div className={`${styles.bussinessBody}`}>
 				{listings.map((it, ind) => (
 					<div className={styles.style_container}>

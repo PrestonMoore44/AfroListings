@@ -26,19 +26,29 @@
 
 .bussinessSides {
 	width: 27%;
-	border: 1px solid red;
+}
+.sectionTitle {
+	margin-left: calc(10% + 20px);
+	width: fit-content;
+	font-size: 30px;
+	font-weight: 900;
+}
+.sectionTitle::before {
+	margin-top: -40px;
+	position: absolute;
+	content: "______";
+	color: #d00707;
 }
 
 .bussinessCenter {
 	width: 46%;
-	border: 1px solid blue;
 }
 
 .style_container {
 	width: 25%;
 	height: auto;
 	margin: 0 auto;
-	margin-top: 50px;
+	margin-top: 5px;
 	justify-content: center;
 }
 .leftContainer {
