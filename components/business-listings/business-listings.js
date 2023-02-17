@@ -39,7 +39,7 @@ const BusinessListings = () => {
 			<div className={styles.sectionTitle}>BUSINESS</div>
 			<div className={`${styles.bussinessBody}`}>
 				{listings.map((it, ind) => (
-					<div className={styles.style_container}>
+					<div className={styles.style_container} key={it.id}>
 						<SingleCard
 							item={it}
 							ind={ind}

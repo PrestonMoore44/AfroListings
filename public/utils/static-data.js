@@ -6,6 +6,9 @@ export const pageTitles = {
 	"/business-listings": {
 		title: "Value Where it Matters Most",
 	},
+	"/housing-listings": {
+		title: "Home Is Where The Heart Is",
+	},
 };
 
 export const businessArr = [
