@@ -13,6 +13,7 @@ const Cover = ({
 	scrollDown,
 	type,
 	setType,
+	fromTop,
 	showCategories,
 	bgMedia,
 }) => {
@@ -117,7 +118,11 @@ const Cover = ({
 					<source src={bgMedia} type="video/mp4"></source>
 				</video>
 			) : (
-				<img className={styles.backgroundImg} src={bgMedia} />
+				<img
+					className={styles.backgroundImg}
+					src={bgMedia}
+					style={{ objectPosition: fromTop ? fromTop : "0 -50px" }}
+				/>
 			)}
 		</div>
 	);

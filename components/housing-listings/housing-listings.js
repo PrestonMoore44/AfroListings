@@ -26,8 +26,9 @@ const HousingListings = () => {
 		<>
 			<div className={styles.homepageContainerMain}>
 				<Cover
+					fromTop="0 -225px"
 					listings={listings}
-					bgMedia="https://newbucketpj.s3.us-west-1.amazonaws.com/businessBG.jpeg"
+					bgMedia="https://newbucketpj.s3.us-west-1.amazonaws.com/housing.jpeg"
 				></Cover>
 			</div>
 			<div className={styles.bussinessBody}>
