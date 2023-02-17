@@ -4,10 +4,13 @@ export const pageTitles = {
 		subTitle: "Largest Black Owned Businesses Directory Worldwide",
 	},
 	"/business-listings": {
-		title: "Value Where it Matters Most",
+		title: "Work For The Success You Dream Of",
 	},
 	"/housing-listings": {
 		title: "Home Is Where The Heart Is",
+	},
+	"/education-listings": {
+		title: "Education Is The Key To Changing The World",
 	},
 };
 

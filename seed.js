@@ -276,39 +276,54 @@ client.connect(function (err) {
     // title: "Why These Two California Politians Are Causing a Stir This Election Season",
     // desc: "Looking for solutions in 2023? Look no further than these two local activist running for office",
 
-    // const createValues = async () => {
-    //     for await (const {
-    //         city,
-    //         zip,
-    //         userid,
-    //         src,
-    //         user,
-    //         type,
-    //         subtype,
-    //         title,
-    //         desc,
-    //     } of businessArr) {
-    //         const data = await client.query(
-    //             "INSERT INTO listing(userid, type, title, description, zip, likes, shares, bookmarks, city, creationdate) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id",
-    //             [userid, type, title, desc, zip, 0, 0, 0, city, new Date()]
-    //         );
-    //         console.log(data.rows[0].id);
-    //         const media = await client.query(
-    //             "INSERT INTO media(type, format, postid, url) VALUES($1, $2, $3, $4)",
-    //             ["image", ".jpg", data.rows[0].id, src]
-    //         );
-    //     }
-    // };
+    const createValues = async () => {
+        for await (const {
+            city,
+            zip,
+            userid,
+            src,
+            user,
+            type,
+            subtype,
+            title,
+            desc,
+        } of businessArr) {
+            const data = await client.query(
+                "INSERT INTO listing(userid, type, title, description, zip, likes, shares, bookmarks, city, creationdate, subtype) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id",
+                [
+                    userid,
+                    type,
+                    title,
+                    desc,
+                    zip,
+                    0,
+                    0,
+                    0,
+                    city,
+                    new Date(),
+                    subtype,
+                ]
+            );
+            console.log(data.rows[0].id);
+            const media = await client.query(
+                "INSERT INTO media(type, format, postid, url) VALUES($1, $2, $3, $4)",
+                ["image", ".jpg", data.rows[0].id, src]
+            );
+        }
+    };
 
-    // createValues();
+    createValues();
 
-    client.query("SELECT * FROM listing", (er, resp) => {
-        console.log(resp.rows, " REsponse... ");
-    });
+    // client.query("DELETE FROM media", (er, resp) => {
+    //     console.log(resp.rows, " REsponse... ");
+    //     client.query("DELETE FROM listing", (er, resp) => {
+    //         console.log(resp.rows, " REsponse... ");
+    //     });
+    // });
 
-    client.query("SELECT * FROM media", (er, resp) => {
-        console.log(resp.rows, " REsponse... ");
-    });
+    // client.query("SELECT * FROM media", (er, resp) => {
+    //     console.log(resp.rows, " REsponse... ");
+    // });
 
     // client.query(
     //     "ALTER TABLE listing ADD COLUMN subtype varchar(100)",
