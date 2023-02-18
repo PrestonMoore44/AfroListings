@@ -12,6 +12,9 @@ export const pageTitles = {
 	"/education-listings": {
 		title: "Education Is The Key To Changing The World",
 	},
+	"/travel-listings": {
+		title: "Travel is Our Therapy",
+	},
 };
 
 export const businessArr = [
