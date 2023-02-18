@@ -31,6 +31,7 @@ const Header = () => {
 	const viewEducation = () => router.push("/education-listings");
 	const viewHousing = () => router.push("/housing-listings");
 	const viewTravel = () => router.push("/travel-listings");
+	const viewInfluencer = () => router.push("/influencer-listings");
 	const viewNews = () => router.push("/news");
 
 	const signOut = () => {
@@ -74,9 +75,11 @@ const Header = () => {
 						Business
 					</div>
 					<div
-						onClick={() => viewNews()}
+						onClick={() => viewInfluencer()}
 						className={`${styles.rightItem} ${
-							router.pathname === "/news" ? styles.active : null
+							router.pathname === "/influencer-listings"
+								? styles.active
+								: null
 						}`}
 					>
 						Media Influencers

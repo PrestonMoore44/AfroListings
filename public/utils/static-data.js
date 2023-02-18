@@ -15,6 +15,9 @@ export const pageTitles = {
 	"/travel-listings": {
 		title: "Travel is Our Therapy",
 	},
+	"/influencer-listings": {
+		title: "Influce is King",
+	},
 };
 
 export const businessArr = [
