@@ -16,10 +16,8 @@ const InfluencerListings = () => {
 	}, []);
 
 	const fetchListings = async () => {
-		console.log(" Grabbing listings... ");
 		let data = await getListings();
 		setListings(data.filter((it) => it.type === "influencer"));
-		console.log(data, " Listings? ");
 	};
 
 	return (
