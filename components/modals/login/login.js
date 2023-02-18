@@ -85,11 +85,21 @@ const Login = ({ setShowLogin }) => {
 				<div className={styles.closeContainer}>
 					<GrFormClose onClick={() => setShowLogin(false)} />
 				</div>
-				<h2 className={`mb-1`}>Sign in</h2>
-				<div className={`${styles.needAccount} mb-4`}>
-					Need an account?
-					<a onClick={() => setStep(2)}> Join Afro Listings</a>
-				</div>
+				{step === 1 ? (
+					<>
+						<h2 className={`mb-1`}>Sign in</h2>
+						<div className={`${styles.needAccount} mb-4`}>
+							Need an account?
+							<a onClick={() => setStep(2)}>
+								{" "}
+								Join Afro Listings
+							</a>
+						</div>
+					</>
+				) : (
+					<h2 className={`mb-1`}>Sign up</h2>
+				)}
+
 				<div className={styles.bottomContainer}>
 					{step === 1 && (
 						<Formik

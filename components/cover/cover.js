@@ -106,12 +106,14 @@ const Cover = ({
 						</div>
 					)}
 				</div>
-				<div className={styles.chevronHolder}>
-					<i
-						className={"bi bi-chevron-down"}
-						onClick={scrollDown}
-					></i>
-				</div>
+				{route.pathname === "/" && (
+					<div className={styles.chevronHolder}>
+						<i
+							className={"bi bi-chevron-down"}
+							onClick={scrollDown}
+						></i>
+					</div>
+				)}
 			</div>
 			{route.pathname === "/" ? (
 				<video autoPlay muted loop id="myVideo">
