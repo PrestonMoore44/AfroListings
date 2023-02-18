@@ -58,6 +58,7 @@
 }
 
 .rightItemAlt {
+	flex-shrink: 0;
 	text-align: center;
 	margin: 0 20px;
 	height: 100%;
