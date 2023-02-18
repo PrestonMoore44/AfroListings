@@ -6,12 +6,12 @@ import Footer from "../footer/footer";
 import HomePage from "../homepage/homepage";
 import styles from "./layout.module.css";
 
-const Layout = () => {
+const Layout = ({ theme }) => {
 	useEffect(() => {}, []);
 
 	return (
 		<div className={styles.continer}>
-			<Header></Header>
+			<Header theme={theme}></Header>
 		</div>
 	);
 };

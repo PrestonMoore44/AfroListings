@@ -10,7 +10,7 @@ import { BsPlusSquare } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { IoExitOutline } from "react-icons/io5";
 
-const Header = () => {
+const Header = ({ theme }) => {
 	const router = useRouter();
 	const [hoverItem, setHoverItem] = useState(null);
 	const [showLogin, setShowLogin] = useState(false);
@@ -18,15 +18,10 @@ const Header = () => {
 	const dispatch = useDispatch();
 	const user = useSelector((store) => store.user);
 	useEffect(() => {
-		console.log(user, " User from store  from header ");
+		console.log(user, " User from store  from header ", theme);
 	}, [user]);
 
 	const home = () => router.push("/");
-	// const viewBusiness = () => router.push("/business-listings");
-	// const viewEducation = () => router.push("/education-listings");
-	// const viewHousing = () => router.push("/housing-listings");
-	// const viewTravel = () => router.push("/travel-listings");
-	// const viewNews = () => router.push("/news");
 	const viewBusiness = () => router.push("/business-listings");
 	const viewEducation = () => router.push("/education-listings");
 	const viewHousing = () => router.push("/housing-listings");
@@ -53,7 +48,11 @@ const Header = () => {
 	return (
 		<>
 			{showLogin && <Login setShowLogin={setShowLogin}></Login>}
-			<div className={`${styles.headerContainer}`}>
+			<div
+				className={`${styles.headerContainer} ${
+					theme === "dark" ? styles.darkTheme : null
+				}`}
+			>
 				<div className={styles.leftContainer}></div>
 				<div className={styles.rightContainer}>
 					<div

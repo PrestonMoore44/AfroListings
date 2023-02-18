@@ -35,6 +35,10 @@
 	border-bottom: 1px solid #f3f6f4;
 }
 
+.darkTheme {
+	background-color: #1a1d26;
+	color: white;
+}
 .leftContainer {
 	width: 200px;
 }

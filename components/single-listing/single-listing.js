@@ -55,7 +55,7 @@ const SingleListings = () => {
 					</div>
 					<div className={styles.actionsContainer}>
 						<div className={styles.saveContainer}>
-							<i class="bi bi-bookmark"></i>
+							<i className="bi bi-bookmark"></i>
 							<span>Save</span>
 						</div>
 						<div>
