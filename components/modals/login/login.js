@@ -322,7 +322,7 @@ const Login = ({ setShowLogin }) => {
 									<ReCAPTCHA
 										className={`mt-3`}
 										onChange={(val) => setShowCapErr(!val)}
-										sitekey="6Lc0rfwiAAAAABZCRu6RliDMY0PCaQW2exz1CKsq"
+										sitekey="6LdKXJEkAAAAAI3au3h6Lu1OSlhK_pVt-eVI_xEE"
 										ref={captchaRef}
 									/>
 									{showCapErr && (
