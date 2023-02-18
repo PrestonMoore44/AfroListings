@@ -4,6 +4,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import React from "react";
+import "../styles/global.css";
 
 export const AppTheme = React.createContext(); // Needed for context
 
