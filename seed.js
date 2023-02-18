@@ -400,7 +400,7 @@ client.connect(function (err) {
         }
     };
 
-    createValues();
+    // createValues();
 
     // client.query("DELETE FROM media", (er, resp) => {
     //     console.log(resp.rows, " REsponse... ");
@@ -409,9 +409,9 @@ client.connect(function (err) {
     //     });
     // });
 
-    // client.query("SELECT * FROM media", (er, resp) => {
-    //     console.log(resp.rows, " REsponse... ");
-    // });
+    client.query("SELECT * FROM listing", (er, resp) => {
+        console.log(resp.rows, " REsponse... ");
+    });
 
     // client.query(
     //     "ALTER TABLE listing ADD COLUMN subtype varchar(100)",

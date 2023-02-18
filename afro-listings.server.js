@@ -49,19 +49,21 @@ app
       console.log(" Ready on... port", this, server.settings.env);
     });
 
-    //     const data = await client.query(
-    //         "INSERT INTO listing(userid, type, title, description, zip, likes, shares, bookmarks, city, creationdate) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id",
-    //         [userid, type, title, desc, zip, 0, 0, 0, city, new Date()]
-    //     );
-    //     console.log(data.rows[0].id);
-    //     const media = await client.query(
-    //         "INSERT INTO media(type, format, postid, url) VALUES($1, $2, $3, $4)",
-    //         ["image", ".jpg", data.rows[0].id, src]
-    //     );
-    // }
+    server.post("/listing", async (req, res) => {
+      const data = await client.query(
+        "SELECT users.username, listing.id, listing.city, listing.subtype, listing.userid, listing.title, listing.description, listing.type, listing.zip,\
+        listing.likes, listing.shares, listing.bookmarks, listing.creationdate, media.type AS mediatype, media.format, media.url \
+        FROM listing INNER JOIN media ON listing.id = media.postid INNER JOIN users ON listing.userid = users.id WHERE listing.id = ($1)",
+        [parseInt(req.headers.lid)]
+      ); // Fetch by email then check encrypted password
+      if (data.rows.length) {
+        res.end(JSON.stringify(data.rows[0]));
+      } else {
+        res.end(JSON.stringify({}));
+      }
+    });
 
     server.post("/listings", async (req, res) => {
-      console.log(" Hello world ");
       const data = await client.query(
         "SELECT users.username, listing.id, listing.city, listing.subtype, listing.userid, listing.title, listing.description, listing.type, listing.zip,\
         listing.likes, listing.shares, listing.bookmarks, listing.creationdate, media.type AS mediatype, media.format, media.url \
@@ -99,7 +101,6 @@ app
           (e, resp) => {
             // Encrypt password later...
             if (e) console.log(e, " Error insterting new user");
-            console.log(resp, " Resp ");
             res.end(
               JSON.stringify(
                 resp?.rows && resp?.rows?.length ? resp.rows[0] : {}

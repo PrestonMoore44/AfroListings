@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import styles from "./single-card.module.css";
 import { CardPopup } from "../homepage/card-popup/card-popup";
 /*
@@ -14,6 +15,7 @@ import { CardPopup } from "../homepage/card-popup/card-popup";
 */
 
 const SingleCard = ({ item, ind }) => {
+	const router = useRouter();
 	const [showItem, setShowItem] = useState([false, false, false, false]);
 
 	const [businessCtrl, setBusinessCtrl] = useState([
@@ -23,7 +25,12 @@ const SingleCard = ({ item, ind }) => {
 		false,
 	]);
 
-	const { url: src, username, title, description } = item;
+	const goToListing = (lid) => {
+		console.log(lid);
+		router.push(`/listing/${lid}`);
+	};
+
+	const { url: src, username, title, description, id } = item;
 	return (
 		<div
 			onMouseEnter={() =>
@@ -34,13 +41,23 @@ const SingleCard = ({ item, ind }) => {
 			}
 			className={styles.containerImgHold}
 		>
-			<img className={styles.containerImg} key={ind} src={src} />
+			<img
+				onClick={() => goToListing(id)}
+				className={styles.containerImg}
+				key={ind}
+				src={src}
+			/>
 			<div className={styles.containerBodyLow}>
 				<div className={styles.smallMe}>
 					<small>{username}</small>
 				</div>
 				<div className={styles.titleContainer}>
-					<div className={styles.titleContainerTitle}>{title}</div>
+					<div
+						onClick={() => goToListing(id)}
+						className={styles.titleContainerTitle}
+					>
+						{title}
+					</div>
 					{!!showItem[ind] && <CardPopup />}
 					{!!false && <CardPopup />}
 					<div className={styles.titleContainerOption}>
