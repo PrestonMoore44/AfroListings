@@ -7,6 +7,7 @@ import Cover from "../cover/cover";
 import SingleCard from "../single-card/single-card";
 import SingleListing from "../../components/single-listing/single-listing";
 import { getListing } from "../../lib/services/listings-service";
+import StarRatings from "react-star-ratings";
 import {
 	FacebookIcon,
 	FacebookMessengerIcon,
@@ -52,6 +53,17 @@ const SingleListings = () => {
 							{" "}
 							| {new Date(listing.creationdate).toDateString()}
 						</span>
+					</div>
+					<div className={styles.reviewContainer}>
+						<StarRatings
+							rating={4.5}
+							numberOfStars={5}
+							starRatedColor="#ec7211"
+							starDimension="20px"
+							starSpacing="2px"
+							starEmptyColor="#DADCE0"
+						/>
+						<div className={styles.reviewContainerDiv}>4.5</div>
 					</div>
 					<div className={styles.actionsContainer}>
 						<div className={styles.saveContainer}>
