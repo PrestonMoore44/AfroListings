@@ -8,6 +8,9 @@ import SingleCard from "../single-card/single-card";
 import SingleListing from "../../components/single-listing/single-listing";
 import { getListing } from "../../lib/services/listings-service";
 import StarRatings from "react-star-ratings";
+import decodeHTMLEntities from "decode-html";
+import { htmlEncode } from "htmlencode";
+import ReactHtmlParser from "react-html-parser";
 import {
 	FacebookIcon,
 	FacebookMessengerIcon,
@@ -35,16 +38,27 @@ import {
 */
 
 const SingleListings = () => {
+	const longSTRING = htmlEncode(`<div className={styles.reviewContainer}>
+		<p className={styles.reviewContainerDivAlt}>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, <a href="https://www.youtube.com/@TheAngryman"  target="_blank">sed do eiusmod tempor</a> incididunt ut labore et dolore magna aliqua. Nec ullamcorper sit amet risus nullam eget felis. Sociis natoque penatibus et magnis. Elit ut aliquam purus sit amet. Nibh tellus molestie nunc non blandit massa enim nec. Ut tortor pretium viverra suspendisse potenti nullam ac.
+		</p>
+		<p>Urna condimentum mattis pellentesque id. Mauris pellentesque pulvinar pellentesque habitant. Eu volutpat odio facilisis mauris sit amet massa. Rutrum quisque non tellus orci ac auctor augue. Ipsum dolor sit amet consectetur. </p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec ullamcorper sit amet risus nullam eget felis. Sociis natoque penatibus et magnis. Elit ut aliquam purus sit amet. Nibh tellus molestie nunc non blandit massa enim nec. Ut tortor pretium viverra suspendisse potenti nullam ac.</p>
+		<p>Nec ullamcorper sit amet risus nullam eget felis. Sociis natoque penatibus et magnis. Elit ut aliquam purus sit amet. Ut tortor pretium viverra suspendisse potenti nullam ac.</p>
+	</div>`);
 	const [listings, setListings] = useState([]);
 	const [arr, setArr] = useState([1, 2, 3, 4, 5, 6]);
 	const router = useRouter();
 	const { lid } = router.query;
 	const [listing, setListing] = useState({});
+	const [article, setArticle] = useState(null);
 
 	useEffect(() => {
 		if (!lid) {
 			return;
 		}
+		setArticle(decodeHTMLEntities(longSTRING));
+
 		fetchListing(lid);
 	}, [lid]);
 
@@ -90,7 +104,15 @@ const SingleListings = () => {
 					</div>
 				</div>
 				<div className={styles.postBody}>
-					<img src={listing.url} className={styles.imgMain} />
+					<div className={styles.postBodyLeft}>
+						<div className={styles.imgContainer}>
+							<img src={listing.url} className={styles.imgMain} />
+						</div>
+						<div className={styles.innerBodyContainer}>
+							<div>{ReactHtmlParser(article)}</div>
+						</div>
+					</div>
+					<div className={styles.postBodyRight}></div>
 				</div>
 			</div>
 		</>
