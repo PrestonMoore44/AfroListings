@@ -409,9 +409,15 @@ client.connect(function (err) {
     //     });
     // });
 
-    client.query("SELECT * FROM listing", (er, resp) => {
-        console.log(resp.rows, " REsponse... ");
+    // client.query("SELECT * FROM listing", (er, resp) => {
+    //     console.log(resp.rows, " REsponse... ");
+    // });
+
+    client.query("SELECT * FROM users", (er, resp) => {
+        console.log(resp.rows, " User... ");
     });
+
+    client.query("UPDATE USERS set email = 'caroham29@gmail.com' WHERE id = 2");
 
     // client.query(
     //     "ALTER TABLE listing ADD COLUMN subtype varchar(100)",

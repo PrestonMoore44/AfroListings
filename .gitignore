@@ -13,6 +13,7 @@
 
 # enviornment variables
 /.env/
+/env/
 
 # seed file
 /.seed.js/

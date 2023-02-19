@@ -41,13 +41,34 @@ const Login = ({ setShowLogin }) => {
 
 	useEffect(() => {}, []);
 
-	const inheritData = (data, updateMethod) => {
+	const inheritData = async (data, updateMethod) => {
 		var dataObj = jwt_decode(data.credential);
-		console.log(dataObj, " OK SIR");
-		updateMethod("email", dataObj.email);
-		updateMethod("userName", dataObj.name);
-		updateMethod("picture", dataObj.picture);
-		setStep(2);
+		console.log(dataObj, " OK SIR", updateMethod);
+		// Attempt login with data returned
+		if (dataObj.email) {
+			const user = await login(dataObj);
+			if (user.id) {
+				dispatch({
+					type: "setUser",
+					user,
+				});
+				setShowLogin(false);
+			} else {
+				setLoginErr(true);
+			}
+			console.log(user);
+		} else {
+			// No data found
+		}
+		// updateMethod("email", dataObj.email);
+		// updateMethod("userName", dataObj.name);
+		// updateMethod("picture", dataObj.picture);
+		// setStep(2);
+	};
+
+	const resetLogin = () => {
+		setLoginErr(false);
+		setStep(1);
 	};
 
 	const saveUser = async (
@@ -97,7 +118,13 @@ const Login = ({ setShowLogin }) => {
 						</div>
 					</>
 				) : (
-					<h2 className={`mb-1`}>Sign up</h2>
+					<>
+						<h2 className={`mb-1`}>Sign up</h2>
+						<div className={`${styles.needAccount} mb-4`}>
+							Already a memeber?
+							<a onClick={() => resetLogin()}> Sign in</a>
+						</div>
+					</>
 				)}
 
 				<div className={styles.bottomContainer}>

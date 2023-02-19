@@ -77,12 +77,16 @@ app
     });
 
     server.post("/login", async (req, res) => {
-      const { email, password } = req.headers;
+      const { email, password, email_verified = false } = req.headers;
       const user = await client.query("SELECT * FROM users WHERE email=($1)", [
         email.trim(),
       ]); // Fetch by email then check encrypted password
-      if (user.rows.length && bcrypt.compareSync(password, user.rows[0].pw)) {
-        res.end(JSON.stringify(user.rows[0]));
+      if (user.rows.length) {
+        if (bcrypt.compareSync(password, user.rows[0].pw) || email_verified) {
+          res.end(JSON.stringify(user.rows[0]));
+        } else {
+          res.end(JSON.stringify({}));
+        }
       } else {
         res.end(JSON.stringify({}));
       }

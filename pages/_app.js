@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <AppTheme.Provider value="Some Great Prop...">
       <Provider store={store}>
-        <GoogleOAuthProvider clientId="1081541241057-9c2u4qf18ubnkk5aeinnh75ihlj5eso5.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId="896514884828-a463lc66i8q3oubvl8a4icusffpau138.apps.googleusercontent.com">
           <Component {...pageProps} />
         </GoogleOAuthProvider>
       </Provider>
