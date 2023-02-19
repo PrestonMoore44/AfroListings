@@ -27,6 +27,8 @@ const Homepage = () => {
 	const [housingArr, setHousingArr] = useState([]);
 	const [politicsArr, setPoliticsArr] = useState([]);
 	const [restArr, setRestArr] = useState([]);
+	const [influencerArr, setInfluencerArr] = useState([]);
+	const [travelArr, setTravelArr] = useState([]);
 	let start = false;
 
 	// Item control by 4 categories --->
@@ -102,14 +104,13 @@ const Homepage = () => {
 	}, []);
 
 	const fetchListings = async () => {
-		console.log(" Grabbing listings... ");
 		let data = await getListings();
 		setBusinessArr(data.filter(({ type }) => type === "business"));
 		setPoliticsArr(data.filter(({ type }) => type === "politics"));
 		setRestArr(data.filter(({ type }) => type === "food"));
 		setHousingArr(data.filter(({ type }) => type === "housing"));
-		// setListings(data);
-		console.log(data, " Listings? ");
+		setInfluencerArr(data.filter(({ type }) => type === "influencer"));
+		setTravelArr(data.filter(({ type }) => type === "travel"));
 	};
 
 	const navigateAway = (url) => {
@@ -153,7 +154,7 @@ const Homepage = () => {
 			<div className={styles.containerTitle} ref={dataRef}>
 				<div className={styles.entireItemContainer}>
 					<div className={styles.titleItem}>
-						Recommended Afro Businesses
+						Recommended Businesses
 					</div>
 					<div className={styles.style_container}>
 						{businessArr.map((it, ind) => (
@@ -171,8 +172,36 @@ const Homepage = () => {
 					</div>
 				</div>
 				<div className={styles.entireItemContainer}>
+					<div className={styles.titleItem}>Recommended Travel</div>
+					<div className={styles.style_container}>
+						{travelArr.map((it, ind) => (
+							<SingleCard item={it} ind={ind}></SingleCard>
+						))}
+					</div>
+					<div className={styles.bottomSection}>
+						<p onClick={() => navigateAway("travel-listings")}>
+							View All Travel Listings
+						</p>
+					</div>
+				</div>
+				<div className={styles.entireItemContainer}>
 					<div className={styles.titleItem}>
-						Recommended Afro Restaurants and Catering
+						Recommended Social Media Influencers
+					</div>
+					<div className={styles.style_container}>
+						{influencerArr.map((it, ind) => (
+							<SingleCard item={it} ind={ind}></SingleCard>
+						))}
+					</div>
+					<div className={styles.bottomSection}>
+						<p onClick={() => navigateAway("influencer-listings")}>
+							View All Social Media Influencer Listings
+						</p>
+					</div>
+				</div>
+				<div className={styles.entireItemContainer}>
+					<div className={styles.titleItem}>
+						Recommended Restaurants and Catering
 					</div>
 					<div className={styles.style_container}>
 						{restArr.map((it, ind) => (
@@ -187,7 +216,7 @@ const Homepage = () => {
 				</div>
 				<div className={styles.entireItemContainer}>
 					<div className={styles.titleItem}>
-						Recommended Afro Real Estate and Housing
+						Recommended Real Estate and Housing
 					</div>
 					<div className={styles.style_container}>
 						{housingArr.map((it, ind) => (
@@ -202,7 +231,7 @@ const Homepage = () => {
 				</div>
 				<div className={styles.entireItemContainer}>
 					<div className={styles.titleItem}>
-						Afro Politics and Social Media
+						Politics and Social Media
 					</div>
 					<div className={styles.style_container}>
 						{politicsArr.map((it, ind) => (
