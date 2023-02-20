@@ -48,6 +48,7 @@
 .postBodyLeft {
 	width: 65%;
 	height: fit-content;
+	padding-right: 30px;
 }
 
 .postBodyRight {
@@ -147,7 +148,8 @@
 
 .imgMain {
 	height: auto;
-	width: 100%;
+	width: auto;
+	max-height: 600px;
 }
 
 .topBody {
