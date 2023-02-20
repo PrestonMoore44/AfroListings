@@ -1,3 +1,22 @@
+.customBorders:focus {
+	border-color: red !important;
+	outline-color: red !important;
+}
+.textareaCustom {
+	width: 100%;
+	overflow: auto;
+	outline: none;
+	border-radius: 4px;
+	border-color: #d2d2d2;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-style: solid;
+	resize: none; /*remove the resize handle on the bottom right*/
+}
+.textareaCustom:focus {
+	outline: none !important;
+}
 .postOutterContainer {
 	margin: 60px 100px;
 }
@@ -25,16 +44,65 @@
 	display: flex;
 	align-items: center;
 }
+
 .postBodyLeft {
-	width: 55%;
-	border-right: 1px soild red;
+	width: 65%;
+	height: fit-content;
+}
+
+.postBodyRight {
+	max-width: 335px;
+	margin: 0 auto;
+	padding: 20px 0;
+}
+.postBody {
+	margin: 0;
+}
+.flexMe {
+	display: flex;
+	width: 100%;
+}
+.postBodyRightContainer {
+	border-width: 3px 1px 1px;
+	border-style: solid;
+	border-color: rgb(206, 41, 39) rgb(211, 215, 220) rgb(211, 215, 220);
+	border-image: initial;
+	font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 0.875rem;
+	margin-bottom: 0px;
+	padding: 0.5rem 0px;
+	font-weight: bold;
+	text-align: center;
+}
+.MuiFormLabel-root.Mui-focused {
+	color: red !important;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+	border-color: red !important;
+}
+
+.postBodyRightContainerBody {
+	font-size: 0.875rem;
+	border-left: 1px solid rgb(211, 215, 220);
+	border-right: 1px solid rgb(211, 215, 220);
+	border-bottom: 1px solid rgb(211, 215, 220);
+	border-image: initial;
+	padding: 0.5rem 15px;
+	line-height: 24px;
+}
+.postBodyRightContainerBody span {
+	margin-left: 7px;
+}
+.postBodyRightContainerBody div {
+	font-size: 0.875rem;
+	margin: 15px 0;
 }
 .innerBodyContainer {
 	padding: 20px 0;
 }
 
 .innerBodyContainerLeft {
-	width: 60%;
+	width: 65%;
 	border-right: 1px solid #d8d8d8;
 }
 
@@ -73,8 +141,7 @@
 }
 
 .imgContainer {
-	width: fit-content;
-	border-bottom: 1px solid #d8d8d8;
+	width: 65%;
 	padding-bottom: 35px;
 }
 
