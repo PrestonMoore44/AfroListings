@@ -17,9 +17,27 @@ const Header = ({ theme }) => {
 	const [showCreateListing, setShowCreateListing] = useState(false);
 	const dispatch = useDispatch();
 	const user = useSelector((store) => store.user);
+	const routesCtrl = {
+		"/business-listings": 1,
+		"/influencer-listings": 1,
+		"/education-listings": 1,
+		"/housing-listings": 1,
+	};
 	useEffect(() => {
 		console.log(user, " User from store  from header ", theme);
 	}, [user]);
+
+	useEffect(() => {
+		if (routesCtrl[router.pathname] && !user) {
+			restrictUser();
+		}
+	}, [router]);
+
+	useEffect(() => {
+		if (!showLogin && routesCtrl[router.pathname] && !user) {
+			router.push(`/`);
+		}
+	}, [showLogin]);
 
 	const home = () => router.push("/");
 	const viewBusiness = () => router.push("/business-listings");
@@ -28,6 +46,12 @@ const Header = ({ theme }) => {
 	const viewTravel = () => router.push("/travel-listings");
 	const viewInfluencer = () => router.push("/influencer-listings");
 	const viewNews = () => router.push("/news");
+
+	const restrictUser = () => {
+		setTimeout(() => {
+			setShowLogin(true);
+		}, 500);
+	};
 
 	const signOut = () => {
 		dispatch({
@@ -38,7 +62,7 @@ const Header = ({ theme }) => {
 
 	const create = () => {
 		console.log(user.id);
-		router.push(`/user/listings/${user.id}`);
+		router.push(`/listing/create`);
 		dispatch({
 			type: "setShowNewListing",
 			showNewListing: true,

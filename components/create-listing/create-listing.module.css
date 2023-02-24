@@ -1,0 +1,29 @@
+.homepageContainerMain {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: auto;
+	z-index: 1;
+	padding: 55px 250px;
+}
+
+.containerHeader {
+	padding: 25px;
+}
+
+.header::before {
+	margin-top: -40px;
+	position: absolute;
+	content: "___";
+	color: #d00707;
+}
+.header {
+	font-weight: 900;
+	font-size: 1.25rem;
+}
+
+.formContainer {
+	width: 65%;
+	padding: 20px 0;
+}
