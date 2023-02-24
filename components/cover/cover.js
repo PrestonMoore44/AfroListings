@@ -93,7 +93,7 @@ const Cover = ({
 									onChange={(e) =>
 										setLocation(e.target.value)
 									}
-									value={null}
+									value={""}
 									placeholder="Zip code, city or state"
 								/>
 							</div>

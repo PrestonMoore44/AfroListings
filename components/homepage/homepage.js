@@ -176,7 +176,11 @@ const Homepage = () => {
 					<div className={styles.titleItem}>Recommended Travel</div>
 					<div className={styles.style_container}>
 						{travelArr.map((it, ind) => (
-							<SingleCard item={it} ind={ind}></SingleCard>
+							<SingleCard
+								key={it.id}
+								item={it}
+								ind={ind}
+							></SingleCard>
 						))}
 					</div>
 					<div className={styles.bottomSection}>
@@ -191,7 +195,11 @@ const Homepage = () => {
 					</div>
 					<div className={styles.style_container}>
 						{influencerArr.map((it, ind) => (
-							<SingleCard item={it} ind={ind}></SingleCard>
+							<SingleCard
+								key={it.id}
+								item={it}
+								ind={ind}
+							></SingleCard>
 						))}
 					</div>
 					<div className={styles.bottomSection}>
@@ -206,7 +214,11 @@ const Homepage = () => {
 					</div>
 					<div className={styles.style_container}>
 						{restArr.map((it, ind) => (
-							<SingleCard item={it} ind={ind}></SingleCard>
+							<SingleCard
+								key={it.id}
+								item={it}
+								ind={ind}
+							></SingleCard>
 						))}
 					</div>
 					<div className={styles.bottomSection}>
@@ -221,7 +233,11 @@ const Homepage = () => {
 					</div>
 					<div className={styles.style_container}>
 						{housingArr.map((it, ind) => (
-							<SingleCard item={it} ind={ind}></SingleCard>
+							<SingleCard
+								key={it.id}
+								item={it}
+								ind={ind}
+							></SingleCard>
 						))}
 					</div>
 					<div className={styles.bottomSection}>
@@ -236,7 +252,11 @@ const Homepage = () => {
 					</div>
 					<div className={styles.style_container}>
 						{politicsArr.map((it, ind) => (
-							<SingleCard item={it} ind={ind}></SingleCard>
+							<SingleCard
+								key={it.id}
+								item={it}
+								ind={ind}
+							></SingleCard>
 						))}
 					</div>
 					<div className={styles.bottomSection}>

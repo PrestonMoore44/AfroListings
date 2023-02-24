@@ -14,6 +14,7 @@ const Header = ({ theme }) => {
 	const router = useRouter();
 	const [hoverItem, setHoverItem] = useState(null);
 	const [showLogin, setShowLogin] = useState(false);
+	const [ctrlLogin, setCtrlLogin] = useState(false);
 	const [showCreateListing, setShowCreateListing] = useState(false);
 	const dispatch = useDispatch();
 	const user = useSelector((store) => store.user);
@@ -34,7 +35,9 @@ const Header = ({ theme }) => {
 	}, [router]);
 
 	useEffect(() => {
-		if (!showLogin && routesCtrl[router.pathname] && !user) {
+		if (ctrlLogin && !showLogin && routesCtrl[router.pathname] && !user) {
+			console.log(" RUnning ");
+			setCtrlLogin(false);
 			router.push(`/`);
 		}
 	}, [showLogin]);
@@ -50,6 +53,7 @@ const Header = ({ theme }) => {
 	const restrictUser = () => {
 		setTimeout(() => {
 			setShowLogin(true);
+			setCtrlLogin(true);
 		}, 500);
 	};
 
