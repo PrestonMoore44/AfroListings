@@ -160,6 +160,7 @@ const Homepage = () => {
 						{businessArr.map((it, ind) => (
 							<SingleCard
 								item={it}
+								key={it.id}
 								ind={ind}
 								categories={categories}
 							></SingleCard>

@@ -11,7 +11,7 @@ const Cover = ({
 	categories,
 	setCategory,
 	scrollDown,
-	type,
+	type = "",
 	setType,
 	fromTop,
 	showCategories,
@@ -31,7 +31,7 @@ const Cover = ({
 	return (
 		<div
 			className={`${styles.homepageContainer} ${
-				route.pathname !== "/" && styles.homepageAltHeight
+				route.pathname !== "/" ? styles.homepageAltHeight : null
 			}`}
 		>
 			<div className={styles.homepageOverlay}>
