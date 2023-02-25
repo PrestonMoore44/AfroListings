@@ -25,7 +25,14 @@ const Login = ({ setShowLogin }) => {
 	const emailRef = useRef(null);
 	const [hoverItem, setHoverItem] = useState(null);
 	const [step, setStep] = useState(1);
+	const [effect, setEffect] = useState(false);
 
+	useEffect(() => {
+		setTimeout(() => {
+			setEffect(true);
+		});
+		console.log("OK");
+	}, []);
 	const SignupSchema = Yup.object().shape({
 		password: Yup.string()
 			.min(3, "Password must be at least 4 characters")
@@ -101,8 +108,12 @@ const Login = ({ setShowLogin }) => {
 	};
 
 	return (
-		<div className={`${styles.loginContainer}`}>
-			<div className={styles.loginBody}>
+		<div
+			className={`${styles.loginContainer} ${
+				!!effect ? styles.showEffect : null
+			}`}
+		>
+			<div className={`${styles.loginBody}`}>
 				<div className={styles.closeContainer}>
 					<GrFormClose onClick={() => setShowLogin(false)} />
 				</div>
