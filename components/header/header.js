@@ -84,14 +84,6 @@ const Header = ({ theme }) => {
 				<div className={styles.leftContainer}></div>
 				<div className={styles.rightContainer}>
 					<div
-						onClick={() => home()}
-						className={`${styles.rightItem} ${
-							router.pathname === "/" ? styles.active : null
-						}`}
-					>
-						Home
-					</div>
-					<div
 						onClick={() => viewBusiness()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/business-listings"
@@ -120,6 +112,26 @@ const Header = ({ theme }) => {
 						}`}
 					>
 						Education
+					</div>
+					<div
+						onClick={() => viewEducation()}
+						className={`${styles.rightItem} ${
+							router.pathname === "/education-listings"
+								? styles.active
+								: null
+						}`}
+					>
+						Dining
+					</div>
+					<div
+						onClick={() => viewEducation()}
+						className={`${styles.rightItem} ${
+							router.pathname === "/education-listings"
+								? styles.active
+								: null
+						}`}
+					>
+						Fitness
 					</div>
 					<div
 						onClick={() => viewHousing()}
@@ -165,7 +177,7 @@ const Header = ({ theme }) => {
 									</div>
 								) : (
 									<div className={styles.profilePicAlt}>
-										<i class="bi bi-person-circle"></i>
+										<i className="bi bi-person-circle"></i>
 									</div>
 								)}
 								{hoverItem === "Profile" && (

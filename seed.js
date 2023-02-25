@@ -338,6 +338,30 @@ client.connect(function (err) {
     //     }
     // );
 
+    // Category table create
+    // client.query(
+    //     "CREATE TABLE category(id SERIAL PRIMARY KEY, val varchar(50))",
+    //     (err, resp) => {
+    //         if (err) {
+    //             console.log(err, " Error ");
+    //         } else {
+    //             console.log(resp, " SUCCESS ");
+    //         }
+    //     }
+    // );
+
+    // Subcategory table create
+    // client.query(
+    //     "CREATE TABLE subcategory(id SERIAL PRIMARY KEY,categoryid INTEGER REFERENCES category(id), val varchar(50))",
+    //     (err, resp) => {
+    //         if (err) {
+    //             console.log(err, " Error ");
+    //         } else {
+    //             console.log(resp, " SUCCESS ");
+    //         }
+    //     }
+    // );
+
     //Media table
     // client.query(
     //     "CREATE TABLE media(id SERIAL PRIMARY KEY,\
@@ -364,41 +388,41 @@ client.connect(function (err) {
     // title: "Why These Two California Politians Are Causing a Stir This Election Season",
     // desc: "Looking for solutions in 2023? Look no further than these two local activist running for office",
 
-    const createValues = async () => {
-        for await (const {
-            city,
-            zip,
-            userid,
-            src,
-            user,
-            type,
-            subtype,
-            title,
-            desc,
-        } of businessArr) {
-            const data = await client.query(
-                "INSERT INTO listing(userid, type, title, description, zip, likes, shares, bookmarks, city, creationdate, subtype) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id",
-                [
-                    userid,
-                    type,
-                    title,
-                    desc,
-                    zip,
-                    0,
-                    0,
-                    0,
-                    city,
-                    new Date(),
-                    subtype,
-                ]
-            );
-            console.log(data.rows[0].id);
-            const media = await client.query(
-                "INSERT INTO media(type, format, postid, url) VALUES($1, $2, $3, $4)",
-                ["image", ".jpg", data.rows[0].id, src]
-            );
-        }
-    };
+    // const createValues = async () => {
+    //     for await (const {
+    //         city,
+    //         zip,
+    //         userid,
+    //         src,
+    //         user,
+    //         type,
+    //         subtype,
+    //         title,
+    //         desc,
+    //     } of businessArr) {
+    //         const data = await client.query(
+    //             "INSERT INTO listing(userid, type, title, description, zip, likes, shares, bookmarks, city, creationdate, subtype) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id",
+    //             [
+    //                 userid,
+    //                 type,
+    //                 title,
+    //                 desc,
+    //                 zip,
+    //                 0,
+    //                 0,
+    //                 0,
+    //                 city,
+    //                 new Date(),
+    //                 subtype,
+    //             ]
+    //         );
+    //         console.log(data.rows[0].id);
+    //         const media = await client.query(
+    //             "INSERT INTO media(type, format, postid, url) VALUES($1, $2, $3, $4)",
+    //             ["image", ".jpg", data.rows[0].id, src]
+    //         );
+    //     }
+    // };
 
     // createValues();
 
@@ -413,11 +437,11 @@ client.connect(function (err) {
     //     console.log(resp.rows, " REsponse... ");
     // });
 
-    client.query("SELECT * FROM users", (er, resp) => {
-        console.log(resp.rows, " User... ");
-    });
+    // client.query("SELECT * FROM users", (er, resp) => {
+    //     console.log(resp.rows, " User... ");
+    // });
 
-    client.query("UPDATE USERS set email = 'caroham29@gmail.com' WHERE id = 2");
+    // client.query("UPDATE USERS set email = 'caroham29@gmail.com' WHERE id = 2");
 
     // client.query(
     //     "ALTER TABLE listing ADD COLUMN subtype varchar(100)",

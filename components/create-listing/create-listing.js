@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { Editor } from "@tinymce/tinymce-react";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,11 +22,36 @@ import styles from "./create-listing.module.css";
 
 const CreateListing = ({ theme }) => {
 	const router = useRouter();
+	const editorRef = useRef(null);
 	const dispatch = useDispatch();
+	const [editorHTML, setEditorHTML] = useState("");
 	const user = useSelector((store) => store.user);
 	useEffect(() => {
 		console.log(user, " User from store  from C ", theme);
 	}, [user]);
+
+	const initRef = (editor) => {
+		if (editorRef) {
+			editorRef.current = editor;
+		}
+	};
+	const saveListing = (data, something) => {
+		// Save entire listing
+		console.log(
+			data,
+			" THan editor Ref",
+			editorRef.current.getContent({ format: "tree" })
+		);
+		const blobCache = editorRef.current.editorUpload.blobCache;
+		const uploadCache = editorRef.current.editorUpload.uploadCache;
+		console.log(editorHTML, " VALUE ");
+	};
+
+	const log = () => {
+		if (editorRef.current) {
+			console.log(editorRef.current.getContent());
+		}
+	};
 
 	return (
 		<div className={styles.homepageContainerMain}>
@@ -41,6 +67,9 @@ const CreateListing = ({ theme }) => {
 								category: "",
 								subcategory: "",
 								message: "",
+							}}
+							onSubmit={async (values, { setFieldValue }) => {
+								saveListing(values, setFieldValue);
 							}}
 						>
 							{({
@@ -182,22 +211,33 @@ const CreateListing = ({ theme }) => {
 											</Select>
 										</FormControl>
 									</Box>
-									<TextareaAutosize
-										className={`my-2 ${styles.textareaCustom} ${styles.customBorders}`}
-										minRows={5}
-										id="message"
-										required
-										variant="outlined"
-										name="message"
-										label="message"
-										placeholder="Message"
-										value={values.message}
-										onChange={handleChange}
-										error={
-											touched.message &&
-											Boolean(errors.message)
-										}
-									/>
+									<div className={"my-2"}>
+										<Editor
+											apiKey="zq4kgku6qtfp8k5buue6qjr9g2i2vtxj7asuy7dlqn7oimic"
+											onEditorChange={(e) =>
+												setEditorHTML(e)
+											}
+											id="listing_id"
+											initialValue="<p>Hasdfkj&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Hasdfkj&nbsp;</strong></p>"
+											init={{
+												height: 500,
+												menubar: false,
+												plugins: [
+													"advlist autolink lists link image charmap print preview anchor",
+													"searchreplace visualblocks code fullscreen",
+													"insertdatetime media table paste code help wordcount",
+												],
+												toolbar:
+													"undo redo | formatselect | " +
+													"bold italic backcolor | alignleft aligncenter " +
+													"alignright alignjustify | bullist numlist outdent indent | " +
+													"removeformat | help",
+												content_style:
+													"body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+											}}
+											value={editorHTML}
+										/>
+									</div>
 									<Button
 										className={`mt-2 mb-3 w-100 ${styles.signInBtn}`}
 										color="primary"
