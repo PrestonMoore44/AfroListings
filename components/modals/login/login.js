@@ -30,7 +30,7 @@ const Login = ({ setShowLogin }) => {
 	useEffect(() => {
 		setTimeout(() => {
 			setEffect(true);
-		});
+		}, 75);
 		console.log("OK");
 	}, []);
 	const SignupSchema = Yup.object().shape({
