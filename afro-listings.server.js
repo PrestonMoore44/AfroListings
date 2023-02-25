@@ -92,6 +92,16 @@ app
       }
     });
 
+    server.post("/getCategories", async (req, res) => {
+      const data = await client.query("SELECT * FROM category");
+      res.end(JSON.stringify(data.rows));
+    });
+
+    server.post("/getSubCategories", async (req, res) => {
+      const data = await client.query("SELECT * FROM subcategory");
+      res.end(JSON.stringify(data.rows));
+    });
+
     server.post("/saveUser", async (req, res) => {
       const { email, username, password, picture } = req.headers;
       const hash = bcrypt.hashSync(password, saltRounds);

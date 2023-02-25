@@ -2,6 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	getCategories,
+	getSubCategories,
+} from "../../lib/services/listings-service";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormikContext, Formik, Form, Field } from "formik";
 import Button from "@material-ui/core/Button";
@@ -25,9 +29,12 @@ const CreateListing = ({ theme }) => {
 	const editorRef = useRef(null);
 	const dispatch = useDispatch();
 	const [editorHTML, setEditorHTML] = useState("");
+	const [categories, setCategories] = useState([]);
+	const [subCategories, setSubCategories] = useState([]);
 	const user = useSelector((store) => store.user);
 	useEffect(() => {
 		console.log(user, " User from store  from C ", theme);
+		fetchCategories();
 	}, [user]);
 
 	const initRef = (editor) => {
@@ -35,6 +42,15 @@ const CreateListing = ({ theme }) => {
 			editorRef.current = editor;
 		}
 	};
+
+	const fetchCategories = async () => {
+		let data = await getCategories();
+		let subs = await getSubCategories();
+		setSubCategories(subs);
+		setCategories(data);
+		console.log(subs);
+	};
+
 	const saveListing = (data, something) => {
 		// Save entire listing
 		console.log(
@@ -64,7 +80,7 @@ const CreateListing = ({ theme }) => {
 								title: "",
 								description: "",
 								phone: "",
-								category: "",
+								category: "6",
 								subcategory: "",
 								message: "",
 							}}
@@ -114,103 +130,90 @@ const CreateListing = ({ theme }) => {
 											}
 										/>
 									</FormControl>
-									<Box
-										sx={{ width: 120 }}
-										className={styles.selectContainer}
-									>
-										<FormControl
-											className={`my-2`}
-											fullWidth
+									{!!categories.length && (
+										<Box
+											sx={{ width: 120 }}
+											className={styles.selectContainer}
 										>
-											<InputLabel id="demo-simple">
-												Category
-											</InputLabel>
-											<Select
-												labelId="demo-simple"
-												id="category"
-												name="category"
-												value={values.category}
-												label="Category"
-												onChange={(e) => {
-													console.log(e);
-													handleChange(e);
-												}}
+											<FormControl
+												className={`my-2`}
+												fullWidth
 											>
-												<MenuItem
-													id="category_1"
-													value={"10"}
-													className={
-														styles.selectItem
-													}
+												<InputLabel id="demo-simple">
+													Category
+												</InputLabel>
+												<Select
+													labelId="demo-simple"
+													id="category"
+													name="category"
+													value={values.category}
+													label="Category"
+													onChange={(e) => {
+														console.log(e);
+														handleChange(e);
+													}}
 												>
-													Ten
-												</MenuItem>
-												<MenuItem
-													value={"20"}
-													className={
-														styles.selectItem
-													}
-												>
-													Twenty
-												</MenuItem>
-												<MenuItem
-													value={"30"}
-													className={
-														styles.selectItem
-													}
-												>
-													Thirty
-												</MenuItem>
-											</Select>
-										</FormControl>
-									</Box>
-									<Box
-										sx={{ width: 120 }}
-										className={styles.selectContainer}
-									>
-										<FormControl
-											fullWidth
-											className={`my-2`}
+													{categories.map(
+														({ id, val }) => (
+															<MenuItem
+																key={id}
+																id="category_1"
+																value={id}
+																className={
+																	styles.selectItem
+																}
+															>
+																{val}
+															</MenuItem>
+														)
+													)}
+												</Select>
+											</FormControl>
+										</Box>
+									)}
+									{!!subCategories.length && (
+										<Box
+											sx={{ width: 120 }}
+											className={styles.selectContainer}
 										>
-											<InputLabel id="demo-simple-select-label">
-												Sub Category
-											</InputLabel>
-											<Select
-												labelId="demo-simple-select-label"
-												id="demo-simple-select"
-												id="subcategory"
-												name="subcategory"
-												value={values.subcategory}
-												label="Sub Category"
-												onChange={handleChange}
+											<FormControl
+												fullWidth
+												className={`my-2`}
 											>
-												<MenuItem
-													value={"10"}
-													className={
-														styles.selectItem
-													}
+												<InputLabel id="demo-simple-select-label">
+													Sub Category
+												</InputLabel>
+												<Select
+													labelId="demo-simple-select-label"
+													id="demo-simple-select"
+													id="subcategory"
+													name="subcategory"
+													value={values.subcategory}
+													label="Sub Category"
+													onChange={handleChange}
 												>
-													Ten
-												</MenuItem>
-												<MenuItem
-													value={"20"}
-													className={
-														styles.selectItem
-													}
-												>
-													Twenty
-												</MenuItem>
-												<MenuItem
-													value={"30"}
-													className={
-														styles.selectItem
-													}
-												>
-													Thirty
-												</MenuItem>
-											</Select>
-										</FormControl>
-									</Box>
+													{subCategories
+														.filter(
+															(it) =>
+																it.categoryid ==
+																values.category
+														)
+														.map(({ id, val }) => (
+															<MenuItem
+																key={id}
+																id="category_1"
+																value={id}
+																className={
+																	styles.selectItem
+																}
+															>
+																{val}
+															</MenuItem>
+														))}
+												</Select>
+											</FormControl>
+										</Box>
+									)}
 									<div className={"my-2"}>
 										<Editor
 											apiKey="zq4kgku6qtfp8k5buue6qjr9g2i2vtxj7asuy7dlqn7oimic"

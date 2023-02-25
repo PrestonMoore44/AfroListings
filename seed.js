@@ -284,61 +284,53 @@ const businessArr = [
     },
 ];
 
-
-    const categories = [
-        "Housing",
-        "Travel",
-        "Media Influencers",
-        "Education",
-        "Dining",
-        "Business",
-        "Fitness",
-    ];
-    const subcategories = [
-        {
-            Housing: [
-                "Properties for Sale",
-                "Properties for Rent",
-                "Private Rooms",
-                "Commercial Real Estate",
-            ],
-            Travel: [
-                "Summer Vacations",
-                "Winter Vacations",
-                "Summer Camps",
-                "Cruises",
-            ],
-            "Media Influencers": [
-                "Brand Ambassadors",
-                "Social Media Influencers",
-                "Podcast",
-            ],
-            Education: [
-                "Home-School Teachers",
-                "Tutors",
-                "Finance",
-                "1 on 1 Coaching",
-                "Vocational Schools",
-                "Charter Schools",
-            ],
-            Dining: ["Restaurants", "Catering", "Halal", "Kosher"],
-            Business: [
-                "Financial Services",
-                "Business Services",
-                "Brand Management",
-                "Legal Services",
-                "Credit Services",
-                "Banking",
-            ],
-            Fitness: [
-                "Certified Personal Trainers",
-                "Classes",
-                "Gyms"
-                "Fitness Groups",
-                "Dance",
-            ],
-        },
-    ];
+const categories = [
+    "Housing",
+    "Travel",
+    "Media Influencers",
+    "Education",
+    "Dining",
+    "Business",
+    "Fitness",
+];
+const subcategories = {
+    Housing: [
+        "Properties for Sale",
+        "Properties for Rent",
+        "Private Rooms",
+        "Commercial Real Estate",
+    ],
+    Travel: ["Summer Vacations", "Winter Vacations", "Summer Camps", "Cruises"],
+    "Media Influencers": [
+        "Brand Ambassadors",
+        "Social Media Influencers",
+        "Podcast",
+    ],
+    Education: [
+        "Home-School Teachers",
+        "Tutors",
+        "Finance",
+        "1 on 1 Coaching",
+        "Vocational Schools",
+        "Charter Schools",
+    ],
+    Dining: ["Restaurants", "Catering", "Halal", "Kosher"],
+    Business: [
+        "Financial Services",
+        "Business Services",
+        "Brand Management",
+        "Legal Services",
+        "Credit Services",
+        "Banking",
+    ],
+    Fitness: [
+        "Certified Personal Trainers",
+        "Classes",
+        "Gyms",
+        "Fitness Groups",
+        "Dance",
+    ],
+};
 //     userid INTEGER REFERENCES users(id),\
 //     type varchar(50),\
 //     title varchar(250),\
@@ -407,7 +399,7 @@ client.connect(function (err) {
 
     // Subcategory table create
     // client.query(
-    //     "CREATE TABLE subcategory(id SERIAL PRIMARY KEY,categoryid INTEGER REFERENCES category(id), val varchar(50))",
+    //     "CREATE TABLE subcategory(val, )(id SERIAL PRIMARY KEY,categoryid INTEGER REFERENCES category(id), val varchar(50))",
     //     (err, resp) => {
     //         if (err) {
     //             console.log(err, " Error ");
@@ -480,7 +472,24 @@ client.connect(function (err) {
     // };
 
     // createValues();
+    // categories.forEach((it) => {
+    //     client.query("INSERT INTO category(val) VALUES($1)", [it]);
+    // });
 
+    // const createSubCategories = async (rows) => {
+    //     for await (const { id, val } of rows) {
+    //         for (const it of subcategories[val]) {
+    //             client.query(
+    //                 "INSERT INTO subcategory(categoryid, val) VALUES($1, $2)",
+    //                 [id, it]
+    //             );
+    //         }
+    //     }
+    // };
+
+    // client.query("SELECT * FROM category", (e, r) => {
+    //     createSubCategories(r.rows);
+    // });
     // client.query("DELETE FROM media", (er, resp) => {
     //     console.log(resp.rows, " REsponse... ");
     //     client.query("DELETE FROM listing", (er, resp) => {
