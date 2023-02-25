@@ -284,6 +284,61 @@ const businessArr = [
     },
 ];
 
+
+    const categories = [
+        "Housing",
+        "Travel",
+        "Media Influencers",
+        "Education",
+        "Dining",
+        "Business",
+        "Fitness",
+    ];
+    const subcategories = [
+        {
+            Housing: [
+                "Properties for Sale",
+                "Properties for Rent",
+                "Private Rooms",
+                "Commercial Real Estate",
+            ],
+            Travel: [
+                "Summer Vacations",
+                "Winter Vacations",
+                "Summer Camps",
+                "Cruises",
+            ],
+            "Media Influencers": [
+                "Brand Ambassadors",
+                "Social Media Influencers",
+                "Podcast",
+            ],
+            Education: [
+                "Home-School Teachers",
+                "Tutors",
+                "Finance",
+                "1 on 1 Coaching",
+                "Vocational Schools",
+                "Charter Schools",
+            ],
+            Dining: ["Restaurants", "Catering", "Halal", "Kosher"],
+            Business: [
+                "Financial Services",
+                "Business Services",
+                "Brand Management",
+                "Legal Services",
+                "Credit Services",
+                "Banking",
+            ],
+            Fitness: [
+                "Certified Personal Trainers",
+                "Classes",
+                "Gyms"
+                "Fitness Groups",
+                "Dance",
+            ],
+        },
+    ];
 //     userid INTEGER REFERENCES users(id),\
 //     type varchar(50),\
 //     title varchar(250),\
