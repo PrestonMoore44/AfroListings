@@ -8,10 +8,32 @@
 	padding: 55px 250px;
 }
 
+.selectContainer {
+	width: 47% !important;
+}
+.widthContainer {
+}
+.selectItem {
+	display: block !important;
+	padding: 5px 7px !important;
+}
+
 .containerHeader {
 	padding: 25px;
 }
 
+.textareaCustom {
+	width: 100%;
+	resize: none;
+	outline: none !important;
+	padding: 15px 10px;
+	border: 1px solid #bdbdbd;
+	border-style: solid;
+	border-radius: 4px;
+}
+.textareaCustom:hover {
+	border-color: #5b5b5b;
+}
 .header::before {
 	margin-top: -40px;
 	position: absolute;

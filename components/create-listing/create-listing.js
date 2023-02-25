@@ -4,6 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormikContext, Formik, Form, Field } from "formik";
 import Button from "@material-ui/core/Button";
+import {
+	FormControl,
+	FilledInput,
+	FormHelperText,
+	Input,
+	InputLabel,
+	OutlinedInput,
+	Box,
+	MenuItem,
+} from "@mui/material";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@material-ui/core/TextField";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import styles from "./create-listing.module.css";
@@ -25,8 +36,10 @@ const CreateListing = ({ theme }) => {
 						<Formik
 							initialValues={{
 								title: "",
-								subtitle: "",
+								description: "",
 								phone: "",
+								category: "",
+								subcategory: "",
 								message: "",
 							}}
 						>
@@ -37,66 +50,138 @@ const CreateListing = ({ theme }) => {
 								touched,
 								errors,
 							}) => (
-								<Form>
-									<TextField
-										fullWidth
-										id="title"
-										name="title"
-										required
-										variant="outlined"
-										label="Title"
-										className={`my-2 ${styles.customBorders}`}
-										value={values.title}
-										onChange={handleChange}
-										error={
-											touched.title &&
-											Boolean(errors.title)
-										}
-										helperText={
-											touched.title && errors.title
-										}
-									/>
-									<TextField
-										className={`my-2 ${styles.customBorders}`}
-										fullWidth
-										id="subtitle"
-										required
-										variant="outlined"
-										name="subtitle"
-										label="Subtitle"
-										value={values.subtitle}
-										onChange={handleChange}
-										error={
-											touched.subtitle &&
-											Boolean(errors.subtitle)
-										}
-										helperText={
-											touched.subtitle && errors.subtitle
-										}
-									/>
-									<TextField
-										className={`my-2 ${styles.customBorders}`}
-										fullWidth
-										id="type"
-										InputProps={{
-											inputProps: {
-												style: {
-													bordercolor: "#008080",
-													outlinecolor: "#008080",
-												},
-											},
-										}}
-										required
-										variant="outlined"
-										name="type"
-										label="Type"
-										value={values.type}
-										onChange={handleChange}
-										error={
-											touched.type && Boolean(errors.type)
-										}
-										helperText={touched.type && errors.type}
-									/>
+								<Form className={"d-block"}>
+									<FormControl fullWidth className={"my-2"}>
+										<InputLabel htmlFor="title">
+											Title
+										</InputLabel>
+										<OutlinedInput
+											required
+											id="title"
+											label="Title"
+											placeholder="Add a title that describes your listing"
+											value={values.title}
+											onChange={handleChange}
+											error={
+												touched.title &&
+												Boolean(errors.title)
+											}
+										/>
+									</FormControl>
+									<FormControl fullWidth className={"my-2"}>
+										<InputLabel htmlFor="description">
+											Description
+										</InputLabel>
+										<OutlinedInput
+											required
+											placeholder="Tell viewers about your listing"
+											id="description"
+											label="Sub Title"
+											value={values.description}
+											onChange={handleChange}
+											error={
+												touched.description &&
+												Boolean(errors.description)
+											}
+										/>
+									</FormControl>
+									<Box
+										sx={{ width: 120 }}
+										className={styles.selectContainer}
+									>
+										<FormControl
+											className={`my-2`}
+											fullWidth
+										>
+											<InputLabel id="demo-simple">
+												Category
+											</InputLabel>
+											<Select
+												labelId="demo-simple"
+												id="category"
+												name="category"
+												value={values.category}
+												label="Category"
+												onChange={(e) => {
+													console.log(e);
+													handleChange(e);
+												}}
+											>
+												<MenuItem
+													id="category_1"
+													value={"10"}
+													className={
+														styles.selectItem
+													}
+												>
+													Ten
+												</MenuItem>
+												<MenuItem
+													value={"20"}
+													className={
+														styles.selectItem
+													}
+												>
+													Twenty
+												</MenuItem>
+												<MenuItem
+													value={"30"}
+													className={
+														styles.selectItem
+													}
+												>
+													Thirty
+												</MenuItem>
+											</Select>
+										</FormControl>
+									</Box>
+									<Box
+										sx={{ width: 120 }}
+										className={styles.selectContainer}
+									>
+										<FormControl
+											fullWidth
+											className={`my-2`}
+										>
+											<InputLabel id="demo-simple-select-label">
+												Sub Category
+											</InputLabel>
+											<Select
+												labelId="demo-simple-select-label"
+												id="demo-simple-select"
+												id="subcategory"
+												name="subcategory"
+												value={values.subcategory}
+												label="Sub Category"
+												onChange={handleChange}
+											>
+												<MenuItem
+													value={"10"}
+													className={
+														styles.selectItem
+													}
+												>
+													Ten
+												</MenuItem>
+												<MenuItem
+													value={"20"}
+													className={
+														styles.selectItem
+													}
+												>
+													Twenty
+												</MenuItem>
+												<MenuItem
+													value={"30"}
+													className={
+														styles.selectItem
+													}
+												>
+													Thirty
+												</MenuItem>
+											</Select>
+										</FormControl>
+									</Box>
 									<TextareaAutosize
 										className={`my-2 ${styles.textareaCustom} ${styles.customBorders}`}
 										minRows={5}
