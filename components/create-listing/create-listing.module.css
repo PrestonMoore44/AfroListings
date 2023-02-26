@@ -11,6 +11,9 @@
 	flex: 1;
 	padding: 25px 0;
 }
+.fontSize {
+	font-size: 10px !important;
+}
 .formContainer {
 	width: 60%;
 	margin-right: 40px;

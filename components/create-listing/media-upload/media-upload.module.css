@@ -1,6 +1,7 @@
 .outterContainer {
 }
 .uploadSection {
+	font-size: 14px;
 	border-radius: 4px;
 	border: 1px solid #bdbdbd;
 	border-style: solid !important;
@@ -19,7 +20,7 @@
 }
 
 .absoluteCenter {
-	color: black;
+	color: #191919;
 	display: table-cell;
 	vertical-align: middle;
 }

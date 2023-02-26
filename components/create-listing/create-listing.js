@@ -36,6 +36,9 @@ const CreateListing = ({ theme }) => {
 	useEffect(() => {
 		console.log(user, " User from store  from C ", theme);
 		fetchCategories();
+		setTimeout(() => {
+			document.getElementById("title").focus();
+		}, 250);
 	}, [user]);
 
 	const initRef = (editor) => {
