@@ -1,3 +1,8 @@
+.dropContainer {
+	position: absolute;
+	right: 0;
+}
+
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 .profilePic {
 	border-radius: 50%;

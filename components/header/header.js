@@ -8,14 +8,22 @@ import Login from "../modals/login/login";
 import CreateListings from "../modals/create-listings/create-listings";
 import { BsPlusSquare } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
+import DropDown from "./dropdown/dropdown";
 import { IoExitOutline } from "react-icons/io5";
+import {
+	getCategories,
+	getSubCategories,
+} from "../../lib/services/listings-service";
 
 const Header = ({ theme }) => {
 	const router = useRouter();
 	const [hoverItem, setHoverItem] = useState(null);
 	const [showLogin, setShowLogin] = useState(false);
+	const [dropDownType, setDropdownType] = useState({});
 	const [ctrlLogin, setCtrlLogin] = useState(false);
 	const [showCreateListing, setShowCreateListing] = useState(false);
+	const [categories, setCategories] = useState([]);
+	const [subCategories, setSubCategories] = useState([]);
 	const dispatch = useDispatch();
 	const user = useSelector((store) => store.user);
 	const routesCtrl = {
@@ -27,6 +35,7 @@ const Header = ({ theme }) => {
 	};
 	useEffect(() => {
 		console.log(user, " User from store  from header ", theme);
+		fetchCategories();
 	}, [user]);
 
 	useEffect(() => {
@@ -43,6 +52,20 @@ const Header = ({ theme }) => {
 		}
 	}, [showLogin]);
 
+	const fetchCategories = async () => {
+		let data = await getCategories();
+		let subs = await getSubCategories();
+		setSubCategories(subs);
+		setCategories(data);
+	};
+
+	// "Housing",
+	// "Travel",
+	// "Media Influencers",
+	// "Education",
+	// "Dining",
+	// "Business",
+	// "Fitness",
 	const home = () => router.push("/");
 	const viewBusiness = () => router.push("/business-listings");
 	const viewEducation = () => router.push("/education-listings");
@@ -85,6 +108,14 @@ const Header = ({ theme }) => {
 				<div className={styles.leftContainer}></div>
 				<div className={styles.rightContainer}>
 					<div
+						onMouseOver={() =>
+							setDropdownType(
+								categories.filter(
+									(it) => it.val === "Business"
+								)[0]
+							)
+						}
+						onMouseLeave={() => setDropdownType(null)}
 						onClick={() => viewBusiness()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/business-listings"
@@ -92,9 +123,27 @@ const Header = ({ theme }) => {
 								: null
 						}`}
 					>
-						Business
+						<div>Business</div>
+						{dropDownType?.val === "Business" && (
+							<div className={styles.dropContainer}>
+								<DropDown
+									categories={subCategories.filter(
+										(it) =>
+											it.categoryid === dropDownType.id
+									)}
+								></DropDown>
+							</div>
+						)}
 					</div>
 					<div
+						onMouseOver={() =>
+							setDropdownType(
+								categories.filter(
+									(it) => it.val === "Media Influencers"
+								)[0]
+							)
+						}
+						onMouseLeave={() => setDropdownType(null)}
 						onClick={() => viewInfluencer()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/influencer-listings"
@@ -102,7 +151,17 @@ const Header = ({ theme }) => {
 								: null
 						}`}
 					>
-						Media Influencers
+						<div>Media Influencers</div>
+						{dropDownType?.val === "Media Influencers" && (
+							<div className={styles.dropContainer}>
+								<DropDown
+									categories={subCategories.filter(
+										(it) =>
+											it.categoryid === dropDownType.id
+									)}
+								></DropDown>
+							</div>
+						)}
 					</div>
 					<div
 						onClick={() => viewEducation()}

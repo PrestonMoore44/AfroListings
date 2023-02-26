@@ -1,0 +1,17 @@
+.container {
+	background-color: white;
+	width: 400px;
+	border-radius: 2px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	webkitboxshadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	mozboxshadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+	boxshadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+.gridItem {
+	padding-right: 15px;
+	text-align: right;
+}
+
+.gridItem:hover {
+	background-color: gold;
+}
