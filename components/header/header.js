@@ -164,6 +164,14 @@ const Header = ({ theme }) => {
 						)}
 					</div>
 					<div
+						onMouseOver={() =>
+							setDropdownType(
+								categories.filter(
+									(it) => it.val === "Education"
+								)[0]
+							)
+						}
+						onMouseLeave={() => setDropdownType(null)}
 						onClick={() => viewEducation()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/education-listings"
@@ -171,9 +179,27 @@ const Header = ({ theme }) => {
 								: null
 						}`}
 					>
-						Education
+						<div>Education</div>
+						{dropDownType?.val === "Education" && (
+							<div className={styles.dropContainer}>
+								<DropDown
+									categories={subCategories.filter(
+										(it) =>
+											it.categoryid === dropDownType.id
+									)}
+								></DropDown>
+							</div>
+						)}
 					</div>
 					<div
+						onMouseOver={() =>
+							setDropdownType(
+								categories.filter(
+									(it) => it.val === "Dining"
+								)[0]
+							)
+						}
+						onMouseLeave={() => setDropdownType(null)}
 						onClick={() => viewEducation()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/education-listings"
@@ -181,9 +207,27 @@ const Header = ({ theme }) => {
 								: null
 						}`}
 					>
-						Dining
+						<div>Dining</div>
+						{dropDownType?.val === "Dining" && (
+							<div className={styles.dropContainer}>
+								<DropDown
+									categories={subCategories.filter(
+										(it) =>
+											it.categoryid === dropDownType.id
+									)}
+								></DropDown>
+							</div>
+						)}
 					</div>
 					<div
+						onMouseOver={() =>
+							setDropdownType(
+								categories.filter(
+									(it) => it.val === "Fitness"
+								)[0]
+							)
+						}
+						onMouseLeave={() => setDropdownType(null)}
 						onClick={() => viewEducation()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/education-listings"
@@ -191,27 +235,55 @@ const Header = ({ theme }) => {
 								: null
 						}`}
 					>
-						Fitness
+						<div>Fitness</div>
+						{dropDownType?.val === "Fitness" && (
+							<div className={styles.dropContainer}>
+								<DropDown
+									categories={subCategories.filter(
+										(it) =>
+											it.categoryid === dropDownType.id
+									)}
+								></DropDown>
+							</div>
+						)}
 					</div>
 					<div
+						onMouseOver={() =>
+							setDropdownType(
+								categories.filter(
+									(it) => it.val === "Housing"
+								)[0]
+							)
+						}
+						onMouseLeave={() => setDropdownType(null)}
 						onClick={() => viewHousing()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/housing-listings"
 								? styles.active
 								: null
 						}`}
-						onMouseOver={() => setHoverItem("Housing")}
-						onMouseLeave={() => setHoverItem(null)}
 					>
-						Housing
-						{hoverItem === "Housing" && (
-							<div className={styles.hoverOptionsContainer}>
-								<div>Properties for Rent</div>
-								<div>Properties for Sale</div>
+						<div>Housing</div>
+						{dropDownType?.val === "Housing" && (
+							<div className={styles.dropContainer}>
+								<DropDown
+									categories={subCategories.filter(
+										(it) =>
+											it.categoryid === dropDownType.id
+									)}
+								></DropDown>
 							</div>
 						)}
 					</div>
 					<div
+						onMouseOver={() =>
+							setDropdownType(
+								categories.filter(
+									(it) => it.val === "Travel"
+								)[0]
+							)
+						}
+						onMouseLeave={() => setDropdownType(null)}
 						onClick={() => viewTravel()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/travel-listings"
@@ -219,7 +291,17 @@ const Header = ({ theme }) => {
 								: null
 						}`}
 					>
-						Travel
+						<div>Travel</div>
+						{dropDownType?.val === "Travel" && (
+							<div className={styles.dropContainer}>
+								<DropDown
+									categories={subCategories.filter(
+										(it) =>
+											it.categoryid === dropDownType.id
+									)}
+								></DropDown>
+							</div>
+						)}
 					</div>
 					<div
 						className={styles.rightItemAlt}

@@ -3,9 +3,7 @@ import styles from "./dropdown.module.css";
 import { Grid } from "@mui/material";
 
 const DropDown = ({ categories }) => {
-	useEffect(() => {
-		console.log(categories, Grid);
-	}, []);
+	useEffect(() => {}, []);
 	return (
 		<div className={`${styles.container}`}>
 			<Grid container spacing={0}>
