@@ -57,6 +57,9 @@
 	width: fit-content;
 	cursor: pointer;
 	position: relative;
+	font-weight: 800 !important;
+	font-size: 10px !important;
+	text-transform: uppercase;
 }
 
 .rightItemAlt {
@@ -67,6 +70,9 @@
 	width: 68px;
 	cursor: pointer;
 	position: relative;
+	font-weight: 800 !important;
+	font-size: 10px !important;
+	text-transform: uppercase;
 }
 
 .rightItem:hover {
@@ -112,7 +118,7 @@
 	display: flex;
 	font-family: "Roboto", "Noto", sans-serif;
 	-webkit-font-smoothing: antialiased;
-	font-weight: 600 !important;
+	font-weight: 450 !important;
 	line-height: 36px;
 }
 
