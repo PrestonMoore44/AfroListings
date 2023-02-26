@@ -83,9 +83,6 @@ const MediaUpload = () => {
 							</div>
 						)}
 					</div>
-					<button onClick={onImageRemoveAll}>
-						Remove all images
-					</button>
 				</div>
 			)}
 		</ImageUploading>
