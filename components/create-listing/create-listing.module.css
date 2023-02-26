@@ -5,9 +5,17 @@
 	height: 100%;
 	overflow: auto;
 	z-index: 1;
-	padding: 55px 250px;
+	padding: 55px 150px;
 }
-
+.mediaContainer {
+	flex: 1;
+	padding: 25px 0;
+}
+.formContainer {
+	width: 60%;
+	margin-right: 40px;
+	padding: 20px 0;
+}
 .selectContainer {
 	width: 47% !important;
 }
@@ -43,9 +51,4 @@
 .header {
 	font-weight: 900;
 	font-size: 1.25rem;
-}
-
-.formContainer {
-	width: 65%;
-	padding: 20px 0;
 }

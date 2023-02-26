@@ -9,6 +9,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useFormikContext, Formik, Form, Field } from "formik";
 import Button from "@material-ui/core/Button";
+import MediaUpload from "./media-upload/media-upload";
 import {
 	FormControl,
 	FilledInput,
@@ -253,6 +254,9 @@ const CreateListing = ({ theme }) => {
 								</Form>
 							)}
 						</Formik>
+					</div>
+					<div className={styles.mediaContainer}>
+						<MediaUpload></MediaUpload>
 					</div>
 				</div>
 			</div>
