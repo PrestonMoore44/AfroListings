@@ -23,6 +23,7 @@ const Header = ({ theme }) => {
 		"/influencer-listings": 1,
 		"/education-listings": 1,
 		"/housing-listings": 1,
+		/"travel-listings": 1
 	};
 	useEffect(() => {
 		console.log(user, " User from store  from header ", theme);
