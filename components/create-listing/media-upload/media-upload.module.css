@@ -15,7 +15,7 @@
 	box-sizing: border-box; /* Opera/IE 8+ */
 }
 .uploadSection:hover {
-	border-color: black;
+	border-color: #191919;
 }
 
 .absoluteCenter {
