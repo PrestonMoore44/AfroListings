@@ -1,17 +1,41 @@
 .container {
 	background-color: white;
-	width: 375px;
-	border-radius: 2px;
+	width: 400px;
+	border-radius: 1px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 	webkitboxshadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 	mozboxshadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 	boxshadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
+.container i {
+	margin-right: 7px;
+}
 .gridItem {
+	border-radius: 1px;
+	padding: 7px 0;
 	padding-right: 15px;
 	text-align: right;
+	color: #323232;
+	transition: 0.2s ease;
+	font-weight: 450px;
 }
 
 .gridItem:hover {
+	color: black;
+	font-size: 10.5px;
 	background-color: gold;
+}
+.gridItemTitle {
+	cursor: normal;
+	letter-spacing: 2px;
+	border-bottom: 1px solid #ebebeb;
+	font-size: 12px;
+	font-weight: 600px;
+	text-align: left;
+	padding: 2px 0;
+	color: #323232;
+	padding-left: 50px;
+}
+
+.gridItemContainer {
 }

@@ -59,13 +59,6 @@ const Header = ({ theme }) => {
 		setCategories(data);
 	};
 
-	// "Housing",
-	// "Travel",
-	// "Media Influencers",
-	// "Education",
-	// "Dining",
-	// "Business",
-	// "Fitness",
 	const home = () => router.push("/");
 	const viewBusiness = () => router.push("/business-listings");
 	const viewEducation = () => router.push("/education-listings");
@@ -127,6 +120,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Business" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
 											it.categoryid === dropDownType.id
@@ -155,6 +149,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Media Influencers" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
 											it.categoryid === dropDownType.id
@@ -183,6 +178,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Education" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
 											it.categoryid === dropDownType.id
@@ -211,6 +207,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Dining" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
 											it.categoryid === dropDownType.id
@@ -239,6 +236,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Fitness" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
 											it.categoryid === dropDownType.id
@@ -267,6 +265,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Housing" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
 											it.categoryid === dropDownType.id
@@ -295,6 +294,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Travel" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
 											it.categoryid === dropDownType.id
