@@ -3,7 +3,7 @@ import styles from "./dropdown.module.css";
 import { Grid } from "@mui/material";
 import { useRouter } from "next/router";
 
-const DropDown = ({ categories, category, navigate }) => {
+const DropDown = ({ categories, category, navigate, pathname }) => {
 	useEffect(() => {
 		// console.log(categories, " categories");
 	}, []);
@@ -23,7 +23,7 @@ const DropDown = ({ categories, category, navigate }) => {
 			<Grid container spacing={0}>
 				{categories.map(({ id, val }) => (
 					<Grid
-						onClick={() => navigate(val)}
+						onClick={() => navigate(val, pathname)}
 						key={id}
 						item
 						xs={6}

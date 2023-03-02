@@ -8,18 +8,24 @@ import Cover from "../cover/cover";
 import SingleCard from "../single-card/single-card";
 
 const BusinessListings = () => {
+	const router = useRouter();
 	const editorRef = useRef(null);
 	const [listings, setListings] = useState([]);
 	const [arr, setArr] = useState([1, 2, 3, 4, 5, 6]);
 
 	useEffect(() => {
+		console.log(router?.query?.type);
 		fetchListings();
 	}, []);
 
 	const fetchListings = async () => {
 		console.log(" Grabbing listings... ");
 		let data = await getListings();
-		setListings(data.filter((it) => it.type === "business"));
+		setListings(
+			router?.query?.type
+				? data.filter((it) => it.type === "business")
+				: data.filter((it) => it.type === "business")
+		);
 		console.log(data, " Listings? ");
 	};
 

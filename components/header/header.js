@@ -60,6 +60,7 @@ const Header = ({ theme }) => {
 	};
 
 	const navigate = (type, pathname) => {
+		console.log(type);
 		router.push({
 			pathname,
 			query: { type: type },
@@ -125,6 +126,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Business" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									pathname={"/business-listings"}
 									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
@@ -156,6 +158,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Media Influencers" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									pathname={"/influencer-listings"}
 									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
@@ -185,6 +188,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Education" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									pathname={"/education-listings"}
 									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
@@ -214,6 +218,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Dining" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									pathname={"/education-listings"}
 									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
@@ -243,6 +248,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Fitness" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									pathname={"/education-listings"}
 									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
@@ -272,6 +278,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Housing" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									pathname={"/housing-listings"}
 									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
@@ -301,6 +308,7 @@ const Header = ({ theme }) => {
 						{dropDownType?.val === "Travel" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									pathname={"/travel-listings"}
 									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
