@@ -19,14 +19,24 @@ const BusinessListings = () => {
 	}, []);
 
 	const fetchListings = async () => {
-		console.log(" Grabbing listings... ");
+		console.log(" Grabbing listings... ", router?.query?.type);
 		let data = await getListings();
-		setListings(
-			router?.query?.type
-				? data.filter((it) => it.type === "business")
-				: data.filter((it) => it.type === "business")
-		);
-		console.log(data, " Listings? ");
+		if (!router?.query?.type) {
+			setListings(
+				data.filter(
+					({ category_name, subcategory_name }) =>
+						category_name.toLowerCase() === "business"
+				)
+			);
+		} else {
+			setListings(
+				data.filter(
+					({ category_name, subcategory_name, subcategory }) =>
+						subcategory_name === router?.query?.type
+				)
+			);
+		}
+		console.log(data, " Listings filtered");
 	};
 
 	return (

@@ -8,18 +8,31 @@ import SingleCard from "../single-card/single-card";
 import { getListings } from "../../lib/services/listings-service";
 
 const HousingListings = () => {
+	const router = useRouter();
 	const [listings, setListings] = useState([]);
 	const [arr, setArr] = useState([1, 2, 3, 4, 5, 6]);
 
 	useEffect(() => {
 		fetchListings();
-	}, []);
+	}, [router]);
 
 	const fetchListings = async () => {
-		console.log(" Grabbing listings... ");
 		let data = await getListings();
-		setListings(data.filter((it) => it.type === "housing"));
-		console.log(data, " Listings? ");
+		if (!router?.query?.type) {
+			setListings(
+				data.filter(
+					({ category_name, subcategory_name }) =>
+						category_name.toLowerCase() === "housing"
+				)
+			);
+		} else {
+			setListings(
+				data.filter(
+					({ category_name, subcategory_name, subcategory }) =>
+						subcategory_name === router?.query?.type
+				)
+			);
+		}
 	};
 
 	return (
