@@ -51,9 +51,10 @@ app
 
     server.post("/listing", async (req, res) => {
       const data = await client.query(
-        "SELECT users.username, listing.id, listing.city, listing.subtype, listing.userid, listing.title, listing.description, listing.type, listing.zip,\
-        listing.likes, listing.shares, listing.bookmarks, listing.creationdate, media.type AS mediatype, media.format, media.url \
-        FROM listing INNER JOIN media ON listing.id = media.postid INNER JOIN users ON listing.userid = users.id WHERE listing.id = ($1)",
+        "SELECT users.username, listings.id, listings.city, listings.subcategory, listings.userid, listings.title, listings.description, listings.category, listings.zip,\
+        listings.likes, listings.shares, subcategory.val AS subcategory_name, category.val AS category_name, listings.bookmarks, listings.creationdate, media.type AS mediatype, media.format, media.url \
+        FROM listings INNER JOIN media ON listings.id = media.listing_id INNER JOIN users ON listings.userid = users.id \
+        INNER JOIN category ON listings.category = category.id INNER JOIN subcategory ON listings.subcategory = subcategory.id WHERE listings.id = ($1)",
         [parseInt(req.headers.lid)]
       ); // Fetch by email then check encrypted password
       if (data.rows.length) {
@@ -65,9 +66,11 @@ app
 
     server.post("/listings", async (req, res) => {
       const data = await client.query(
-        "SELECT users.username, listing.id, listing.city, listing.subtype, listing.userid, listing.title, listing.description, listing.type, listing.zip,\
-        listing.likes, listing.shares, listing.bookmarks, listing.creationdate, media.type AS mediatype, media.format, media.url \
-        FROM listing INNER JOIN media ON listing.id = media.postid INNER JOIN users ON listing.userid = users.id"
+        "SELECT users.username, listings.id, listings.city, listings.subcategory, listings.userid, listings.title, listings.description, \
+        category.val AS category_name, subcategory.val AS subcategory_name, listings.category, listings.zip,\
+        listings.likes, listings.shares, listings.bookmarks, listings.creationdate, media.type AS mediatype, media.format, media.url \
+        FROM listings INNER JOIN media ON listings.id = media.listing_id INNER JOIN users ON listings.userid = users.id \
+        INNER JOIN category ON listings.category = category.id INNER JOIN subcategory ON listings.subcategory = subcategory.id"
       ); // Fetch by email then check encrypted password
       if (data.rows.length) {
         res.end(JSON.stringify(data.rows));

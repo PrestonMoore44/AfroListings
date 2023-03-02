@@ -29,12 +29,13 @@ const CreateListing = ({ theme }) => {
 	const router = useRouter();
 	const editorRef = useRef(null);
 	const dispatch = useDispatch();
+	const [images, setImages] = useState([]);
 	const [editorHTML, setEditorHTML] = useState("");
 	const [categories, setCategories] = useState([]);
 	const [subCategories, setSubCategories] = useState([]);
 	const user = useSelector((store) => store.user);
 	useEffect(() => {
-		console.log(user, " User from store  from C ", theme);
+		// console.log(user, " User from store  from C ", theme);
 		fetchCategories();
 		setTimeout(() => {
 			document.getElementById("title").focus();
@@ -57,14 +58,10 @@ const CreateListing = ({ theme }) => {
 
 	const saveListing = (data, something) => {
 		// Save entire listing
-		console.log(
-			data,
-			" THan editor Ref",
-			editorRef.current.getContent({ format: "tree" })
-		);
-		const blobCache = editorRef.current.editorUpload.blobCache;
-		const uploadCache = editorRef.current.editorUpload.uploadCache;
-		console.log(editorHTML, " VALUE ");
+		console.log(data, " THan editor Ref", editorRef);
+		// const blobCache = editorRef.current.editorUpload.blobCache;
+		// const uploadCache = editorRef.current.editorUpload.uploadCache;
+		console.log(editorHTML, " VALUE then images", images);
 	};
 
 	const log = () => {
@@ -259,7 +256,7 @@ const CreateListing = ({ theme }) => {
 						</Formik>
 					</div>
 					<div className={styles.mediaContainer}>
-						<MediaUpload></MediaUpload>
+						<MediaUpload setParentImages={setImages}></MediaUpload>
 					</div>
 				</div>
 			</div>

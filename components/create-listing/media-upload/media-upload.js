@@ -2,15 +2,15 @@ import React, { useState, useRef, useEffect } from "react";
 import ImageUploading from "react-images-uploading";
 import styles from "./media-upload.module.css";
 
-const MediaUpload = () => {
+const MediaUpload = ({ setParentImages }) => {
 	const [images, setImages] = useState([]);
 	const maxNumber = 69;
 
 	const onChange = (imageList, addUpdateIndex) => {
 		// data for submit
-		console.log(imageList, addUpdateIndex);
 		setImages(imageList);
-		console.log(images);
+		setParentImages(imageList);
+		console.log(imageList);
 	};
 	return (
 		<ImageUploading

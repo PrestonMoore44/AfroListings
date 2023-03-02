@@ -34,7 +34,7 @@ const Header = ({ theme }) => {
 		"/travel-listings": 1,
 	};
 	useEffect(() => {
-		console.log(user, " User from store  from header ", theme);
+		// console.log(user, " User from store  from header ", theme);
 		fetchCategories();
 	}, [user]);
 
@@ -46,7 +46,6 @@ const Header = ({ theme }) => {
 
 	useEffect(() => {
 		if (ctrlLogin && !showLogin && routesCtrl[router.pathname] && !user) {
-			console.log(" RUnning ");
 			setCtrlLogin(false);
 			router.push(`/`);
 		}
@@ -60,7 +59,6 @@ const Header = ({ theme }) => {
 	};
 
 	const navigate = (type, pathname) => {
-		console.log(type);
 		router.push({
 			pathname,
 			query: { type: type },
@@ -89,7 +87,6 @@ const Header = ({ theme }) => {
 	};
 
 	const create = () => {
-		console.log(user.id);
 		router.push(`/listing/create`);
 		dispatch({
 			type: "setShowNewListing",

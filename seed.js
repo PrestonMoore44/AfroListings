@@ -284,53 +284,53 @@ const businessArr = [
     },
 ];
 
-const categories = [
-    "Housing",
-    "Travel",
-    "Media Influencers",
-    "Education",
-    "Dining",
-    "Business",
-    "Fitness",
-];
-const subcategories = {
-    Housing: [
-        "Properties for Sale",
-        "Properties for Rent",
-        "Private Rooms",
-        "Commercial Real Estate",
-    ],
-    Travel: ["Summer Vacations", "Winter Vacations", "Summer Camps", "Cruises"],
-    "Media Influencers": [
-        "Brand Ambassadors",
-        "Social Media Influencers",
-        "Podcast",
-    ],
-    Education: [
-        "Home-School Teachers",
-        "Tutors",
-        "Finance",
-        "1 on 1 Coaching",
-        "Vocational Schools",
-        "Charter Schools",
-    ],
-    Dining: ["Restaurants", "Catering", "Halal", "Kosher"],
-    Business: [
-        "Financial Services",
-        "Business Services",
-        "Brand Management",
-        "Legal Services",
-        "Credit Services",
-        "Banking",
-    ],
-    Fitness: [
-        "Certified Personal Trainers",
-        "Classes",
-        "Gyms",
-        "Fitness Groups",
-        "Dance",
-    ],
-};
+// const categories = [
+//     "Housing",
+//     "Travel",
+//     "Media Influencers",
+//     "Education",
+//     "Dining",
+//     "Business",
+//     "Fitness",
+// ];
+// const subcategories = {
+//     Housing: [
+//         "Properties for Sale",
+//         "Properties for Rent",
+//         "Private Rooms",
+//         "Commercial Real Estate",
+//     ],
+//     Travel: ["Summer Vacations", "Winter Vacations", "Summer Camps", "Cruises"],
+//     "Media Influencers": [
+//         "Brand Ambassadors",
+//         "Social Media Influencers",
+//         "Podcast",
+//     ],
+//     Education: [
+//         "Home-School Teachers",
+//         "Tutors",
+//         "Finance",
+//         "1 on 1 Coaching",
+//         "Vocational Schools",
+//         "Charter Schools",
+//     ],
+//     Dining: ["Restaurants", "Catering", "Halal", "Kosher"],
+//     Business: [
+//         "Financial Services",
+//         "Business Services",
+//         "Brand Management",
+//         "Legal Services",
+//         "Credit Services",
+//         "Banking",
+//     ],
+//     Fitness: [
+//         "Certified Personal Trainers",
+//         "Classes",
+//         "Gyms",
+//         "Fitness Groups",
+//         "Dance",
+//     ],
+// };
 //     userid INTEGER REFERENCES users(id),\
 //     type varchar(50),\
 //     title varchar(250),\
@@ -365,11 +365,13 @@ client.connect(function (err) {
 
     // Listings table create
     // client.query(
-    //     "CREATE TABLE listing(id SERIAL PRIMARY KEY,\
+    //     "CREATE TABLE listings(id SERIAL PRIMARY KEY,\
     //     userid INTEGER REFERENCES users(id),\
-    //     type varchar(50),\
+    //     category INTEGER REFERENCES category(id),\
+    //     subcategory INTEGER REFERENCES subcategory(id),\
     //     title varchar(250),\
     //     description varchar(500),\
+    //     body varchar(3000), \
     //     zip varchar(100),\
     //     likes INTEGER,\
     //     shares INTEGER,\
@@ -435,43 +437,33 @@ client.connect(function (err) {
     // title: "Why These Two California Politians Are Causing a Stir This Election Season",
     // desc: "Looking for solutions in 2023? Look no further than these two local activist running for office",
 
-    // const createValues = async () => {
-    //     for await (const {
-    //         city,
-    //         zip,
-    //         userid,
-    //         src,
-    //         user,
-    //         type,
-    //         subtype,
-    //         title,
-    //         desc,
-    //     } of businessArr) {
-    //         const data = await client.query(
-    //             "INSERT INTO listing(userid, type, title, description, zip, likes, shares, bookmarks, city, creationdate, subtype) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id",
-    //             [
-    //                 userid,
-    //                 type,
-    //                 title,
-    //                 desc,
-    //                 zip,
-    //                 0,
-    //                 0,
-    //                 0,
-    //                 city,
-    //                 new Date(),
-    //                 subtype,
-    //             ]
-    //         );
-    //         console.log(data.rows[0].id);
-    //         const media = await client.query(
-    //             "INSERT INTO media(type, format, postid, url) VALUES($1, $2, $3, $4)",
-    //             ["image", ".jpg", data.rows[0].id, src]
-    //         );
-    //     }
-    // };
+    const createValues = async () => {
+        for await (const {
+            city,
+            zip,
+            userid,
+            src,
+            user,
+            type,
+            subtype,
+            title,
+            desc,
+        } of businessArr) {
+            const data = await client.query(
+                "INSERT INTO listings(userid, category, subcategory, title, \
+                description, zip, likes, shares, bookmarks, city, creationdate)\
+                 VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id",
+                [userid, 1, 1, title, desc, zip, 0, 0, 0, city, new Date()]
+            );
+            console.log(data.rows[0].id);
+            const media = await client.query(
+                "INSERT INTO media(type, format, listing_id, url, main) VALUES($1, $2, $3, $4, $5)",
+                ["image", ".jpg", data.rows[0].id, src, true]
+            );
+        }
+    };
 
-    // createValues();
+    createValues();
     // categories.forEach((it) => {
     //     client.query("INSERT INTO category(val) VALUES($1)", [it]);
     // });
@@ -488,18 +480,21 @@ client.connect(function (err) {
     // };
 
     // client.query("SELECT * FROM category", (e, r) => {
-    //     createSubCategories(r.rows);
+    //     console.log(r.rows[0]);
     // });
+
+    // client.query("SELECT * FROM subcategory", (e, r) => {
+    //     console.log(r.rows[0]);
+    // });
+
     // client.query("DELETE FROM media", (er, resp) => {
     //     console.log(resp.rows, " REsponse... ");
-    //     client.query("DELETE FROM listing", (er, resp) => {
+    //     client.query("DELETE FROM listings", (er, resp) => {
     //         console.log(resp.rows, " REsponse... ");
     //     });
     // });
 
-    // client.query("SELECT * FROM listing", (er, resp) => {
-    //     console.log(resp.rows, " REsponse... ");
-    // });
+    // client.query("DROP TABLE listing");
 
     // client.query("SELECT * FROM users", (er, resp) => {
     //     console.log(resp.rows, " User... ");
@@ -508,7 +503,7 @@ client.connect(function (err) {
     // client.query("UPDATE USERS set email = 'caroham29@gmail.com' WHERE id = 2");
 
     // client.query(
-    //     "ALTER TABLE listing ADD COLUMN subtype varchar(100)",
+    //     "ALTER TABLE media ADD COLUMN listing_id INTEGER REFERENCES listings(id)",
     //     (err, resp) => {
     //         if (err) {
     //             console.log(err, " Error ");
