@@ -463,7 +463,7 @@ client.connect(function (err) {
         }
     };
 
-    createValues();
+    //createValues();
     // categories.forEach((it) => {
     //     client.query("INSERT INTO category(val) VALUES($1)", [it]);
     // });

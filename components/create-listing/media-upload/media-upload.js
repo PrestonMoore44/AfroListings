@@ -10,7 +10,6 @@ const MediaUpload = ({ setParentImages }) => {
 		// data for submit
 		setImages(imageList);
 		setParentImages(imageList);
-		console.log(imageList);
 	};
 	return (
 		<ImageUploading

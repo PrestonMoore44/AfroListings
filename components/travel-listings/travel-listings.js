@@ -6,20 +6,37 @@ import { categories } from "../../services/static-data";
 import Cover from "../cover/cover";
 import styles from "./travel-listings.module.css";
 import SingleCard from "../single-card/single-card";
+import { useDispatch, useSelector } from "react-redux";
 
 const TravelListings = () => {
+	const router = useRouter();
 	const [listings, setListings] = useState([]);
 	const [arr, setArr] = useState([1, 2, 3, 4, 5, 6]);
+	const { categories, subCategories } = useSelector((store) => store);
 
 	useEffect(() => {
+		console.log(" Router change ");
 		fetchListings();
-	}, []);
+	}, [router]);
 
 	const fetchListings = async () => {
-		console.log(" Grabbing listings... ");
 		let data = await getListings();
-		setListings(data.filter(({ type, subtype }) => type === "travel"));
-		console.log(data, " Listings? ");
+		if (!router?.query?.type) {
+			setListings(
+				data.filter(
+					({ category_name, subcategory_name }) =>
+						category_name.toLowerCase() === "travel"
+				)
+			);
+		} else {
+			setListings(
+				data.filter(
+					({ category_name, subcategory_name, subcategory }) =>
+						subcategory_name === router?.query?.type
+				)
+			);
+		}
+		console.log(data, " Listings filtered");
 	};
 
 	return (

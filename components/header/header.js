@@ -54,6 +54,14 @@ const Header = ({ theme }) => {
 	const fetchCategories = async () => {
 		let data = await getCategories();
 		let subs = await getSubCategories();
+		dispatch({
+			type: "setSubCategories",
+			subCategories: subs,
+		});
+		dispatch({
+			type: "setCategories",
+			categories: data,
+		});
 		setSubCategories(subs);
 		setCategories(data);
 	};

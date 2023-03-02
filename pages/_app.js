@@ -20,6 +20,16 @@ function reducer(state = { user: null }, action) {
         ...state,
         showNewListing: action.showNewListing,
       };
+    case "setCategories":
+      return {
+        ...state,
+        categories: action.categories,
+      };
+    case "setSubCategories":
+      return {
+        ...state,
+        subCategories: action.subCategories,
+      };
     default:
       return state;
   }

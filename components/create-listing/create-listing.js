@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import { saveListing as saveCurrentListing } from "../../lib/services/listings-service";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -56,12 +57,17 @@ const CreateListing = ({ theme }) => {
 		console.log(subs);
 	};
 
-	const saveListing = (data, something) => {
+	const saveListing = async (data, something) => {
 		// Save entire listing
 		console.log(data, " THan editor Ref", editorRef);
 		// const blobCache = editorRef.current.editorUpload.blobCache;
 		// const uploadCache = editorRef.current.editorUpload.uploadCache;
 		console.log(editorHTML, " VALUE then images", images);
+		const savedListing = await saveCurrentListing({
+			...data,
+			body: editorHTML,
+		});
+		console.log(savedListing, " After save.... ");
 	};
 
 	const log = () => {

@@ -79,6 +79,28 @@ app
       }
     });
 
+    server.post("/saveListing", async (req, res) => {
+      const {
+        title,
+        description,
+        phone,
+        category,
+        subcategory,
+        message,
+        body,
+      } = JSON.parse(req.headers.listing_data);
+      console.log(
+        title,
+        description,
+        phone,
+        category,
+        subcategory,
+        message,
+        body
+      );
+      res.end(JSON.stringify({}));
+    });
+
     server.post("/login", async (req, res) => {
       const { email, password, email_verified = false } = req.headers;
       const user = await client.query("SELECT * FROM users WHERE email=($1)", [
