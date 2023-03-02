@@ -59,6 +59,13 @@ const Header = ({ theme }) => {
 		setCategories(data);
 	};
 
+	const navigate = (type, pathname) => {
+		router.push({
+			pathname,
+			query: { type: type },
+		});
+	};
+
 	const home = () => router.push("/");
 	const viewBusiness = () => router.push("/business-listings");
 	const viewEducation = () => router.push("/education-listings");
@@ -66,7 +73,6 @@ const Header = ({ theme }) => {
 	const viewTravel = () => router.push("/travel-listings");
 	const viewInfluencer = () => router.push("/influencer-listings");
 	const viewNews = () => router.push("/news");
-
 	const restrictUser = () => {
 		setTimeout(() => {
 			setShowLogin(true);
@@ -109,17 +115,17 @@ const Header = ({ theme }) => {
 							)
 						}
 						onMouseLeave={() => setDropdownType(null)}
-						onClick={() => viewBusiness()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/business-listings"
 								? styles.active
 								: null
 						}`}
 					>
-						<div>Business</div>
+						<div onClick={() => viewBusiness()}>Business</div>
 						{dropDownType?.val === "Business" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
@@ -138,17 +144,19 @@ const Header = ({ theme }) => {
 							)
 						}
 						onMouseLeave={() => setDropdownType(null)}
-						onClick={() => viewInfluencer()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/influencer-listings"
 								? styles.active
 								: null
 						}`}
 					>
-						<div>Media Influencers</div>
+						<div onClick={() => viewBusiness()}>
+							Media Influencers
+						</div>
 						{dropDownType?.val === "Media Influencers" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
@@ -167,17 +175,17 @@ const Header = ({ theme }) => {
 							)
 						}
 						onMouseLeave={() => setDropdownType(null)}
-						onClick={() => viewEducation()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/education-listings"
 								? styles.active
 								: null
 						}`}
 					>
-						<div>Education</div>
+						<div onClick={() => viewEducation()}>Education</div>
 						{dropDownType?.val === "Education" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
@@ -196,17 +204,17 @@ const Header = ({ theme }) => {
 							)
 						}
 						onMouseLeave={() => setDropdownType(null)}
-						onClick={() => viewEducation()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/education-listings"
 								? styles.active
 								: null
 						}`}
 					>
-						<div>Dining</div>
+						<div onClick={() => viewEducation()}>Dining</div>
 						{dropDownType?.val === "Dining" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
@@ -225,17 +233,17 @@ const Header = ({ theme }) => {
 							)
 						}
 						onMouseLeave={() => setDropdownType(null)}
-						onClick={() => viewEducation()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/education-listings"
 								? styles.active
 								: null
 						}`}
 					>
-						<div>Fitness</div>
+						<div onClick={() => viewEducation()}>Fitness</div>
 						{dropDownType?.val === "Fitness" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
@@ -254,17 +262,17 @@ const Header = ({ theme }) => {
 							)
 						}
 						onMouseLeave={() => setDropdownType(null)}
-						onClick={() => viewHousing()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/housing-listings"
 								? styles.active
 								: null
 						}`}
 					>
-						<div>Housing</div>
+						<div onClick={() => viewHousing()}>Housing</div>
 						{dropDownType?.val === "Housing" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>
@@ -283,17 +291,17 @@ const Header = ({ theme }) => {
 							)
 						}
 						onMouseLeave={() => setDropdownType(null)}
-						onClick={() => viewTravel()}
 						className={`${styles.rightItem} ${
 							router.pathname === "/travel-listings"
 								? styles.active
 								: null
 						}`}
 					>
-						<div>Travel</div>
+						<div onClick={() => viewTravel()}>Travel</div>
 						{dropDownType?.val === "Travel" && (
 							<div className={styles.dropContainer}>
 								<DropDown
+									navigate={navigate}
 									category={dropDownType.val}
 									categories={subCategories.filter(
 										(it) =>

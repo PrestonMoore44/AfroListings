@@ -18,7 +18,6 @@ import CardPopup from "./card-popup/card-popup";
 import SingleCard from "../single-card/single-card";
 import Cover from "../cover/cover";
 import { getListings } from "../../lib/services/listings-service";
-// Hooks useEffect, useConext, useState, useRef, useLayoutEffect, useTransition
 
 const Homepage = () => {
 	const router = useRouter();

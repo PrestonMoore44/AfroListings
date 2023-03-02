@@ -3,8 +3,10 @@ import styles from "./dropdown.module.css";
 import { Grid } from "@mui/material";
 import { useRouter } from "next/router";
 
-const DropDown = ({ categories, category }) => {
-	useEffect(() => {}, []);
+const DropDown = ({ categories, category, navigate }) => {
+	useEffect(() => {
+		// console.log(categories, " categories");
+	}, []);
 	const router = useRouter();
 	const iconFinder = {
 		Housing: <i class="bi bi-briefcase"></i>,
@@ -14,14 +16,6 @@ const DropDown = ({ categories, category }) => {
 		Dining: <i class="bi bi-briefcase"></i>,
 		Business: <i class="bi bi-briefcase"></i>,
 		Fitness: <i class="bi bi-briefcase"></i>,
-	};
-
-	const navigate = (type) => {
-		console.log(type);
-		router.push({
-			pathname: "/business-listings",
-			query: { type: type },
-		});
 	};
 
 	return (
