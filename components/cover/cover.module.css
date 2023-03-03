@@ -3,25 +3,45 @@
   background-color: white;
   width: calc(100%);
   left: 0;
-  top: 45px;
+  top: 50px;
+  overflow-y: scroll;
   height: auto;
-  z-index: 2;
+  z-index: 30;
   text-align: left;
   display: none;
+  font-size: 14px;
+  border-radius: 1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  webkitboxshadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  mozboxshadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  boxshadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .display {
   display: block;
 }
 
-.categoriesContainer div {
-  padding: 0 20px;
+.categoriesContainerDiv {
+  font-size: 14px;
+  padding: 0;
+  padding-left: 20px;
   line-height: 30px;
+  overflow-x: hidden;
   height: 30px;
+  font-weight: 500;
+  transition: 0.3s ease;
+  border: none;
+  outline: 0;
 }
 
-.categoriesContainer div:hover {
-  background-color: #f7f7f7;
+.categoriesContainerDiv:hover {
+  font-weight: 600;
+  background-color: gold;
+  cursor: pointer;
+}
+.categoriesContainerDiv:focus {
+  font-weight: 600;
+  background-color: #ffb700;
   cursor: pointer;
 }
 
@@ -31,7 +51,7 @@
   flex-direction: column;
   height: 100%;
   overflow: auto;
-  z-index: 1;
+  z-index: 20;
 }
 .itemHolder {
   position: relative;
@@ -40,13 +60,22 @@
   color: black;
   padding: 0 15px;
   line-height: 45px;
+  border: 2px solid transparent;
+}
+.itemHolder:focus-within {
+  border-color: #ffb700;
 }
 .itemHolder span {
-  font-weight: bold;
+  font-weight: 600;
 }
 .itemHolder input {
   border: none;
-  margin: 0 7px 0 20px;
+  margin: 0 7px 0 10px;
+  outline: 0;
+}
+
+.itemHolder input:focus {
+  border: none;
   outline: 0;
 }
 
@@ -75,7 +104,6 @@
   top: 0;
   width: 100vw;
   height: 88vh;
-  overflow: hidden;
   text-align: center;
   display: flex;
   align-items: center;
@@ -109,7 +137,7 @@
 }
 .iconHolder {
   cursor: pointer;
-  padding-left: 20px;
+  padding-left: 10px;
   color: grey !important;
 }
 .mainContainer a {
@@ -162,19 +190,19 @@
 }
 
 .searchContainer button {
-  background-color: #ec7211;
+  background-color: #ef9804;
 }
 
 .btn {
-  line-height: 45px;
+  line-height: 50px;
   background-color: #f07616;
   color: white !important;
-  height: 45px;
+  height: 50px;
 }
 .btn:hover,
 .btn:active,
 .btn:visited {
-  background-color: #d4660f !important;
+  background-color: #d88b08 !important;
 }
 .entireItemContainer {
   margin-top: 40px;

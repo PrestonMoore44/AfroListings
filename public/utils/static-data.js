@@ -20,6 +20,28 @@ export const pageTitles = {
 	},
 };
 
+// 0: Object { id: 1, val: "Housing" }
+// ​
+// 1: Object { id: 2, val: "Travel" }
+// ​
+// 2: Object { id: 3, val: "Media Influencers" }
+// ​
+// 3: Object { id: 4, val: "Education" }
+// ​
+// 4: Object { id: 5, val: "Dining" }
+// ​
+// 5: Object { id: 6, val: "Business" }
+// ​
+// 6: Object { id: 7, val: "Fitness" }
+
+export const convertToUrl = {
+	Housing: "/housing-listings",
+	Business: "/business-listings",
+	Fitness: "/business-listings",
+	Dining: "/business-listings",
+	Travel: "/travel-listings",
+	"Media Influencers": "/influencer-listings",
+};
 export const businessArr = [
 	{
 		src: "/tutor.jpeg",

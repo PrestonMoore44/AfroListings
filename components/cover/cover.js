@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 import styles from "./cover.module.css";
 import { BiLocationPlus } from "react-icons/bi";
 import { Button } from "@material-ui/core";
-import { pageTitles } from "../../public/utils/static-data";
+import { pageTitles, convertToUrl } from "../../public/utils/static-data";
+import { useDispatch, useSelector } from "react-redux";
 
 const Cover = ({
 	inputRef,
 	handleCategoryChange,
-	categories,
 	setCategory,
 	scrollDown,
 	type = "",
@@ -19,14 +19,70 @@ const Cover = ({
 }) => {
 	const route = useRouter();
 	const [titleObj, setTitleObj] = useState({});
+	const [location, setLocation] = useState("");
+	const [comboCategories, setComboCategories] = useState([]);
+	const { categories = [], subCategories = [] } = useSelector(
+		(store) => store
+	);
+
+	const searchByParams = () => {
+		const item = comboCategories.filter(
+			(it) => it.val.toLowerCase() === type.toLowerCase()
+		)[0];
+		const category = categories.filter(
+			(it) => it.id === item.categoryid
+		)[0];
+		if (item.categoryid && convertToUrl[category.val]) {
+			route.push({
+				pathname: convertToUrl[category.val],
+				query: { type: item.val },
+			});
+		} else {
+		}
+	};
 	const findLocation = async () => {
-		const data = await geoLocation();
-		setLocation(data.postal);
+		function httpGetAsync(url, callback) {
+			const xmlHttp = new XMLHttpRequest();
+			xmlHttp.onreadystatechange = function () {
+				if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
+					callback(xmlHttp.responseText);
+			};
+			xmlHttp.open("GET", url, true); // true for asynchronous
+			xmlHttp.send(null);
+		}
+
+		const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=33d8c230d12842a78de2dfbc2ca2cd13`;
+		httpGetAsync(url, (resp) => {
+			setLocation(JSON.parse(resp).postal_code);
+			console.log(resp, JSON.parse(resp).postal_code);
+		});
+	};
+
+	const updateInput = (e) => {
+		console.log(comboCategories, " Categories... ", e);
+		setComboCategories(
+			[...categories, ...subCategories]
+				.filter(({ val }) =>
+					val.toLowerCase().includes(type.toLowerCase())
+				)
+				.sort((a, b) => (a.val < b.val ? -1 : a.val > b.val ? 1 : 0))
+				.slice(0, 10)
+		);
+		handleCategoryChange(e);
 	};
 
 	useState(() => {
 		setTitleObj(pageTitles[route.pathname]);
+		setComboCategories([...categories, ...subCategories]);
 	}, []);
+
+	useState(() => {
+		if (route.pathname === "/" && inputRef.current) {
+			setTimeout(() => {
+				inputRef.current.focus();
+			}, 1000);
+		}
+	}, [route]);
 
 	return (
 		<div
@@ -52,7 +108,7 @@ const Cover = ({
 									id="inputItemSearch"
 									autoComplete="false"
 									onChange={(e) =>
-										handleCategoryChange(e.target.value)
+										updateInput(e.target.value)
 									}
 									value={type}
 									placeholder="Ex: business, service, food"
@@ -62,15 +118,19 @@ const Cover = ({
 										showCategories ? styles.display : null
 									}`}
 								>
-									{categories.map(function (item, i) {
+									{comboCategories.map(function (item, i) {
 										return (
 											<div
+												tabIndex={0}
+												className={
+													styles.categoriesContainerDiv
+												}
 												key={i}
 												onClick={() =>
-													setCategory(item)
+													setCategory(item.val)
 												}
 											>
-												{item}
+												{item.val.toUpperCase()}
 											</div>
 										);
 									})}
@@ -93,12 +153,13 @@ const Cover = ({
 									onChange={(e) =>
 										setLocation(e.target.value)
 									}
-									value={""}
+									value={location}
 									placeholder="Zip code, city or state"
 								/>
 							</div>
 							<Button
 								className={`${styles.btn} m-2`}
+								onClick={searchByParams}
 								variant="contained"
 							>
 								Search
