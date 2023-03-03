@@ -49,7 +49,7 @@ const HousingListings = () => {
 				<div className={styles.bussinessCenter}></div>
 				<div className={styles.bussinessSides}></div>
 			</div>
-			<div className={styles.sectionTitle}>HOUSING</div>
+			<div className={"sectionTitle"}>HOUSING</div>
 			<div className={`${styles.bussinessBody}`}>
 				{listings.map((it, ind) => (
 					<div className={styles.style_container} key={it.id}>

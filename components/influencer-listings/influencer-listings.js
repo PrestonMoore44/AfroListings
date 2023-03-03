@@ -8,6 +8,7 @@ import SingleCard from "../single-card/single-card";
 import { getListings } from "../../lib/services/listings-service";
 
 const InfluencerListings = () => {
+	const router = useRouter();
 	const [listings, setListings] = useState([]);
 	const [arr, setArr] = useState([1, 2, 3, 4, 5, 6]);
 
@@ -17,7 +18,21 @@ const InfluencerListings = () => {
 
 	const fetchListings = async () => {
 		let data = await getListings();
-		setListings(data.filter((it) => it.type === "influencer"));
+		if (!router?.query?.type) {
+			setListings(
+				data.filter(
+					({ category_name, subcategory_name }) =>
+						category_name.toLowerCase() === "influencer"
+				)
+			);
+		} else {
+			setListings(
+				data.filter(
+					({ category_name, subcategory_name, subcategory }) =>
+						subcategory_name === router?.query?.type
+				)
+			);
+		}
 	};
 
 	return (
@@ -34,7 +49,7 @@ const InfluencerListings = () => {
 				<div className={styles.bussinessCenter}></div>
 				<div className={styles.bussinessSides}></div>
 			</div>
-			<div className={styles.sectionTitle}>SOCIAL MEDIA INFLUENCERS</div>
+			<div className={"sectionTitle"}>SOCIAL MEDIA INFLUENCERS</div>
 			<div className={`${styles.bussinessBody}`}>
 				{listings.map((it, ind) => (
 					<div className={styles.style_container} key={it.id}>

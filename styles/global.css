@@ -33,3 +33,17 @@ body {
 	border: 4px solid red;
 	max-width: 900px;
 }
+
+.sectionTitle {
+	margin-left: calc(10% + 20px);
+	width: fit-content;
+	font-size: 28px;
+	font-weight: 900;
+	position: relative;
+}
+.sectionTitle::before {
+	margin-top: -40px;
+	position: absolute;
+	content: "___";
+	color: #d00707;
+}

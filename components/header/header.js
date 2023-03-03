@@ -158,7 +158,7 @@ const Header = ({ theme }) => {
 								: null
 						}`}
 					>
-						<div onClick={() => viewBusiness()}>
+						<div onClick={() => viewInfluencer()}>
 							Media Influencers
 						</div>
 						{dropDownType?.val === "Media Influencers" && (

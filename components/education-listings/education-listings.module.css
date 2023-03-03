@@ -27,19 +27,6 @@
 .bussinessSides {
 	width: 27%;
 }
-.sectionTitle {
-	margin-left: calc(10% + 20px);
-	width: fit-content;
-	font-size: 28px;
-	font-weight: 900;
-}
-.sectionTitle::before {
-	margin-top: -40px;
-	position: absolute;
-	content: "___";
-	color: #d00707;
-}
-
 .bussinessCenter {
 	width: 46%;
 }

@@ -52,7 +52,7 @@ const BusinessListings = () => {
 				<div className={styles.bussinessCenter}></div>
 				<div className={styles.bussinessSides}></div>
 			</div>
-			<div className={styles.sectionTitle}>BUSINESS</div>
+			<div className={"sectionTitle"}>BUSINESS</div>
 			<div className={`${styles.bussinessBody}`}>
 				{listings.map((it, ind) => (
 					<div className={styles.style_container} key={it.id}>

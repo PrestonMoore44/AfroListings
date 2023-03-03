@@ -8,6 +8,7 @@ import styles from "./education-listings.module.css";
 import SingleCard from "../single-card/single-card";
 
 const EducationListings = () => {
+	const router = useRouter();
 	const [listings, setListings] = useState([]);
 	const [arr, setArr] = useState([1, 2, 3, 4, 5, 6]);
 
@@ -18,13 +19,23 @@ const EducationListings = () => {
 	const fetchListings = async () => {
 		console.log(" Grabbing listings... ");
 		let data = await getListings();
-		setListings(
-			data.filter(
-				({ type, subtype }) =>
-					type === "business" && subtype === "education"
-			)
-		);
-		console.log(data, " Listings? ");
+		if (!router?.query?.type) {
+			setListings(
+				data.filter(
+					({ category_name, subcategory_name }) =>
+						category_name.toLowerCase() === "business" ||
+						category_name.toLowerCase() === "education"
+				)
+			);
+		} else {
+			setListings(
+				data.filter(
+					({ category_name, subcategory_name, subcategory }) =>
+						subcategory_name === router?.query?.type
+				)
+			);
+		}
+		console.log(data, " Listings filtered");
 	};
 
 	return (
@@ -41,7 +52,7 @@ const EducationListings = () => {
 				<div className={styles.bussinessCenter}></div>
 				<div className={styles.bussinessSides}></div>
 			</div>
-			<div className={styles.sectionTitle}>EDUCATION</div>
+			<div className={"sectionTitle"}>EDUCATION</div>
 			<div className={`${styles.bussinessBody}`}>
 				{listings.map((it, ind) => (
 					<div className={styles.style_container} key={it.id}>
