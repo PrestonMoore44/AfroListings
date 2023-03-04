@@ -3,10 +3,15 @@ import styles from "./dropdown.module.css";
 import { Grid } from "@mui/material";
 import { useRouter } from "next/router";
 
-const DropDown = ({ categories, category, navigate, pathname }) => {
-	useEffect(() => {
-		// console.log(categories, " categories");
-	}, []);
+const DropDown = ({
+	categories,
+	category,
+	navigate,
+	pathname,
+	type,
+	options,
+}) => {
+	useEffect(() => {}, [console.log(type, options)]);
 	const router = useRouter();
 	const iconFinder = {
 		Housing: <i class="bi bi-briefcase"></i>,
@@ -19,19 +24,44 @@ const DropDown = ({ categories, category, navigate, pathname }) => {
 	};
 
 	return (
-		<div className={`${styles.container}`}>
+		<div
+			className={`${styles.container} ${
+				options ? styles.containerAlt : null
+			} `}
+		>
 			<Grid container spacing={0}>
-				{categories.map(({ id, val }) => (
-					<Grid
-						onClick={() => navigate(val, pathname)}
-						key={id}
-						item
-						xs={6}
-						className={styles.gridItem}
-					>
-						{val}
-					</Grid>
-				))}
+				{type !== "profile" ? (
+					<>
+						{categories.map(({ id, val }) => (
+							<Grid
+								onClick={() => navigate(val, pathname)}
+								key={id}
+								item
+								xs={6}
+								className={styles.gridItem}
+							>
+								{val}
+							</Grid>
+						))}
+					</>
+				) : (
+					<>
+						{Object.entries(options).map(([key, value], ind) => (
+							<Grid
+								onClick={() => navigate(val, pathname)}
+								item
+								key={ind}
+								xs={12}
+								className={styles.gridItem}
+							>
+								<span className={styles.gridItemIcon}>
+									{value.icon}
+								</span>
+								<span>{key}</span>
+							</Grid>
+						))}
+					</>
+				)}
 			</Grid>
 		</div>
 	);

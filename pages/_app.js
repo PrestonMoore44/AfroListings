@@ -3,7 +3,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/global.css";
 
 export const AppTheme = React.createContext(); // Needed for context
@@ -37,9 +37,9 @@ function reducer(state = { user: null }, action) {
 
 // Create a Redux store holding the state of your app.
 // Its API is { subscribe, dispatch, getState }.
-let store = createStore(reducer);
 
 function MyApp({ Component, pageProps }) {
+  let store = createStore(reducer);
   return (
     <AppTheme.Provider value="Some Great Prop...">
       <Provider store={store}>

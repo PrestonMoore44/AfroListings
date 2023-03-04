@@ -1,3 +1,8 @@
+import { GoTriangleUp } from "react-icons/go";
+import { BsPlusSquare } from "react-icons/bs";
+import { BiUser } from "react-icons/bi";
+import { IoExitOutline } from "react-icons/io5";
+
 export const pageTitles = {
 	"/": {
 		title: "Afro Business, Afro Education, Afro Community",
@@ -17,6 +22,21 @@ export const pageTitles = {
 	},
 	"/influencer-listings": {
 		title: "Influce is King",
+	},
+};
+
+export const userDropDownOptions = {
+	Profile: {
+		icon: <BiUser />,
+		link: "/profile",
+	},
+	"Create Listing": {
+		icon: <BsPlusSquare />,
+		link: "/create-listing",
+	},
+	"Sign Out": {
+		icon: <IoExitOutline />,
+		link: "/",
 	},
 };
 

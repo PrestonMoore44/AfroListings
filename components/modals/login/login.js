@@ -33,6 +33,7 @@ const Login = ({ setShowLogin }) => {
 		}, 75);
 		console.log("OK");
 	}, []);
+
 	const SignupSchema = Yup.object().shape({
 		password: Yup.string()
 			.min(3, "Password must be at least 4 characters")
@@ -46,11 +47,10 @@ const Login = ({ setShowLogin }) => {
 		email: Yup.string().email("Invalid email").required("Required"),
 	});
 
-	useEffect(() => {}, []);
+	useEffect(() => {}, [console.log(sessionStorage, " Session storeage ")]);
 
 	const inheritData = async (data, updateMethod) => {
 		var dataObj = jwt_decode(data.credential);
-		console.log(dataObj, " OK SIR", updateMethod);
 		// Attempt login with data returned
 		if (dataObj.email) {
 			const user = await login(dataObj);
@@ -59,6 +59,8 @@ const Login = ({ setShowLogin }) => {
 					type: "setUser",
 					user,
 				});
+				console.log(user, " User ");
+				sessionStorage.setItem("user", JSON.stringify(user));
 				setShowLogin(false);
 			} else {
 				setLoginErr(true);
@@ -90,13 +92,14 @@ const Login = ({ setShowLogin }) => {
 			password,
 			picture,
 		});
-		console.log(user, " Hello ");
+
 		if (user.id) {
 			// Saved successfully
 			dispatch({
 				type: "setUser",
 				user,
 			});
+			sessionStorage.setItem("user", JSON.stringify(user));
 			setShowLogin(false);
 		} else {
 			// User already exist with that email!
@@ -156,6 +159,10 @@ const Login = ({ setShowLogin }) => {
 										type: "setUser",
 										user,
 									});
+									sessionStorage.setItem(
+										"user",
+										JSON.stringify(user)
+									);
 									setShowLogin(false);
 								} else {
 									// User not found, show login err

@@ -10,11 +10,13 @@ import CreateListings from "../modals/create-listings/create-listings";
 import { BsPlusSquare } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import DropDown from "./dropdown/dropdown";
+import UserDropDown from "./user-dropdown/user-dropdown";
 import { IoExitOutline } from "react-icons/io5";
 import {
 	getCategories,
 	getSubCategories,
 } from "../../lib/services/listings-service";
+import { userDropDownOptions } from "../../public/utils/static-data";
 
 const Header = ({ theme }) => {
 	const router = useRouter();
@@ -35,7 +37,7 @@ const Header = ({ theme }) => {
 		"/travel-listings": 1,
 	};
 	useEffect(() => {
-		// console.log(user, " User from store  from header ", theme);
+		console.log(user, " User from store  from header ", theme);
 		fetchCategories();
 	}, [user]);
 
@@ -55,7 +57,7 @@ const Header = ({ theme }) => {
 	const fetchCategories = async () => {
 		let data = await getCategories();
 		let subs = await getSubCategories();
-		console.log(subs, data);
+		console.log(userDropDownOptions);
 		dispatch({
 			type: "setSubCategories",
 			subCategories: subs,
@@ -353,33 +355,11 @@ const Header = ({ theme }) => {
 									</div>
 								)}
 								{hoverItem === "Profile" && (
-									<div
-										className={`${styles.hoverOptionsContainer} border`}
-									>
-										<div>
-											<BiUser />
-											<span
-												className={styles.profileItems}
-											>
-												Profile
-											</span>
-										</div>
-										<div onClick={create}>
-											<BsPlusSquare />
-											<span
-												className={styles.profileItems}
-											>
-												Create Listing
-											</span>
-										</div>
-										<div onClick={signOut}>
-											<IoExitOutline />
-											<span
-												className={styles.profileItems}
-											>
-												Sign Out
-											</span>
-										</div>
+									<div className={styles.dropContainer}>
+										<DropDown
+											type={"profile"}
+											options={userDropDownOptions}
+										></DropDown>
 									</div>
 								)}
 							</>

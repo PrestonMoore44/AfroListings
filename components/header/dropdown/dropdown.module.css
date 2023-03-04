@@ -7,8 +7,21 @@
 	mozboxshadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 	boxshadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
+
+.containerAlt {
+	width: 200px;
+}
 .container i {
 	margin-right: 7px;
+}
+.gridItemIcon {
+	margin-right: 7px;
+	font-size: 14px !important;
+	font-weight: 450;
+}
+
+.gridItemIcon:hover {
+	font-weight: 700;
 }
 .gridItem {
 	border-radius: 1px;

@@ -82,10 +82,10 @@
 	height: 100%;
 	width: 68px;
 	cursor: pointer;
-	position: relative;
 	font-weight: 800 !important;
 	font-size: 10px !important;
 	text-transform: uppercase;
+	position: relative;
 }
 
 .rightItem:hover {
