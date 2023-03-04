@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { GoTriangleUp } from "react-icons/go";
@@ -111,7 +112,14 @@ const Header = ({ theme }) => {
 					theme === "dark" ? styles.darkTheme : null
 				}`}
 			>
-				<div className={styles.leftContainer}></div>
+				<div className={styles.leftContainer}>
+					<Link href="/">
+						<>
+							<img src={"favicon.ico"} />
+							<p>Afro Listings</p>
+						</>
+					</Link>
+				</div>
 				<div className={styles.rightContainer}>
 					<div
 						onMouseOver={() =>

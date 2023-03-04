@@ -46,7 +46,14 @@
 	color: white;
 }
 .leftContainer {
-	width: 200px;
+	display: flex;
+	max-width: 200px;
+	width: fit-content;
+	cursor: pointer;
+	font-weight: 700;
+}
+.leftContainer img {
+	max-height: 30px;
 }
 .rightContainer {
 	display: flex;
