@@ -104,12 +104,59 @@ const Homepage = () => {
 
 	const fetchListings = async () => {
 		let data = await getListings();
-		setBusinessArr(data.filter(({ type }) => type === "business"));
-		setPoliticsArr(data.filter(({ type }) => type === "politics"));
-		setRestArr(data.filter(({ type }) => type === "food"));
-		setHousingArr(data.filter(({ type }) => type === "housing"));
-		setInfluencerArr(data.filter(({ type }) => type === "influencer"));
-		setTravelArr(data.filter(({ type }) => type === "travel"));
+		console.log(
+			data.map(({ category_name }) => category_name),
+			" Hello "
+		);
+		//category_name: "Housing"
+		setBusinessArr(
+			data
+				.filter(
+					({ category_name }) =>
+						category_name.toLowerCase() === "business"
+				)
+				.slice(0, 4)
+		);
+		setPoliticsArr(
+			data
+				.filter(
+					({ category_name }) =>
+						category_name.toLowerCase() === "politics"
+				)
+				.slice(0, 4)
+		);
+		setRestArr(
+			data
+				.filter(
+					({ category_name }) =>
+						category_name.toLowerCase() === "food"
+				)
+				.slice(0, 4)
+		);
+		setHousingArr(
+			data
+				.filter(
+					({ category_name }) =>
+						category_name.toLowerCase() === "housing"
+				)
+				.slice(0, 4)
+		);
+		setInfluencerArr(
+			data
+				.filter(
+					({ category_name }) =>
+						category_name.toLowerCase() === "media influencers"
+				)
+				.slice(0, 4)
+		);
+		setTravelArr(
+			data
+				.filter(
+					({ category_name }) =>
+						category_name.toLowerCase() === "travel"
+				)
+				.slice(0, 4)
+		);
 	};
 
 	const navigateAway = (url) => {
