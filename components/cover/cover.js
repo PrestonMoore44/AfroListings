@@ -177,7 +177,7 @@ const Cover = ({
 				)}
 			</div>
 			{route.pathname === "/" ? (
-				<video autoPlay muted loop id="myVideo">
+				<video autoPlay muted id="myVideo">
 					<source src={bgMedia} type="video/mp4"></source>
 				</video>
 			) : (

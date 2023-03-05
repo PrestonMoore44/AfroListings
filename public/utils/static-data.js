@@ -32,7 +32,7 @@ export const userDropDownOptions = {
 	},
 	"Create Listing": {
 		icon: <BsPlusSquare />,
-		link: "/create-listing",
+		link: "/listing/create",
 	},
 	"Sign Out": {
 		icon: <IoExitOutline />,

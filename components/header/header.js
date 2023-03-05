@@ -10,7 +10,6 @@ import CreateListings from "../modals/create-listings/create-listings";
 import { BsPlusSquare } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import DropDown from "./dropdown/dropdown";
-import UserDropDown from "./user-dropdown/user-dropdown";
 import { IoExitOutline } from "react-icons/io5";
 import {
 	getCategories,
@@ -75,6 +74,14 @@ const Header = ({ theme }) => {
 			pathname,
 			query: { type: type },
 		});
+	};
+
+	const userNavigate = (type, type_two) => {
+		console.log(type, type_two);
+		if (type_two === "Sign Out") {
+			return true;
+		}
+		router.push({ pathname: type.link });
 	};
 
 	const home = () => router.push("/");
@@ -357,6 +364,7 @@ const Header = ({ theme }) => {
 								{hoverItem === "Profile" && (
 									<div className={styles.dropContainer}>
 										<DropDown
+											navigate={userNavigate}
 											type={"profile"}
 											options={userDropDownOptions}
 										></DropDown>

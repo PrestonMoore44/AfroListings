@@ -48,7 +48,7 @@ const DropDown = ({
 					<>
 						{Object.entries(options).map(([key, value], ind) => (
 							<Grid
-								onClick={() => navigate(val, pathname)}
+								onClick={() => navigate(value, key)}
 								item
 								key={ind}
 								xs={12}
