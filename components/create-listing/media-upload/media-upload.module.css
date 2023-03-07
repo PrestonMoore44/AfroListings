@@ -1,11 +1,75 @@
 .outterContainer {
 }
+.mainImgContainer {
+	height: 100%;
+	min-height: 280px;
+}
+.mainImgItem {
+	height: 280px;
+	max-width: 100%;
+	width: auto;
+	border-radius: 3px;
+}
+.flexImgOutContainer {
+	position: absolute;
+	bottom: -105px;
+}
+.btnContainer {
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	top: 50%; /* position the top  edge of the element at the middle of the parent */
+	left: 50%; /* position the left edge of the element at the middle of the parent */
+	transform: translate(-50%, -50%);
+}
+.buttons {
+	position: relative;
+	top: 50%; /* position the top  edge of the element at the middle of the parent */
+	left: 50%; /* position the left edge of the element at the middle of the parent */
+	transform: translate(-50%, -50%);
+}
+.flexImageItem {
+	width: 100%;
+	margin: 2px;
+	max-width: 100%;
+	border-radius: 3px;
+	min-height: 100px !important;
+}
+.flexImgSelected {
+	border: 2px solid red;
+}
+.flexImgOutContainer i {
+	color: white;
+	font-size: 28px;
+}
+.flexImgContainerAlt {
+	border-radius: 3px;
+	width: 100px !important;
+	max-width: 100px;
+	height: 100px;
+	max-height: 100px;
+	line-height: 100px;
+	position: relative;
+}
+.flexImgContainer {
+	width: 100px !important;
+	max-width: 100px;
+	height: 100px;
+	max-height: 100px;
+	line-height: 100px;
+	background-color: #d22525;
+	position: relative;
+	border-radius: 3px;
+}
+
 .uploadSection {
 	font-size: 14px;
 	border-radius: 4px;
 	border: 1px solid #c3c3c3;
 	border-style: solid !important;
 	width: 100%;
+	min-width: 400px;
 	height: 280px;
 	text-align: center;
 	position: relative;
@@ -17,6 +81,18 @@
 }
 .uploadSection:hover {
 	border-color: #191919;
+}
+.imgContainer {
+	height: 10%;
+	position: absolute;
+	width: 10%;
+	line-height: 28px;
+}
+.imageItem {
+	border: 1px solid grey;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
 }
 
 .absoluteCenter {

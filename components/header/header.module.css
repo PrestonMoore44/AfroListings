@@ -47,8 +47,8 @@
 }
 .leftContainer {
 	display: flex;
-	max-width: 200px;
-	width: fit-content;
+	max-width: 350px;
+	width: 350px;
 	cursor: pointer;
 	font-weight: 700;
 }
@@ -61,7 +61,9 @@
 	align-items: flex-end;
 	justify-content: flex-end;
 }
-
+.signIn:hover {
+	text-decoration: underline;
+}
 .rightItem {
 	flex-shrink: 0;
 	padding: 0 12px;

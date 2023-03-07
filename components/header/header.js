@@ -79,7 +79,11 @@ const Header = ({ theme }) => {
 	const userNavigate = (type, type_two) => {
 		console.log(type, type_two);
 		if (type_two === "Sign Out") {
-			return true;
+			dispatch({
+				type: "setUser",
+				user: null,
+			});
+			sessionStorage.removeItem("user");
 		}
 		router.push({ pathname: type.link });
 	};
@@ -124,7 +128,7 @@ const Header = ({ theme }) => {
 				<div className={styles.leftContainer}>
 					<Link href="/">
 						<>
-							<img src={"favicon.ico"} />
+							<img src="./favicon.ico" />
 							<p>Afro Listings</p>
 						</>
 					</Link>
@@ -372,7 +376,10 @@ const Header = ({ theme }) => {
 								)}
 							</>
 						) : (
-							<div onClick={() => setShowLogin(true)}>
+							<div
+								className={styles.signIn}
+								onClick={() => setShowLogin(true)}
+							>
 								Sign in
 							</div>
 						)}

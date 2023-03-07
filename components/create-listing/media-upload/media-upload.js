@@ -4,13 +4,31 @@ import styles from "./media-upload.module.css";
 
 const MediaUpload = ({ setParentImages }) => {
 	const [images, setImages] = useState([]);
+	const [mainImg, setMainImg] = useState({});
+	const [hoverMain, setHoverMain] = useState(false);
 	const maxNumber = 69;
 
 	const onChange = (imageList, addUpdateIndex) => {
 		// data for submit
 		setImages(imageList);
 		setParentImages(imageList);
+		setMain(imageList[addUpdateIndex]);
+		console.log(addUpdateIndex, " Hello ");
 	};
+
+	const setMain = (img) => {
+		console.log(img, images);
+		setMainImg(img);
+		console.log(mainImg, "Hello sorkd");
+	};
+
+	const onImageRemove = () => {
+		setImages(
+			images.filter(({ data_url }) => mainImg["data_url"] !== data_url)
+		);
+		setMainImg(images[0]);
+	};
+
 	return (
 		<ImageUploading
 			multiple
@@ -24,7 +42,6 @@ const MediaUpload = ({ setParentImages }) => {
 				onImageUpload,
 				onImageRemoveAll,
 				onImageUpdate,
-				onImageRemove,
 				isDragging,
 				dragProps,
 			}) => (
@@ -54,31 +71,71 @@ const MediaUpload = ({ setParentImages }) => {
 							</div>
 						) : (
 							<div>
-								{imageList.map((image, index) => (
-									<div key={index} className="image-item">
-										<img
-											src={image["data_url"]}
-											alt=""
-											width="100"
-										/>
-										<div className="image-item__btn-wrapper">
-											<button
-												onClick={() =>
-													onImageUpdate(index)
-												}
-											>
-												Update
-											</button>
-											<button
-												onClick={() =>
-													onImageRemove(index)
-												}
-											>
-												Remove
-											</button>
+								<div
+									className={styles.mainImgContainer}
+									onMouseLeave={() => setHoverMain(false)}
+									onMouseEnter={() => setHoverMain(true)}
+								>
+									<img
+										className={styles.mainImgItem}
+										src={mainImg["data_url"]}
+										alt=""
+									/>
+									{!!hoverMain && (
+										<div
+											className={styles.btnContainer}
+											onMouseLeave={() =>
+												setHoverMain(false)
+											}
+										>
+											<div className={styles.buttons}>
+												<button
+													onClick={onImageRemove}
+													className={"btn btn-light"}
+												>
+													Delete
+												</button>
+												<button
+													className={
+														"btn btn-primary"
+													}
+													onClick={onImageUpdate}
+												>
+													Edit Photo
+												</button>
+											</div>
 										</div>
+									)}
+								</div>
+								<div className={styles.flexImgOutContainer}>
+									<div className={"d-flex"}>
+										<div
+											onClick={onImageUpload}
+											className={styles.flexImgContainer}
+										>
+											<i className="bi bi-images"></i>
+										</div>
+										{imageList.map((image, index) => (
+											<div
+												className={
+													styles.flexImgContainerAlt
+												}
+												key={index}
+											>
+												<img
+													className={`
+														${styles.flexImageItem}
+														${mainImg["data_url"] === image["data_url"] ? styles.flexImgSelected : null}`}
+													onClick={() =>
+														setMain(image)
+													}
+													src={image["data_url"]}
+													alt=""
+												/>
+											</div>
+										))}
 									</div>
-								))}
+								</div>
 							</div>
 						)}
 					</div>
