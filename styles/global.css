@@ -13,6 +13,22 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
 		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+.custDelete {
+	outline: 1px solid white;
+	font-size: 12px !important;
+	border-radius: 10px;
+	background-color: transparent;
+	color: white;
+	transition: 0.25s ease;
+}
+.custDelete i {
+	margin-right: 5px !important;
+}
+.custDelete:hover {
+	color: white;
+	outline-color: #2b2f2d;
+	background-color: #2b2f2d;
+}
 
 /*
 .Toastify__toast {

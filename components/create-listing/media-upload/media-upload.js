@@ -49,7 +49,11 @@ const MediaUpload = ({ setParentImages }) => {
 				<div
 					className={`upload__image-wrapper ${styles.outterContainer}`}
 				>
-					<div className={styles.uploadSection}>
+					<div
+						className={`${styles.uploadSection} ${
+							images.length > 0 ? styles.noBorder : null
+						}`}
+					>
 						{images.length === 0 ? (
 							<div className={styles.absoluteCenter}>
 								<div className={styles.iconMe}>
@@ -91,17 +95,12 @@ const MediaUpload = ({ setParentImages }) => {
 											<div className={styles.buttons}>
 												<button
 													onClick={onImageRemove}
-													className={"btn btn-light"}
+													className={"btn custDelete"}
 												>
-													Delete
-												</button>
-												<button
-													className={
-														"btn btn-primary"
-													}
-													onClick={onImageUpdate}
-												>
-													Edit Photo
+													<i className="bi bi-trash3 mr-2"></i>
+													<span className="ml-2">
+														Delete
+													</span>
 												</button>
 											</div>
 										</div>
