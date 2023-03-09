@@ -2,7 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { saveListing as saveCurrentListing } from "../../lib/services/listings-service";
 import { useRouter } from "next/router";
+import { agePreferenceList } from "../../public/utils/static-data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import {
 	getCategories,
 	getSubCategories,
@@ -10,6 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useFormikContext, Formik, Form, Field } from "formik";
 import Button from "@material-ui/core/Button";
+import Stepper from "./stepper/stepper";
 import MediaUpload from "./media-upload/media-upload";
 import {
 	FormControl,
@@ -29,6 +33,7 @@ import styles from "./create-listing.module.css";
 const CreateListing = ({ theme }) => {
 	const router = useRouter();
 	const editorRef = useRef(null);
+	const [view, setView] = useState(1);
 	const dispatch = useDispatch();
 	const [images, setImages] = useState([]);
 	const [editorHTML, setEditorHTML] = useState("");
@@ -36,11 +41,10 @@ const CreateListing = ({ theme }) => {
 	const [subCategories, setSubCategories] = useState([]);
 	const user = useSelector((store) => store.user);
 	useEffect(() => {
-		// console.log(user, " User from store  from C ", theme);
 		fetchCategories();
 		setTimeout(() => {
-			document.getElementById("title").focus();
-		}, 250);
+			if (view === 1) document.getElementById("title").focus();
+		}, 500);
 	}, [user]);
 
 	const initRef = (editor) => {
@@ -54,7 +58,6 @@ const CreateListing = ({ theme }) => {
 		let subs = await getSubCategories();
 		setSubCategories(subs);
 		setCategories(data);
-		console.log(subs);
 	};
 
 	const saveListing = async (data, something) => {
@@ -79,7 +82,7 @@ const CreateListing = ({ theme }) => {
 	return (
 		<div className={styles.homepageContainerMain}>
 			<div className={styles.containerHeader}>
-				<div className={styles.header}>Listing Details</div>
+				<Stepper view={view} setView={setView}></Stepper>
 				<div className="d-flex">
 					<div className={styles.formContainer}>
 						<Formik
@@ -90,6 +93,15 @@ const CreateListing = ({ theme }) => {
 								category: "6",
 								subcategory: "",
 								message: "",
+								website: "",
+								phone: "",
+								address: "",
+								city: "",
+								state: "",
+								zip: "",
+								agePrefrence: "Any",
+								distance_preference: "",
+								sex_preference: "Any",
 							}}
 							onSubmit={async (values, { setFieldValue }) => {
 								saveListing(values, setFieldValue);
@@ -103,160 +115,437 @@ const CreateListing = ({ theme }) => {
 								errors,
 							}) => (
 								<Form className={"d-block"}>
-									<FormControl fullWidth className={"my-2"}>
-										<InputLabel htmlFor="title">
-											Title
-										</InputLabel>
-										<OutlinedInput
-											required
-											id="title"
-											label="Title"
-											placeholder="Add a title that describes your listing"
-											value={values.title}
-											onChange={handleChange}
-											error={
-												touched.title &&
-												Boolean(errors.title)
-											}
-										/>
-									</FormControl>
-									<FormControl fullWidth className={"my-2"}>
-										<InputLabel htmlFor="description">
-											Description
-										</InputLabel>
-										<OutlinedInput
-											required
-											placeholder="Tell viewers about your listing"
-											id="description"
-											label="Sub Title"
-											value={values.description}
-											onChange={handleChange}
-											error={
-												touched.description &&
-												Boolean(errors.description)
-											}
-										/>
-									</FormControl>
-									{!!categories.length && (
-										<Box
-											sx={{ width: 120 }}
-											className={styles.selectContainer}
-										>
-											<FormControl
-												className={`my-2`}
-												fullWidth
-											>
-												<InputLabel id="demo-simple">
-													Category
-												</InputLabel>
-												<Select
-													labelId="demo-simple"
-													id="category"
-													name="category"
-													value={values.category}
-													label="Category"
-													onChange={(e) => {
-														console.log(e);
-														handleChange(e);
-													}}
+									{view === 1 && (
+										<div className={"d-flex"}>
+											<div className={"d-block"}>
+												<div className={styles.header}>
+													Listing Details
+												</div>
+												<FormControl
+													fullWidth
+													className={"my-2"}
 												>
-													{categories.map(
-														({ id, val }) => (
-															<MenuItem
-																key={id}
-																id="category_1"
-																value={id}
-																className={
-																	styles.selectItem
+													<InputLabel htmlFor="title">
+														Title
+													</InputLabel>
+													<OutlinedInput
+														required
+														id="title"
+														label="Title"
+														placeholder="Add a title that describes your listing"
+														value={values.title}
+														onChange={handleChange}
+														error={
+															touched.title &&
+															Boolean(
+																errors.title
+															)
+														}
+													/>
+												</FormControl>
+												<FormControl
+													fullWidth
+													className={"my-2"}
+												>
+													<InputLabel htmlFor="description">
+														Description
+													</InputLabel>
+													<OutlinedInput
+														required
+														placeholder="Tell viewers about your listing"
+														id="description"
+														label="Sub Title"
+														value={
+															values.description
+														}
+														onChange={handleChange}
+														error={
+															touched.description &&
+															Boolean(
+																errors.description
+															)
+														}
+													/>
+												</FormControl>
+												{!!categories.length && (
+													<Box
+														sx={{ width: 120 }}
+														className={
+															styles.selectContainer
+														}
+													>
+														<FormControl
+															className={`my-2`}
+															fullWidth
+														>
+															<InputLabel id="demo-simple">
+																Category
+															</InputLabel>
+															<Select
+																labelId="demo-simple"
+																id="category"
+																name="category"
+																value={
+																	values.category
+																}
+																label="Category"
+																onChange={(
+																	e
+																) => {
+																	console.log(
+																		e
+																	);
+																	handleChange(
+																		e
+																	);
+																}}
+															>
+																{categories.map(
+																	({
+																		id,
+																		val,
+																	}) => (
+																		<MenuItem
+																			key={
+																				id
+																			}
+																			id="category_1"
+																			value={
+																				id
+																			}
+																			className={
+																				styles.selectItem
+																			}
+																		>
+																			{
+																				val
+																			}
+																		</MenuItem>
+																	)
+																)}
+															</Select>
+														</FormControl>
+													</Box>
+												)}
+												{!!subCategories.length && (
+													<Box
+														sx={{ width: 120 }}
+														className={
+															styles.selectContainer
+														}
+													>
+														<FormControl
+															fullWidth
+															className={`my-2`}
+														>
+															<InputLabel id="demo-simple-select-label">
+																Sub Category
+															</InputLabel>
+															<Select
+																labelId="demo-simple-select-label"
+																id="demo-simple-select"
+																id="subcategory"
+																name="subcategory"
+																value={
+																	values.subcategory
+																}
+																label="Sub Category"
+																onChange={
+																	handleChange
 																}
 															>
-																{val}
-															</MenuItem>
-														)
-													)}
-												</Select>
-											</FormControl>
-										</Box>
+																{subCategories
+																	.filter(
+																		(it) =>
+																			it.categoryid ==
+																			values.category
+																	)
+																	.map(
+																		({
+																			id,
+																			val,
+																		}) => (
+																			<MenuItem
+																				key={
+																					id
+																				}
+																				id="category_4"
+																				value={
+																					id
+																				}
+																				className={
+																					styles.selectItem
+																				}
+																			>
+																				{
+																					val
+																				}
+																			</MenuItem>
+																		)
+																	)}
+															</Select>
+														</FormControl>
+													</Box>
+												)}
+												<div className={"my-2"}>
+													<Editor
+														apiKey="zq4kgku6qtfp8k5buue6qjr9g2i2vtxj7asuy7dlqn7oimic"
+														onEditorChange={(e) =>
+															setEditorHTML(e)
+														}
+														id="listing_id"
+														initialValue=""
+														init={{
+															height: 500,
+															menubar: false,
+															plugins: [
+																"advlist autolink lists link image charmap print preview anchor",
+																"searchreplace visualblocks code fullscreen",
+																"insertdatetime media table paste code help wordcount",
+															],
+															toolbar:
+																"undo redo | formatselect | " +
+																"bold italic backcolor | alignleft aligncenter " +
+																"alignright alignjustify | bullist numlist outdent indent | " +
+																"removeformat | help",
+															content_style:
+																"body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+														}}
+														value={editorHTML}
+													/>
+												</div>
+											</div>
+										</div>
 									)}
-									{!!subCategories.length && (
-										<Box
-											sx={{ width: 120 }}
-											className={styles.selectContainer}
-										>
+									{view === 2 && (
+										<div>
+											<div className={styles.header}>
+												Contact Info
+											</div>
 											<FormControl
 												fullWidth
-												className={`my-2`}
+												className={"my-2 mt-3"}
 											>
-												<InputLabel id="demo-simple-select-label">
-													Sub Category
+												<InputLabel htmlFor="address">
+													Address
 												</InputLabel>
-												<Select
-													labelId="demo-simple-select-label"
-													id="demo-simple-select"
-													id="subcategory"
-													name="subcategory"
-													value={values.subcategory}
-													label="Sub Category"
+												<OutlinedInput
+													required
+													id="address"
+													label="Address"
+													placeholder="Ex. 1600 Pennsylvania Avenue NW"
+													value={values.address}
 													onChange={handleChange}
+													error={
+														touched.title &&
+														Boolean(errors.title)
+													}
+												/>
+											</FormControl>
+											<FormControl
+												fullWidth
+												className={"my-2"}
+											>
+												<InputLabel htmlFor="city">
+													City
+												</InputLabel>
+												<OutlinedInput
+													required
+													id="city"
+													label="City"
+													placeholder=""
+													value={values.city}
+													onChange={handleChange}
+													error={
+														touched.title &&
+														Boolean(errors.title)
+													}
+												/>
+											</FormControl>
+											<FormControl
+												fullWidth
+												className={"my-2"}
+											>
+												<InputLabel htmlFor="state">
+													State
+												</InputLabel>
+												<OutlinedInput
+													required
+													id="state"
+													label="State"
+													placeholder="555-555-5555"
+													value={values.state}
+													onChange={handleChange}
+													error={
+														touched.title &&
+														Boolean(errors.title)
+													}
+												/>
+											</FormControl>
+											<FormControl
+												fullWidth
+												className={"my-2"}
+											>
+												<InputLabel htmlFor="zip">
+													Zip
+												</InputLabel>
+												<OutlinedInput
+													required
+													id="zip"
+													label="Zip"
+													placeholder=""
+													value={values.zip}
+													onChange={handleChange}
+													error={
+														touched.title &&
+														Boolean(errors.title)
+													}
+												/>
+											</FormControl>
+											<FormControl
+												fullWidth
+												className={"my-2"}
+											>
+												<InputLabel htmlFor="phone">
+													Phone
+												</InputLabel>
+												<OutlinedInput
+													required
+													id="phone"
+													label="Phone"
+													placeholder="555-555-5555"
+													value={values.phone}
+													onChange={handleChange}
+													error={
+														touched.title &&
+														Boolean(errors.title)
+													}
+												/>
+											</FormControl>
+											<FormControl
+												fullWidth
+												className={"my-2"}
+											>
+												<InputLabel htmlFor="webiste">
+													WebSite
+												</InputLabel>
+												<OutlinedInput
+													required
+													id="webiste"
+													label="WebSite"
+													placeholder="Website where viewers can get more info"
+													value={values.webiste}
+													onChange={handleChange}
+													error={
+														touched.title &&
+														Boolean(errors.title)
+													}
+												/>
+											</FormControl>
+										</div>
+									)}
+									{view === 3 && (
+										<>
+											<div className={"d-block"}>
+												<div className={styles.header}>
+													Audience
+												</div>
+												<Box
+													sx={{ width: 120 }}
+													className={
+														styles.selectContainer
+													}
 												>
-													{subCategories
-														.filter(
-															(it) =>
-																it.categoryid ==
-																values.category
-														)
-														.map(({ id, val }) => (
+													<FormControl
+														fullWidth
+														className={"my-2 mt-3"}
+													>
+														<InputLabel id="sex_preference">
+															Gender
+														</InputLabel>
+														<Select
+															labelId="sex_preference"
+															id="sex_preference"
+															name="sex_preference"
+															value={
+																values.sex_preference
+															}
+															label="Gender"
+															onChange={(e) =>
+																handleChange(e)
+															}
+														>
 															<MenuItem
-																key={id}
-																id="category_1"
-																value={id}
 																className={
 																	styles.selectItem
 																}
+																value={"Men"}
 															>
-																{val}
+																Men
 															</MenuItem>
-														))}
-												</Select>
-											</FormControl>
-										</Box>
+															<MenuItem
+																className={
+																	styles.selectItem
+																}
+																value={"Women"}
+															>
+																Women
+															</MenuItem>
+															<MenuItem
+																className={
+																	styles.selectItem
+																}
+																value={"Any"}
+															>
+																Any
+															</MenuItem>
+														</Select>
+													</FormControl>
+												</Box>
+												<div
+													className={styles.customBox}
+												>
+													<label
+														className={
+															styles.customLabel
+														}
+													>
+														Age Group
+													</label>
+													<FormControl
+														className={`my-2`}
+														fullWidth
+													>
+														{agePreferenceList.map(
+															(it) => (
+																<FormControlLabel
+																	key={it}
+																	control={
+																		<Checkbox
+																			className={
+																				"mx-2"
+																			}
+																			size="small"
+																		/>
+																	}
+																	label={it}
+																/>
+															)
+														)}
+													</FormControl>
+												</div>
+											</div>
+											<Button
+												className={`mt-2 mb-3 w-100 ${styles.signInBtn}`}
+												color="primary"
+												variant="contained"
+												fullWidth
+												type="submit"
+											>
+												submit
+											</Button>
+										</>
 									)}
-									<div className={"my-2"}>
-										<Editor
-											apiKey="zq4kgku6qtfp8k5buue6qjr9g2i2vtxj7asuy7dlqn7oimic"
-											onEditorChange={(e) =>
-												setEditorHTML(e)
-											}
-											id="listing_id"
-											initialValue="<p>Hasdfkj&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Hasdfkj&nbsp;</strong></p>"
-											init={{
-												height: 500,
-												menubar: false,
-												plugins: [
-													"advlist autolink lists link image charmap print preview anchor",
-													"searchreplace visualblocks code fullscreen",
-													"insertdatetime media table paste code help wordcount",
-												],
-												toolbar:
-													"undo redo | formatselect | " +
-													"bold italic backcolor | alignleft aligncenter " +
-													"alignright alignjustify | bullist numlist outdent indent | " +
-													"removeformat | help",
-												content_style:
-													"body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-											}}
-											value={editorHTML}
-										/>
-									</div>
-									<Button
-										className={`mt-2 mb-3 w-100 ${styles.signInBtn}`}
-										color="primary"
-										variant="contained"
-										fullWidth
-										type="submit"
-									>
-										submit
-									</Button>
 								</Form>
 							)}
 						</Formik>

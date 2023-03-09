@@ -9,7 +9,7 @@
 }
 .mediaContainer {
 	flex: 1;
-	padding: 25px 0;
+	padding: 58px 0;
 }
 .fontSize {
 	font-size: 10px !important;
@@ -30,7 +30,7 @@
 }
 
 .containerHeader {
-	padding: 25px;
+	padding: 0 25px;
 }
 
 .textareaCustom {
@@ -45,13 +45,31 @@
 .textareaCustom:hover {
 	border-color: #5b5b5b;
 }
-.header::before {
-	margin-top: -40px;
-	position: absolute;
-	content: "___";
-	color: #d00707;
-}
+
 .header {
 	font-weight: 900;
 	font-size: 1.25rem;
+}
+.customLabel {
+	background-color: white;
+	width: fit-content;
+	position: absolute;
+	padding: 0 5px;
+	top: -9px;
+	color: rgba(0, 0, 0, 0.6);
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+	font-weight: 400;
+	font-size: 11px;
+	line-height: 1.4375em;
+	letter-spacing: 0.00938em;
+}
+.customBox {
+	margin-top: 10px;
+	position: relative;
+	padding: 0 10px;
+	border-radius: 6px;
+	border: 1px solid #d2d2d2;
+}
+.customBox:hover {
+	border-color: black;
 }

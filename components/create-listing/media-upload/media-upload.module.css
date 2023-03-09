@@ -85,7 +85,7 @@
 	box-sizing: border-box; /* Opera/IE 8+ */
 }
 .uploadSection:hover {
-	border-color: #191919;
+	border-color: #c3c3c3;
 }
 .noBorder:hover {
 	border-color: transparent;

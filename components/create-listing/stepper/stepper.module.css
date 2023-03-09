@@ -1,0 +1,52 @@
+.selectedView {
+	background-color: rgba(128, 128, 128, 0.2);
+}
+
+.flexContainer {
+	display: flex;
+	margin: 0 100px;
+	justify-content: space-around;
+}
+
+.flexItem {
+	font-size: 12px;
+	color: grey;
+	text-align: center;
+	flex: 1;
+	display: flex;
+	position: relative;
+	justify-content: center;
+	/* align-self: center;    <---- REMOVE */
+	align-items: center; /* <---- NEW    */
+}
+.divider {
+	margin-top: 20px;
+	height: 2px;
+	flex: 1;
+	background-color: red;
+}
+
+.flexItem:first-of-type {
+}
+.flexItem:last-of-type {
+}
+
+.flexItemBox {
+	margin: 0 auto;
+	text-align: center;
+	max-width: fit-content;
+	min-width: 105px;
+	padding: 10px;
+	border-radius: 4px;
+	transition: 0.25s all;
+}
+.flexItemBox:hover {
+	background-color: rgba(128, 128, 128, 0.2);
+}
+
+.floatR {
+	float: right;
+}
+.floatL {
+	float: left;
+}
