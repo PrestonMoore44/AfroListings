@@ -7,7 +7,7 @@ import Layout from "../../components/layout/layout";
 const ListingCreate = () => {
 	return (
 		<>
-			<Layout theme={""}></Layout>
+			<Layout theme={"dark"}></Layout>
 			<CreateListing></CreateListing>
 		</>
 	);

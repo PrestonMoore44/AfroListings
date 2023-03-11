@@ -13,6 +13,27 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
 		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+.smallText {
+	font-size: 12px;
+	font-weight: 900;
+	color: #bcbcbc !important;
+}
+.fixedMe {
+	position: fixed;
+	top: 65px;
+	height: 80px;
+	background-color: white;
+	z-index: 100;
+	border-bottom: 1px solid #f3f6f4;
+	width: 100%;
+	left: 0;
+}
+.hide {
+	display: none !important;
+}
+.stepClass {
+	justify-content: space-between;
+}
 .custDelete {
 	outline: 1px solid white;
 	font-size: 12px !important;

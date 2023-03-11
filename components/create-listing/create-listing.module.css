@@ -5,7 +5,7 @@
 	height: 100%;
 	overflow: auto;
 	z-index: 1;
-	padding: 55px 150px;
+	padding: 150px 150px;
 }
 .mediaContainer {
 	flex: 1;
