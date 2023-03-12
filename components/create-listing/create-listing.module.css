@@ -7,6 +7,9 @@
 	z-index: 1;
 	padding: 150px 150px;
 }
+.special_input {
+	height: 100px;
+}
 .mediaContainer {
 	flex: 1;
 	padding: 58px 0;

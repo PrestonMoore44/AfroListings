@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { saveListing as saveCurrentListing } from "../../lib/services/listings-service";
 import { useRouter } from "next/router";
+import { usePlacesWidget } from "react-google-autocomplete";
 import { agePreferenceList } from "../../public/utils/static-data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Checkbox from "@mui/material/Checkbox";
@@ -31,7 +32,43 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import styles from "./create-listing.module.css";
 
 const CreateListing = ({ theme }) => {
+	const { ref, autocompleteRef } = usePlacesWidget({
+		apiKey: "AIzaSyAS_RztbgwNh7Wmp0lTr1SnsipmQnpPfxw",
+		onPlaceSelected: (place) => {
+			console.log(place);
+			const { address_components } = place;
+			const { setFieldValue } = formRef.current;
+			address_components[0]?.long_name && address_components[1]?.long_name
+				? setFieldValue(
+						"address",
+						`${address_components[0]?.long_name} ${address_components[1]?.long_name}`
+				  )
+				: null;
+			address_components[2]?.long_name
+				? setFieldValue("city", address_components[2]?.long_name)
+				: null;
+			address_components[4]?.long_name
+				? setFieldValue("state", address_components[4]?.long_name)
+				: null;
+			address_components[6]?.long_name
+				? setFieldValue("zip", address_components[6]?.long_name)
+				: null;
+		},
+		options: {
+			componentRestrictions: { country: "us" },
+			fields: [
+				"address_components",
+				"adr_address",
+				"geometry",
+				"icon",
+				"name",
+			],
+			types: ["address"],
+			strictBounds: false,
+		},
+	});
 	const router = useRouter();
+	const formRef = useRef();
 	const editorRef = useRef(null);
 	const [view, setView] = useState(1);
 	const dispatch = useDispatch();
@@ -43,7 +80,7 @@ const CreateListing = ({ theme }) => {
 	useEffect(() => {
 		fetchCategories();
 		setTimeout(() => {
-			if (view === 1) document.getElementById("title").focus();
+			// if (view === 1) document.getElementById("title").focus();
 		}, 500);
 	}, [user]);
 
@@ -86,6 +123,7 @@ const CreateListing = ({ theme }) => {
 				<div className="d-flex">
 					<div className={styles.formContainer}>
 						<Formik
+							innerRef={formRef}
 							initialValues={{
 								title: "",
 								description: "",
@@ -96,6 +134,7 @@ const CreateListing = ({ theme }) => {
 								website: "",
 								phone: "",
 								address: "",
+								address_2: "",
 								city: "",
 								state: "",
 								zip: "",
@@ -115,7 +154,7 @@ const CreateListing = ({ theme }) => {
 								errors,
 							}) => (
 								<Form className={"d-block"}>
-									{view === 1 && (
+									{view === 2 && (
 										<div className={"d-flex"}>
 											<div className={"d-block"}>
 												<div className={styles.header}>
@@ -317,7 +356,7 @@ const CreateListing = ({ theme }) => {
 											</div>
 										</div>
 									)}
-									{view === 2 && (
+									{view === 1 && (
 										<div>
 											<div className={styles.header}>
 												Contact Info
@@ -326,15 +365,30 @@ const CreateListing = ({ theme }) => {
 												fullWidth
 												className={"my-2 mt-3"}
 											>
-												<InputLabel htmlFor="address">
-													Address
+												<label className="pure-material-textfield-outlined">
+													<input
+														placeholder=" "
+														ref={ref}
+														id="address"
+														value={values.address}
+														onChange={handleChange}
+													/>
+													<span>Address</span>
+												</label>
+											</FormControl>
+											<FormControl
+												fullWidth
+												className={"my-2"}
+											>
+												<InputLabel htmlFor="address_2">
+													Address 2
 												</InputLabel>
 												<OutlinedInput
 													required
-													id="address"
-													label="Address"
-													placeholder="Ex. 1600 Pennsylvania Avenue NW"
-													value={values.address}
+													id="address_2"
+													label="Address 2"
+													placeholder=""
+													value={values.address_2}
 													onChange={handleChange}
 													error={
 														touched.title &&
