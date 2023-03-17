@@ -18,7 +18,7 @@ const Stepper = ({ view, setView }) => {
 				// Do stuff here
 				el.onclick = function () {
 					setView(ind + 1);
-					setNextStep(ind + 1);
+					setNextStep(ind);
 				};
 			}
 		);
@@ -31,10 +31,12 @@ const Stepper = ({ view, setView }) => {
 	// setup step validators, will be called before proceeding to the next step
 	function step2Validator() {
 		// return a boolean
+		return true;
 	}
 
 	function step3Validator() {
 		// return a boolean
+		return true;
 	}
 
 	function onFormSubmit() {
@@ -65,7 +67,6 @@ const Stepper = ({ view, setView }) => {
 				{
 					label: "Contact Info",
 					name: "Contact Info",
-					validator: step2Validator,
 				},
 				{
 					label: "Audience",
