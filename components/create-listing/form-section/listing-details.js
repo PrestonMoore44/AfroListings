@@ -31,10 +31,6 @@ const ListingDetails = ({
 		}, 250);
 	}, []);
 
-	useEffect(() => {
-		console.log(errors, " Listing errors updated? ", touched);
-	}, [errors]);
-
 	return (
 		<div className={"d-flex"}>
 			<div className={"d-block"}>
