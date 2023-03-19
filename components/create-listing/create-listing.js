@@ -48,26 +48,82 @@ const CreateListing = ({ theme }) => {
 		}, 500);
 	}, [user]);
 	const ListingSchema = Yup.object().shape({
-		title: Yup.string()
-			.min(2, "Too Short!")
-			.max(50, "Too Long!")
-			.required("Required"),
+		title: Yup.string().required("Required"),
 
-		description: Yup.string()
-			.min(2, "Too Short!")
-			.max(50, "Too Long!")
-			.required("Required"),
+		description: Yup.string().required("Required"),
 
-		subcategory: Yup.string()
-			.min(2, "Too Short!")
-			.max(50, "Too Long!")
-			.required("Required"),
+		subcategory: Yup.string().required("Required"),
 	});
+
+	// setup step validators, will be called before proceeding to the next step
+	function step2Validator() {
+		// return a boolean
+		const { title, description, category, subcategory } =
+			formRef?.current?.values;
+		if (!title || !description || !category || !subcategory) {
+			// Set applicible errors
+			if (!title) {
+				formRef.current.setTouched(
+					Object.assign(formRef?.current?.touched, { title: true })
+				);
+				formRef.current.setErrors(
+					Object.assign(formRef?.current?.errors, {
+						title: "Required",
+					})
+				);
+			}
+			if (!description) {
+				formRef.current.setTouched(
+					Object.assign(formRef?.current?.touched, {
+						description: true,
+					})
+				);
+				formRef.current.setErrors(
+					Object.assign(formRef?.current?.errors, {
+						description: "Required",
+					})
+				);
+			}
+			if (!category) {
+				formRef.current.setTouched(
+					Object.assign(formRef?.current?.touched, {
+						category: true,
+					})
+				);
+				formRef.current.setErrors(
+					Object.assign(formRef?.current?.errors, {
+						category: "Required",
+					})
+				);
+			}
+			if (!subcategory) {
+				formRef.current.setTouched(
+					Object.assign(formRef?.current?.touched, {
+						subcategory: true,
+					})
+				);
+				formRef.current.setErrors(
+					Object.assign(formRef?.current?.errors, {
+						subcategory: "Required",
+					})
+				);
+			}
+			return false;
+		} else {
+			// Clear errors and return true
+			formRef.current.setErrors({});
+			return true;
+		}
+	}
 
 	const initRef = (editor) => {
 		if (editorRef) {
 			editorRef.current = editor;
 		}
+	};
+
+	const handleChangeCustom = (e) => {
+		formRef?.current?.setFieldValue(e.target.id, e.target.value);
 	};
 
 	const fetchCategories = async () => {
@@ -100,6 +156,7 @@ const CreateListing = ({ theme }) => {
 		<div className={styles.homepageContainerMain}>
 			<div className={styles.containerHeader}>
 				<Stepper
+					step2Validator={step2Validator}
 					view={view}
 					setView={setView}
 					formRef={formRef}
@@ -153,7 +210,7 @@ const CreateListing = ({ theme }) => {
 											subCategories={subCategories}
 											editorHTML={editorHTML}
 											setEditorHTML={setEditorHTML}
-											handleChange={handleChange}
+											handleChange={handleChangeCustom}
 											errors={errors}
 										/>
 									)}

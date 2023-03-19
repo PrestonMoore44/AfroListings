@@ -24,7 +24,6 @@ const ContactInfo = ({
 	const { ref, autocompleteRef } = usePlacesWidget({
 		apiKey: "AIzaSyAS_RztbgwNh7Wmp0lTr1SnsipmQnpPfxw",
 		onPlaceSelected: (place) => {
-			console.log(place);
 			const { address_components } = place;
 			const { setFieldValue } = formRef.current;
 			address_components[0]?.long_name && address_components[1]?.long_name

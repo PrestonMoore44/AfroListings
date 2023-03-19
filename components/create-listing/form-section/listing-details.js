@@ -31,17 +31,12 @@ const ListingDetails = ({
 		}, 250);
 	}, []);
 
-	useEffect(() => {
-		console.log(errors, " Listing errors", touched);
-	}, [errors]);
-
 	return (
 		<div className={"d-flex"}>
 			<div className={"d-block"}>
 				<div className={styles.header}>Listing Details</div>
 				<FormControl fullWidth className={"my-2 mt-3"}>
 					<TextField
-						required
 						id="title"
 						ref={titleRef}
 						label="Title"
@@ -54,9 +49,9 @@ const ListingDetails = ({
 				</FormControl>
 				<FormControl fullWidth className={"my-2"}>
 					<TextField
-						required
 						placeholder="Tell viewers about your listing"
 						id="description"
+						name="description"
 						label="Description"
 						value={description}
 						onChange={handleChange}
