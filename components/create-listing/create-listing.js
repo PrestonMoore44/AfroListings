@@ -127,7 +127,14 @@ const CreateListing = ({ theme }) => {
 	};
 
 	const handleChangeCustom = (e) => {
+		// Set fields and then clear errors if needed
 		formRef?.current?.setFieldValue(e.target.id, e.target.value);
+		if (
+			(e.target.id === "title" || e.target.id === "description") &&
+			e.target.value
+		) {
+			formRef?.current?.setFieldTouched(e.target.id, false, false);
+		}
 	};
 
 	const fetchCategories = async () => {
