@@ -70,16 +70,12 @@ const ListingDetails = ({
 						<FormControl className={`my-2`} fullWidth>
 							<InputLabel id="demo-simple">Category *</InputLabel>
 							<Select
-								required
 								labelId="demo-simple"
 								id="category"
 								name="category"
 								value={category}
 								label="Category"
-								onChange={(e) => {
-									console.log(e);
-									handleChange(e);
-								}}
+								onChange={(e) => handleChange(e)}
 								error={
 									touched.category && Boolean(errors.category)
 								}
@@ -105,13 +101,12 @@ const ListingDetails = ({
 								Sub Category *
 							</InputLabel>
 							<Select
-								required
 								labelId="subcategory"
 								id="subcategory"
 								name="subcategory"
 								value={subcategory}
 								label="Sub Category *"
-								onChange={handleChange}
+								onChange={(e) => handleChange(e)}
 								error={
 									touched.subcategory &&
 									Boolean(errors.subcategory)

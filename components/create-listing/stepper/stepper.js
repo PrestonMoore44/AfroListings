@@ -92,6 +92,8 @@ const Stepper = ({ view, setView, formRef }) => {
 			}
 			return false;
 		} else {
+			// Clear errors and return true
+			formRef.current.setErrors({});
 			return true;
 		}
 	}

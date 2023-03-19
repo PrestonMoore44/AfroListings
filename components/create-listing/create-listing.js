@@ -47,23 +47,6 @@ const CreateListing = ({ theme }) => {
 			// if (view === 1) document.getElementById("title").focus();
 		}, 500);
 	}, [user]);
-
-	// title: "",
-	// description: "",
-	// phone: "",
-	// category: "6",
-	// subcategory: "",
-	// message: "",
-	// website: "",
-	// phone: "",
-	// address: "",
-	// address_2: "",
-	// city: "",
-	// state: "",
-	// zip: "",
-	// agePrefrence: "Any",
-	// distance_preference: "",
-	// sex_preference: "Any",
 	const ListingSchema = Yup.object().shape({
 		title: Yup.string()
 			.min(2, "Too Short!")
@@ -131,7 +114,7 @@ const CreateListing = ({ theme }) => {
 								description: "",
 								phone: "",
 								category: "6",
-								subcategory: "",
+								subcategory: "23",
 								message: "",
 								website: "",
 								phone: "",
