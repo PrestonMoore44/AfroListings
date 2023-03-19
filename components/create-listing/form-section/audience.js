@@ -13,7 +13,7 @@ import {
 	MenuItem,
 } from "@mui/material";
 
-const Audience = ({ sex_preference, handleChange, errors }) => {
+const Audience = ({ sex_preference, handleChange, errors, previewListing }) => {
 	return (
 		<>
 			<div className={"d-block"}>
@@ -65,6 +65,16 @@ const Audience = ({ sex_preference, handleChange, errors }) => {
 					</FormControl>
 				</div>
 			</div>
+			<Button
+				className={`mt-2 mb-3 w-100 ${styles.signInBtn}`}
+				color="secondary"
+				variant="contained"
+				fullWidth
+				onClick={previewListing}
+				type="button"
+			>
+				Preview Listing
+			</Button>
 			<Button
 				className={`mt-2 mb-3 w-100 ${styles.signInBtn}`}
 				color="primary"

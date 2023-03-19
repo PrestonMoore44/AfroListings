@@ -15,16 +15,16 @@ import { useFormikContext, Formik, Form, Field } from "formik";
 import Stepper from "./stepper/stepper";
 import MediaUpload from "./media-upload/media-upload";
 import {
+	FormHelperText,
+	OutlinedInput,
 	FormControl,
 	FilledInput,
-	FormHelperText,
-	Input,
 	InputLabel,
-	OutlinedInput,
-	Box,
 	MenuItem,
+	Select,
+	Input,
+	Box,
 } from "@mui/material";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
 import * as Yup from "yup";
 import TextField from "@material-ui/core/TextField";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
@@ -54,6 +54,10 @@ const CreateListing = ({ theme }) => {
 
 		subcategory: Yup.string().required("Required"),
 	});
+
+	const previewListing = () => {
+		console.log("Preview listing ");
+	};
 
 	// setup step validators, will be called before proceeding to the next step
 	function step2Validator() {
@@ -231,6 +235,7 @@ const CreateListing = ({ theme }) => {
 									)}
 									{view === 3 && (
 										<Audience
+											previewListing={previewListing}
 											sex_preference={
 												values.sex_preference
 											}
