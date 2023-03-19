@@ -8,10 +8,12 @@ import {
 	OutlinedInput,
 	Box,
 	MenuItem,
+	TextField,
 } from "@mui/material";
 const ListingDetails = ({
 	title,
 	touched,
+	handleBlur,
 	description,
 	categories,
 	category,
@@ -20,30 +22,42 @@ const ListingDetails = ({
 	editorHTML,
 	setEditorHTML,
 	handleChange,
+	errors,
 }) => {
+	const titleRef = useRef();
+	useEffect(() => {
+		setTimeout(() => {
+			document.getElementById("title").focus();
+		}, 250);
+	}, []);
+
+	useEffect(() => {
+		console.log(errors, " Listing errors", touched);
+	}, [errors]);
+
 	return (
 		<div className={"d-flex"}>
 			<div className={"d-block"}>
 				<div className={styles.header}>Listing Details</div>
-				<FormControl fullWidth className={"my-2"}>
-					<InputLabel htmlFor="title">Title</InputLabel>
-					<OutlinedInput
+				<FormControl fullWidth className={"my-2 mt-3"}>
+					<TextField
 						required
 						id="title"
+						ref={titleRef}
 						label="Title"
 						placeholder="Add a title that describes your listing"
 						value={title}
+						name="title"
 						onChange={handleChange}
 						error={touched.title && Boolean(errors.title)}
 					/>
 				</FormControl>
 				<FormControl fullWidth className={"my-2"}>
-					<InputLabel htmlFor="description">Description</InputLabel>
-					<OutlinedInput
+					<TextField
 						required
 						placeholder="Tell viewers about your listing"
 						id="description"
-						label="Sub Title"
+						label="Description"
 						value={description}
 						onChange={handleChange}
 						error={
@@ -54,8 +68,9 @@ const ListingDetails = ({
 				{!!categories.length && (
 					<Box sx={{ width: 120 }} className={styles.selectContainer}>
 						<FormControl className={`my-2`} fullWidth>
-							<InputLabel id="demo-simple">Category</InputLabel>
+							<InputLabel id="demo-simple">Category *</InputLabel>
 							<Select
+								required
 								labelId="demo-simple"
 								id="category"
 								name="category"
@@ -65,6 +80,9 @@ const ListingDetails = ({
 									console.log(e);
 									handleChange(e);
 								}}
+								error={
+									touched.category && Boolean(errors.category)
+								}
 							>
 								{categories.map(({ id, val }) => (
 									<MenuItem
@@ -83,17 +101,21 @@ const ListingDetails = ({
 				{!!subCategories.length && (
 					<Box sx={{ width: 120 }} className={styles.selectContainer}>
 						<FormControl fullWidth className={`my-2`}>
-							<InputLabel id="demo-simple-select-label">
-								Sub Category
+							<InputLabel id="subcategory">
+								Sub Category *
 							</InputLabel>
 							<Select
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
+								required
+								labelId="subcategory"
 								id="subcategory"
 								name="subcategory"
 								value={subcategory}
-								label="Sub Category"
+								label="Sub Category *"
 								onChange={handleChange}
+								error={
+									touched.subcategory &&
+									Boolean(errors.subcategory)
+								}
 							>
 								{subCategories
 									.filter((it) => it.categoryid == category)

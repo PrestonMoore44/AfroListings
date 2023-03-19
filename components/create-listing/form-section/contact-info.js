@@ -14,7 +14,13 @@ const ContactInfo = ({
 	webiste,
 	handleChange,
 	touched,
+	errors,
 }) => {
+	useEffect(() => {
+		setTimeout(() => {
+			ref.current.focus();
+		}, [250]);
+	}, []);
 	const { ref, autocompleteRef } = usePlacesWidget({
 		apiKey: "AIzaSyAS_RztbgwNh7Wmp0lTr1SnsipmQnpPfxw",
 		onPlaceSelected: (place) => {
@@ -83,49 +89,41 @@ const ContactInfo = ({
 			<FormControl fullWidth className={"my-2"}>
 				<InputLabel htmlFor="address_2">Address 2</InputLabel>
 				<OutlinedInput
-					required
 					id="address_2"
 					label="Address 2"
 					placeholder=""
 					value={address_2}
 					onChange={handleChange}
-					error={touched.title && Boolean(errors.title)}
 				/>
 			</FormControl>
 			<FormControl fullWidth className={"my-2"}>
 				<InputLabel htmlFor="city">City</InputLabel>
 				<OutlinedInput
-					required
 					id="city"
 					label="City"
 					placeholder=""
 					value={city}
 					onChange={handleChange}
-					error={touched.title && Boolean(errors.title)}
 				/>
 			</FormControl>
 			<FormControl fullWidth className={"my-2"}>
 				<InputLabel htmlFor="state">State</InputLabel>
 				<OutlinedInput
-					required
 					id="state"
 					label="State"
 					placeholder="555-555-5555"
 					value={state}
 					onChange={handleChange}
-					error={touched.title && Boolean(errors.title)}
 				/>
 			</FormControl>
 			<FormControl fullWidth className={"my-2"}>
 				<InputLabel htmlFor="zip">Zip</InputLabel>
 				<OutlinedInput
-					required
 					id="zip"
 					label="Zip"
 					placeholder=""
 					value={zip}
 					onChange={handleChange}
-					error={touched.title && Boolean(errors.title)}
 				/>
 			</FormControl>
 			<FormControl fullWidth className={"my-2"}>
@@ -137,7 +135,6 @@ const ContactInfo = ({
 					placeholder="555-555-5555"
 					value={phone}
 					onChange={handleChange}
-					error={touched.title && Boolean(errors.title)}
 				/>
 			</FormControl>
 			<FormControl fullWidth className={"my-2"}>
@@ -149,7 +146,6 @@ const ContactInfo = ({
 					placeholder="Website where viewers can get more info"
 					value={webiste}
 					onChange={handleChange}
-					error={touched.title && Boolean(errors.title)}
 				/>
 			</FormControl>
 		</div>

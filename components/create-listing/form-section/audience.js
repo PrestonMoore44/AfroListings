@@ -13,7 +13,7 @@ import {
 	MenuItem,
 } from "@mui/material";
 
-const Audience = ({ sex_preference, handleChange }) => {
+const Audience = ({ sex_preference, handleChange, errors }) => {
 	return (
 		<>
 			<div className={"d-block"}>

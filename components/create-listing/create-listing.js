@@ -25,6 +25,7 @@ import {
 	MenuItem,
 } from "@mui/material";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import * as Yup from "yup";
 import TextField from "@material-ui/core/TextField";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import styles from "./create-listing.module.css";
@@ -47,6 +48,39 @@ const CreateListing = ({ theme }) => {
 		}, 500);
 	}, [user]);
 
+	// title: "",
+	// description: "",
+	// phone: "",
+	// category: "6",
+	// subcategory: "",
+	// message: "",
+	// website: "",
+	// phone: "",
+	// address: "",
+	// address_2: "",
+	// city: "",
+	// state: "",
+	// zip: "",
+	// agePrefrence: "Any",
+	// distance_preference: "",
+	// sex_preference: "Any",
+	const ListingSchema = Yup.object().shape({
+		title: Yup.string()
+			.min(2, "Too Short!")
+			.max(50, "Too Long!")
+			.required("Required"),
+
+		description: Yup.string()
+			.min(2, "Too Short!")
+			.max(50, "Too Long!")
+			.required("Required"),
+
+		subcategory: Yup.string()
+			.min(2, "Too Short!")
+			.max(50, "Too Long!")
+			.required("Required"),
+	});
+
 	const initRef = (editor) => {
 		if (editorRef) {
 			editorRef.current = editor;
@@ -62,7 +96,7 @@ const CreateListing = ({ theme }) => {
 
 	const saveListing = async (data, something) => {
 		// Save entire listing
-		console.log(data, " THan editor Ref", editorRef);
+		console.log(data, " THan editor Ref", editorRef, formRef);
 		// const blobCache = editorRef.current.editorUpload.blobCache;
 		// const uploadCache = editorRef.current.editorUpload.uploadCache;
 		console.log(editorHTML, " VALUE then images", images);
@@ -82,10 +116,15 @@ const CreateListing = ({ theme }) => {
 	return (
 		<div className={styles.homepageContainerMain}>
 			<div className={styles.containerHeader}>
-				<Stepper view={view} setView={setView}></Stepper>
+				<Stepper
+					view={view}
+					setView={setView}
+					formRef={formRef}
+				></Stepper>
 				<div className="d-flex">
 					<div className={styles.formContainer}>
 						<Formik
+							validationSchema={ListingSchema}
 							innerRef={formRef}
 							initialValues={{
 								title: "",
@@ -113,12 +152,15 @@ const CreateListing = ({ theme }) => {
 								setFieldValue,
 								values,
 								handleChange,
+								handleBlur,
 								touched,
+
 								errors,
 							}) => (
 								<Form className={"d-block"}>
 									{view === 1 && (
 										<ListingDetails
+											handleBlur={handleBlur}
 											categories={categories}
 											touched={touched}
 											title={values.title}
@@ -129,6 +171,7 @@ const CreateListing = ({ theme }) => {
 											editorHTML={editorHTML}
 											setEditorHTML={setEditorHTML}
 											handleChange={handleChange}
+											errors={errors}
 										/>
 									)}
 									{view === 2 && (
@@ -143,6 +186,7 @@ const CreateListing = ({ theme }) => {
 											webiste={values.webiste}
 											handleChange={handleChange}
 											touched={touched}
+											errors={errors}
 										/>
 									)}
 									{view === 3 && (
@@ -150,6 +194,7 @@ const CreateListing = ({ theme }) => {
 											sex_preference={
 												values.sex_preference
 											}
+											errors={errors}
 											handleChange={handleChange}
 										/>
 									)}

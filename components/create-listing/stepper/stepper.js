@@ -4,11 +4,19 @@ import StepProgressBar from "custom-react-stepper";
 // import the stylesheet
 import "custom-react-stepper/dist/index.css";
 
-const Stepper = ({ view, setView }) => {
+const Stepper = ({ view, setView, formRef }) => {
 	// setup the step content
 	const [nextStep, setNextStep] = useState(null);
 	const [prevStep, setPrevStep] = useState(null);
-	console.log(view, setView);
+	useEffect(() => {
+		console.log(
+			view,
+			setView,
+			" formRef ",
+			formRef.current.errors,
+			" Ref "
+		);
+	}, []);
 	setTimeout(() => {
 		Array.from(document.getElementsByClassName("_2pGos")).forEach((el) => {
 			// console.log(el, " Btn");
@@ -24,14 +32,68 @@ const Stepper = ({ view, setView }) => {
 		);
 	}, 250);
 
-	const step1Content = <h1>Step 1 Content</h1>;
-	const step2Content = <h1>Step 2 Content</h1>;
-	const step3Content = <h1>Step 3 Content</h1>;
-
 	// setup step validators, will be called before proceeding to the next step
 	function step2Validator() {
 		// return a boolean
-		return true;
+		console.log(
+			"Step two validator",
+			formRef.current,
+			formRef.current.setTouched
+		);
+		const { title, description, category, subcategory } =
+			formRef?.current?.values;
+		if (!title || !description || !category || !subcategory) {
+			// Set applicible errors
+			if (!title) {
+				formRef.current.setTouched(
+					Object.assign(formRef?.current?.touched, { title: true })
+				);
+				formRef.current.setErrors(
+					Object.assign(formRef?.current?.errors, {
+						title: "Required",
+					})
+				);
+			}
+			if (!description) {
+				formRef.current.setTouched(
+					Object.assign(formRef?.current?.touched, {
+						description: true,
+					})
+				);
+				formRef.current.setErrors(
+					Object.assign(formRef?.current?.errors, {
+						description: "Required",
+					})
+				);
+			}
+			if (!category) {
+				formRef.current.setTouched(
+					Object.assign(formRef?.current?.touched, {
+						category: true,
+					})
+				);
+				formRef.current.setErrors(
+					Object.assign(formRef?.current?.errors, {
+						category: "Required",
+					})
+				);
+			}
+			if (!subcategory) {
+				formRef.current.setTouched(
+					Object.assign(formRef?.current?.touched, {
+						subcategory: true,
+					})
+				);
+				formRef.current.setErrors(
+					Object.assign(formRef?.current?.errors, {
+						subcategory: "Required",
+					})
+				);
+			}
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	function step3Validator() {
@@ -63,10 +125,12 @@ const Stepper = ({ view, setView }) => {
 				{
 					label: "Listing Details",
 					name: "Listing Details",
+					validator: step2Validator,
 				},
 				{
 					label: "Contact Info",
 					name: "Contact Info",
+					validator: step2Validator,
 				},
 				{
 					label: "Audience",
