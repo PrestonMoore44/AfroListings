@@ -121,10 +121,15 @@ const SingleListings = ({ formValues, images, editorHTML }) => {
 				</div>
 				<div className={styles.postBody}>
 					<div className={styles.imgContainer}>
-						<img
-							src={listing.url || images[0].data_url}
-							className={styles.imgMain}
-						/>
+						{!!formValues && (
+							<img
+								src={images[0]?.data_url}
+								className={styles.imgMain}
+							/>
+						)}
+						{!formValues && (
+							<img src={listing.url} className={styles.imgMain} />
+						)}
 					</div>
 					<div className={styles.flexMe}>
 						<div className={styles.postBodyLeft}>
