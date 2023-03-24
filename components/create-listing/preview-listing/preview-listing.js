@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./preview-listing.module.css";
+import SingleListing from "../../single-listing/single-listing";
 
-const PreviewListing = ({ setShowPreview }) => {
+const PreviewListing = ({ setShowPreview, formValues, images, editorHTML }) => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.entireBody}>
@@ -9,6 +10,11 @@ const PreviewListing = ({ setShowPreview }) => {
 					onClick={() => setShowPreview(false)}
 					className="bi bi-x"
 				></i>
+				<SingleListing
+					editorHTML={editorHTML}
+					images={images}
+					formValues={formValues}
+				></SingleListing>
 			</div>
 		</div>
 	);

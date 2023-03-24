@@ -11,7 +11,7 @@ const ContactInfo = ({
 	state,
 	zip,
 	phone,
-	webiste,
+	website,
 	handleChange,
 	touched,
 	errors,
@@ -140,10 +140,10 @@ const ContactInfo = ({
 				<InputLabel htmlFor="webiste">WebSite</InputLabel>
 				<OutlinedInput
 					required
-					id="webiste"
+					id="website"
 					label="WebSite"
 					placeholder="Website where viewers can get more info"
-					value={webiste}
+					value={website}
 					onChange={handleChange}
 				/>
 			</FormControl>

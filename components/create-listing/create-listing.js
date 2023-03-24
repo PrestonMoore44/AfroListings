@@ -148,15 +148,14 @@ const CreateListing = ({ theme }) => {
 
 	const saveListing = async (data, something) => {
 		// Save entire listing
-		console.log(data, " THan editor Ref", editorRef, formRef);
+		console.log(data, " THan editor Ref", editorRef, formRef.values);
 		// const blobCache = editorRef.current.editorUpload.blobCache;
 		// const uploadCache = editorRef.current.editorUpload.uploadCache;
 		console.log(editorHTML, " VALUE then images", images);
-		const savedListing = await saveCurrentListing({
-			...data,
-			body: editorHTML,
-		});
-		console.log(savedListing, " After save.... ");
+		// const savedListing = await saveCurrentListing({
+		// 	...data,
+		// 	body: editorHTML,
+		// });
 	};
 
 	const log = () => {
@@ -167,7 +166,14 @@ const CreateListing = ({ theme }) => {
 
 	return (
 		<>
-			{showPreview && <PreviewListing setShowPreview={setShowPreview} />}
+			{showPreview && (
+				<PreviewListing
+					setShowPreview={setShowPreview}
+					images={images}
+					editorHTML={editorHTML}
+					formValues={formRef.current.values}
+				/>
+			)}
 			<div className={styles.homepageContainerMain}>
 				<div className={styles.containerHeader}>
 					<Stepper
@@ -240,7 +246,7 @@ const CreateListing = ({ theme }) => {
 												city={values.city}
 												state={values.state}
 												zip={values.zip}
-												webiste={values.webiste}
+												website={values.website}
 												handleChange={handleChange}
 												touched={touched}
 												errors={errors}

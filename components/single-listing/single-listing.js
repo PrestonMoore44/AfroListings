@@ -42,7 +42,10 @@ import {
 	</div>
 */
 
-const SingleListings = () => {
+const SingleListings = ({ formValues, images, editorHTML }) => {
+	useEffect(() => {
+		console.log(formValues, images);
+	}, []);
 	const captchaRef = useRef(null);
 	const longSTRING = htmlEncode(`<div>
 		<p >
@@ -61,11 +64,14 @@ const SingleListings = () => {
 	const [showCapErr, setShowCapErr] = useState(false);
 
 	useEffect(() => {
-		if (!lid) {
+		if (formValues) {
+			setListing(formValues);
+			setArticle(decodeHTMLEntities(htmlEncode(editorHTML)));
+			return;
+		} else if (!lid) {
 			return;
 		}
 		setArticle(decodeHTMLEntities(longSTRING));
-
 		fetchListing(lid);
 	}, [lid]);
 
@@ -88,7 +94,10 @@ const SingleListings = () => {
 						</span>
 						<span className={styles.greyMe}>
 							{" "}
-							| {new Date(listing.creationdate).toDateString()}
+							|{" "}
+							{new Date(
+								listing.creationdate || new Date()
+							).toDateString()}
 						</span>
 					</div>
 					<div className={styles.actionsContainer}>
@@ -112,7 +121,10 @@ const SingleListings = () => {
 				</div>
 				<div className={styles.postBody}>
 					<div className={styles.imgContainer}>
-						<img src={listing.url} className={styles.imgMain} />
+						<img
+							src={listing.url || images[0].data_url}
+							className={styles.imgMain}
+						/>
 					</div>
 					<div className={styles.flexMe}>
 						<div className={styles.postBodyLeft}>
@@ -127,7 +139,7 @@ const SingleListings = () => {
 							<div className={styles.postBodyRightContainerBody}>
 								<div>
 									<i className="bi bi-telephone"></i>
-									<span>(209)421-2109</span>
+									<span>{listing.phone}</span>
 								</div>
 								<div>
 									<i className="bi bi-globe"></i>
@@ -136,7 +148,7 @@ const SingleListings = () => {
 											href="https://www.youtube.com/@TheAngryman"
 											target="_blank"
 										>
-											https://www.youtube.com/@TheAngryman
+											{listing.website}
 										</a>
 									</span>
 								</div>

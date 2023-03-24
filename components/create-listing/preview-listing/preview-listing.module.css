@@ -17,9 +17,23 @@
 	margin: 5%;
 	border-radius: 7px;
 	background-color: white;
+	overflow-y: scroll;
 }
-.entireBody i {
+.entireBodyIcon {
+	margin: 30px;
+	padding: 7px;
+	line-height: 15px;
+	border-radius: 50%;
+	font-size: 30px;
 	cursor: pointer;
+	position: fixed;
+	color: #373737;
+	transition: 0.25s all ease;
+}
+
+.entireBodyIcon:hover {
+	color: black;
+	background-color: #f3f6f4;
 }
 
 @keyframes fadeInAnimation {
