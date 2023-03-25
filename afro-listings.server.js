@@ -1,6 +1,8 @@
 require("dotenv").config();
 var fs = require("fs");
 var XLSX = require("xlsx");
+var crypto = require("crypto");
+var { promisify } = require("util");
 var nodemailer = require("nodemailer");
 const express = require("express");
 const next = require("next");
@@ -18,6 +20,16 @@ const client = new pg.Client({
 });
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const randomBytes = promisify(crypto.randomBytes);
+
+// AWS Data below
+const AWS = require("aws-sdk");
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  signatureVersion: "v4",
+  region: process.env.AWS_BUCKET_REGION,
+});
 
 client.connect(function (err) {
   if (err) console.log(err, " ...Error connecting to PSQL");
@@ -79,6 +91,18 @@ app
       }
     });
 
+    server.post("/awsUploadURL", async (req, res) => {
+      const rawBytes = await randomBytes(16);
+      const imageName = rawBytes.toString("hex");
+      const params = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: imageName,
+        Expires: 60,
+      };
+      const uploadURL = await s3.getSignedUrlPromise("putObject", params);
+      res.end(uploadURL);
+    });
+
     server.post("/saveListing", async (req, res) => {
       const {
         title,
@@ -88,7 +112,12 @@ app
         subcategory,
         message,
         body,
+        media,
       } = JSON.parse(req.headers.listing_data);
+      console.log(req.headers?.listing_data);
+      media?.forEach((it) => {
+        console.log(it, " Media item");
+      });
       console.log(
         title,
         description,
@@ -96,8 +125,21 @@ app
         category,
         subcategory,
         message,
-        body
+        body,
+        media
       );
+      const imageURL =
+        "https://newbucketpj.s3.us-west-1.amazonaws.com/tutor.jpeg";
+      // const resBuffer = await fetch(imageURL);
+      // const blob = await resBuffer.buffer();
+      // const uploadedImage = await s3
+      //   .upload({
+      //     Bucket: process.env.AWS_BUCKET_NAME,
+      //     Key: "ServerFileName",
+      //     Body: blob,
+      //   })
+      //   .promise();
+      // console.log(uploadedImage, " Uploaded image");
       res.end(JSON.stringify({}));
     });
 

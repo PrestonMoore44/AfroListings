@@ -8,6 +8,7 @@ import SingleCard from "../single-card/single-card";
 import SingleListing from "../../components/single-listing/single-listing";
 import { getListing } from "../../lib/services/listings-service";
 import StarRatings from "react-star-ratings";
+import Comments from "./comments/comments";
 import decodeHTMLEntities from "decode-html";
 import { htmlEncode } from "htmlencode";
 import ReactHtmlParser from "react-html-parser";
@@ -16,6 +17,8 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Adsense } from "@ctrl/react-adsense";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	FacebookIcon,
 	FacebookMessengerIcon,
@@ -43,8 +46,14 @@ import {
 */
 
 const SingleListings = ({ formValues, images, editorHTML }) => {
+	const { user } = useSelector((store) => store);
+
 	useEffect(() => {
-		console.log(formValues, images);
+		console.log(
+			formValues,
+			images,
+			sessionStorage.getItem("user", JSON.stringify(user))
+		);
 	}, []);
 	const captchaRef = useRef(null);
 	const longSTRING = htmlEncode(`<div>
@@ -64,6 +73,7 @@ const SingleListings = ({ formValues, images, editorHTML }) => {
 	const [showCapErr, setShowCapErr] = useState(false);
 
 	useEffect(() => {
+		console.log(user, " I had to get it... ");
 		if (formValues) {
 			setListing(formValues);
 			setArticle(decodeHTMLEntities(htmlEncode(editorHTML)));
@@ -89,6 +99,15 @@ const SingleListings = ({ formValues, images, editorHTML }) => {
 					<div className={styles.subTitle}>{listing.description}</div>
 					<div className={styles.byAndDate}>
 						<span className={styles.greyMe}>By</span>{" "}
+						{!!formValues ? (
+							<span className=" user-select-all pe-auto">
+								<a type="button">{user?.username}</a>
+							</span>
+						) : (
+							<span className=" user-select-all pe-auto">
+								<a type="button">{listing.username}</a>
+							</span>
+						)}
 						<span className="text-decoration-underline user-select-all pe-auto">
 							{listing.username}
 						</span>
@@ -104,6 +123,10 @@ const SingleListings = ({ formValues, images, editorHTML }) => {
 						<div className={styles.saveContainer}>
 							<i className="bi bi-bookmark"></i>
 							<span>Save</span>
+						</div>
+						<div className={styles.saveContainer}>
+							<i className="bi bi-chat"></i>
+							<span>Comment</span>
 						</div>
 						<div>
 							<FacebookIcon size={32} round={true} />
@@ -130,11 +153,15 @@ const SingleListings = ({ formValues, images, editorHTML }) => {
 						{!formValues && (
 							<img src={listing.url} className={styles.imgMain} />
 						)}
+						<div></div>
 					</div>
 					<div className={styles.flexMe}>
 						<div className={styles.postBodyLeft}>
 							<div className={styles.innerBodyContainer}>
 								<div>{ReactHtmlParser(article)}</div>
+							</div>
+							<div>
+								<Comments />
 							</div>
 						</div>
 						<div className={styles.postBodyRight}>

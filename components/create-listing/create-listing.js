@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { saveListing as saveCurrentListing } from "../../lib/services/listings-service";
+import {
+	saveListing as saveCurrentListing,
+	getAWSUploadURL,
+} from "../../lib/services/listings-service";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PreviewListing from "./preview-listing/preview-listing";
@@ -146,16 +149,38 @@ const CreateListing = ({ theme }) => {
 		setCategories(data);
 	};
 
+	const saveMedia = async (images) => {
+		const arr = [];
+		for await (const image of images) {
+			let awsUploadURL = await getAWSUploadURL();
+			let response = await fetch(awsUploadURL, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+				body: image?.file,
+			});
+			arr.push(awsUploadURL.split("?")[0]); // Push s3 url to array
+		}
+		return arr;
+	};
+
 	const saveListing = async (data, something) => {
 		// Save entire listing
+		let mediaItems = [];
 		console.log(data, " THan editor Ref", editorRef, formRef.values);
 		// const blobCache = editorRef.current.editorUpload.blobCache;
 		// const uploadCache = editorRef.current.editorUpload.uploadCache;
 		console.log(editorHTML, " VALUE then images", images);
-		// const savedListing = await saveCurrentListing({
-		// 	...data,
-		// 	body: editorHTML,
-		// });
+		if (images.length) {
+			mediaItems = await saveMedia(images);
+			console.log(mediaItems, " Array of values? ");
+		}
+		const savedListing = await saveCurrentListing({
+			...data,
+			body: editorHTML,
+			media: mediaItems,
+		});
 	};
 
 	const log = () => {

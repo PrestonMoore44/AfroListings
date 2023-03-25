@@ -437,31 +437,31 @@ client.connect(function (err) {
     // title: "Why These Two California Politians Are Causing a Stir This Election Season",
     // desc: "Looking for solutions in 2023? Look no further than these two local activist running for office",
 
-    const createValues = async () => {
-        for await (const {
-            city,
-            zip,
-            userid,
-            src,
-            user,
-            type,
-            subtype,
-            title,
-            desc,
-        } of businessArr) {
-            const data = await client.query(
-                "INSERT INTO listings(userid, category, subcategory, title, \
-                description, zip, likes, shares, bookmarks, city, creationdate)\
-                 VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id",
-                [userid, 1, 1, title, desc, zip, 0, 0, 0, city, new Date()]
-            );
-            console.log(data.rows[0].id);
-            const media = await client.query(
-                "INSERT INTO media(type, format, listing_id, url, main) VALUES($1, $2, $3, $4, $5)",
-                ["image", ".jpg", data.rows[0].id, src, true]
-            );
-        }
-    };
+    // const createValues = async () => {
+    //     for await (const {
+    //         city,
+    //         zip,
+    //         userid,
+    //         src,
+    //         user,
+    //         type,
+    //         subtype,
+    //         title,
+    //         desc,
+    //     } of businessArr) {
+    //         const data = await client.query(
+    //             "INSERT INTO listings(userid, category, subcategory, title, \
+    //             description, zip, likes, shares, bookmarks, city, creationdate)\
+    //              VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id",
+    //             [userid, 1, 1, title, desc, zip, 0, 0, 0, city, new Date()]
+    //         );
+    //         console.log(data.rows[0].id);
+    //         const media = await client.query(
+    //             "INSERT INTO media(type, format, listing_id, url, main) VALUES($1, $2, $3, $4, $5)",
+    //             ["image", ".jpg", data.rows[0].id, src, true]
+    //         );
+    //     }
+    // };
 
     //createValues();
     // categories.forEach((it) => {
@@ -500,7 +500,7 @@ client.connect(function (err) {
     //     console.log(resp.rows, " User... ");
     // });
 
-    // client.query("UPDATE USERS set email = 'caroham29@gmail.com' WHERE id = 2");
+    client.query("UPDATE USERS set username = 'caroham29'");
 
     // client.query(
     //     "ALTER TABLE media ADD COLUMN listing_id INTEGER REFERENCES listings(id)",

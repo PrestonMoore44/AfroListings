@@ -8,7 +8,7 @@ const PreviewListing = ({ setShowPreview, formValues, images, editorHTML }) => {
 			<div className={styles.entireBody}>
 				<i
 					onClick={() => setShowPreview(false)}
-					className="bi bi-x"
+					className={`bi bi-x ${styles.entireBodyIcon}`}
 				></i>
 				<SingleListing
 					editorHTML={editorHTML}

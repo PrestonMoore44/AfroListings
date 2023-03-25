@@ -36,6 +36,15 @@
 	margin: 0px 0px;
 	line-height: 40px;
 }
+.byAndDate a {
+	text-decoration: none !important;
+	color: black !important;
+	font-weight: 450;
+}
+
+.byAndDate a:hover {
+	text-decoration: underline !important;
+}
 
 .reviewContainer {
 	height: 25px;
@@ -142,14 +151,14 @@
 }
 
 .imgContainer {
-	width: 65%;
 	padding-bottom: 35px;
+	display: flex;
 }
 
 .imgMain {
-	height: auto;
-	width: auto;
-	max-height: 600px;
+	max-width: 775px;
+	max-height: 520px;
+	border: 1px solid #d8d8d8;
 }
 
 .topBody {
@@ -181,7 +190,7 @@
 }
 
 .saveContainer:hover {
-	outline: 2px solid grey;
+	outline: 1px solid #acacac;
 }
 
 .saveContainer span {

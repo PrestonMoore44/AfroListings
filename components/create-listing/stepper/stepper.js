@@ -18,10 +18,10 @@ const Stepper = ({ view, setView, formRef, step2Validator }) => {
 		// );
 	}, []);
 	setTimeout(() => {
-		Array.from(document.getElementsByClassName("_2pGos")).forEach((el) => {
+		Array.from(document?.getElementsByClassName("_2pGos")).forEach((el) => {
 			// console.log(el, " Btn");
 		});
-		Array.from(document.getElementsByClassName("_2Jtxm")).forEach(
+		Array.from(document?.getElementsByClassName("_2Jtxm")).forEach(
 			(el, ind) => {
 				// Do stuff here
 				el.onclick = function () {
