@@ -20,6 +20,12 @@
 	vertical-align: middle;
 	color: black;
 }
+.darkTheme .profilePicAlt i {
+	color: white;
+}
+.darkTheme .leftContainer p {
+	color: white;
+}
 .profilePicAlt:hover {
 	color: black;
 }

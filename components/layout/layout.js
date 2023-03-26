@@ -8,16 +8,6 @@ import styles from "./layout.module.css";
 import { useDispatch } from "react-redux";
 
 const Layout = ({ theme }) => {
-	const dispatch = useDispatch();
-	useEffect(() => {
-		if (sessionStorage.getItem("user")) {
-			dispatch({
-				type: "setUser",
-				user: JSON.parse(sessionStorage.getItem("user")),
-			});
-		}
-	}, []);
-
 	return (
 		<div className={styles.continer}>
 			<Header theme={theme}></Header>

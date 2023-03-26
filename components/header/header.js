@@ -27,6 +27,15 @@ const Header = ({ theme }) => {
 	const [categories, setCategories] = useState([]);
 	const [subCategories, setSubCategories] = useState([]);
 	const dispatch = useDispatch();
+	useEffect(() => {
+		if (sessionStorage.getItem("user")) {
+			console.log("Setting user... !");
+			dispatch({
+				type: "setUser",
+				user: JSON.parse(sessionStorage.getItem("user")),
+			});
+		}
+	}, []);
 	const user = useSelector((store) => store.user);
 	const routesCtrl = {
 		"/business-listings": 1,
@@ -41,7 +50,11 @@ const Header = ({ theme }) => {
 	}, [user]);
 
 	useEffect(() => {
-		if (routesCtrl[router.pathname] && !user) {
+		if (
+			routesCtrl[router.pathname] &&
+			!user &&
+			!sessionStorage.getItem("user")
+		) {
 			restrictUser();
 		}
 	}, [router]);
