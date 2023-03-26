@@ -129,7 +129,7 @@ const Header = ({ theme }) => {
 					<Link href="/">
 						<a>
 							<img src="./favicon.ico" />
-							<p>Afro Listings Hmm</p>
+							<p>Afro Listings</p>
 						</a>
 					</Link>
 				</div>
