@@ -106,41 +106,60 @@ app
     server.post("/saveListing", async (req, res) => {
       const {
         title,
+        user_id,
         description,
         phone,
+        state,
+        city,
+        website,
+        zip,
+        address_2,
+        address,
         category,
         subcategory,
         message,
-        body,
+        body: listing_body,
         media,
       } = JSON.parse(req.headers.listing_data);
-      console.log(req.headers?.listing_data);
-      media?.forEach((it) => {
-        console.log(it, " Media item");
-      });
-      console.log(
-        title,
-        description,
-        phone,
-        category,
-        subcategory,
-        message,
-        body,
-        media
-      );
-      const imageURL =
-        "https://newbucketpj.s3.us-west-1.amazonaws.com/tutor.jpeg";
-      // const resBuffer = await fetch(imageURL);
-      // const blob = await resBuffer.buffer();
-      // const uploadedImage = await s3
-      //   .upload({
-      //     Bucket: process.env.AWS_BUCKET_NAME,
-      //     Key: "ServerFileName",
-      //     Body: blob,
-      //   })
-      //   .promise();
-      // console.log(uploadedImage, " Uploaded image");
-      res.end(JSON.stringify({}));
+      let listing_res;
+      try {
+        listing_res = await client.query(
+          "INSERT INTO listings(title,description,category,subcategory,phone,state,city,zip,\
+        address_2,address,userid,body,website,creationdate) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING ID",
+          [
+            title,
+            description,
+            parseInt(category),
+            parseInt(subcategory),
+            phone,
+            state,
+            city,
+            zip,
+            address_2,
+            address,
+            parseInt(user_id),
+            listing_body,
+            website,
+            new Date(),
+          ]
+        );
+        // Use new listings id for media items
+        if (media.length) {
+          for await (const item of media) {
+            let media_res;
+            media_res = await client.query(
+              "INSERT INTO media(type,format,url,main,listing_id) VALUES($1,$2,$3,$4,$5)",
+              [item.type, item.format, item.url, true, listing_res.rows[0]?.id]
+            );
+          }
+        }
+        res.end(
+          JSON.stringify(listing_res?.rows?.length ? listing_res.rows[0] : {})
+        );
+      } catch (err) {
+        console.log(err, " Error insterting into listings ");
+        res.end(JSON.stringify({ error: err }));
+      }
     });
 
     server.post("/login", async (req, res) => {

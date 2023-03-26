@@ -127,10 +127,10 @@ const Header = ({ theme }) => {
 			>
 				<div className={styles.leftContainer}>
 					<Link href="/">
-						<>
+						<a>
 							<img src="./favicon.ico" />
-							<p>Afro Listings</p>
-						</>
+							<p>Afro Listings Hmm</p>
+						</a>
 					</Link>
 				</div>
 				<div className={styles.rightContainer}>

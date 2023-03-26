@@ -46,14 +46,20 @@
 	color: white;
 }
 .leftContainer {
-	display: flex;
 	max-width: 350px;
 	width: 350px;
 	cursor: pointer;
 	font-weight: 700;
+	display: flex;
+}
+.leftContainer a {
+	text-decoration: none;
+	color: black;
+	display: flex;
 }
 .leftContainer img {
 	max-height: 30px;
+	height: 30px;
 }
 .rightContainer {
 	display: flex;

@@ -104,10 +104,6 @@ const Homepage = () => {
 
 	const fetchListings = async () => {
 		let data = await getListings();
-		console.log(
-			data.map(({ category_name }) => category_name),
-			" Hello "
-		);
 		//category_name: "Housing"
 		setBusinessArr(
 			data
@@ -206,7 +202,7 @@ const Homepage = () => {
 						{businessArr.map((it, ind) => (
 							<SingleCard
 								item={it}
-								key={it.id}
+								key={ind}
 								ind={ind}
 								categories={categories}
 							></SingleCard>
@@ -223,7 +219,7 @@ const Homepage = () => {
 					<div className={styles.style_container}>
 						{travelArr.map((it, ind) => (
 							<SingleCard
-								key={it.id}
+								key={ind}
 								item={it}
 								ind={ind}
 							></SingleCard>
@@ -242,7 +238,7 @@ const Homepage = () => {
 					<div className={styles.style_container}>
 						{influencerArr.map((it, ind) => (
 							<SingleCard
-								key={it.id}
+								key={ind}
 								item={it}
 								ind={ind}
 							></SingleCard>
@@ -261,7 +257,7 @@ const Homepage = () => {
 					<div className={styles.style_container}>
 						{restArr.map((it, ind) => (
 							<SingleCard
-								key={it.id}
+								key={ind}
 								item={it}
 								ind={ind}
 							></SingleCard>
@@ -280,7 +276,7 @@ const Homepage = () => {
 					<div className={styles.style_container}>
 						{housingArr.map((it, ind) => (
 							<SingleCard
-								key={it.id}
+								key={ind}
 								item={it}
 								ind={ind}
 							></SingleCard>
@@ -299,7 +295,7 @@ const Homepage = () => {
 					<div className={styles.style_container}>
 						{politicsArr.map((it, ind) => (
 							<SingleCard
-								key={it.id}
+								key={ind}
 								item={it}
 								ind={ind}
 							></SingleCard>

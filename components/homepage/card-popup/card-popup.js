@@ -14,13 +14,13 @@ export const CardPopup = () => {
 			<div className={styles.cardContainer}>
 				<div className={styles.cardItemBody}>
 					<div className={styles.cardItem}>
-						<i class="bi bi-star"></i>
+						<i className="bi bi-star"></i>
 						<div>Add to Favorites</div>
 					</div>
 				</div>
 				<div className={styles.cardItemBody}>
 					<div className={styles.cardItem}>
-						<i class="bi bi-share"></i>
+						<i className="bi bi-share"></i>
 						<div>Share</div>
 					</div>
 				</div>

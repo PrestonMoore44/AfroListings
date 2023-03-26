@@ -160,7 +160,12 @@ const CreateListing = ({ theme }) => {
 				},
 				body: image?.file,
 			});
-			arr.push(awsUploadURL.split("?")[0]); // Push s3 url to array
+			// Needed for backend... S3 url, type, and format for media table
+			arr.push({
+				url: awsUploadURL.split("?")[0],
+				type: image.file.type.split("/")[0],
+				format: "." + image.file.type.split("/")[1],
+			});
 		}
 		return arr;
 	};
@@ -168,19 +173,22 @@ const CreateListing = ({ theme }) => {
 	const saveListing = async (data, something) => {
 		// Save entire listing
 		let mediaItems = [];
-		console.log(data, " THan editor Ref", editorRef, formRef.values);
+		console.log(" User", user);
 		// const blobCache = editorRef.current.editorUpload.blobCache;
 		// const uploadCache = editorRef.current.editorUpload.uploadCache;
 		console.log(editorHTML, " VALUE then images", images);
-		if (images.length) {
-			mediaItems = await saveMedia(images);
-			console.log(mediaItems, " Array of values? ");
+		if (user) {
+			if (images.length) {
+				mediaItems = await saveMedia(images);
+				console.log(mediaItems, " Array of values? ");
+			}
+			const savedListing = await saveCurrentListing({
+				...data,
+				user_id: user.id,
+				body: editorHTML,
+				media: mediaItems,
+			});
 		}
-		const savedListing = await saveCurrentListing({
-			...data,
-			body: editorHTML,
-			media: mediaItems,
-		});
 	};
 
 	const log = () => {

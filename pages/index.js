@@ -4,15 +4,7 @@ import Homepage from "../components/homepage/homepage";
 import { useDispatch, useSelector } from "react-redux";
 
 const Index = () => {
-	const dispatch = useDispatch();
-	useEffect(() => {
-		if (sessionStorage.getItem("user")) {
-			dispatch({
-				type: "setUser",
-				user: JSON.parse(sessionStorage.getItem("user")),
-			});
-		}
-	}, []);
+	console.log("Hmmmm myess irr");
 	return (
 		<>
 			<Layout></Layout>
