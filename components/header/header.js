@@ -128,7 +128,10 @@ const Header = ({ theme }) => {
 				<div className={styles.leftContainer}>
 					<Link href="/">
 						<a>
-							<img src="./favicon.ico" />
+							<img
+								src="https://newbucketpj.s3.us-west-1.amazonaws.com/favicon.jpg"
+								alt="BigCo Inc. logo"
+							/>
 							<p>Afro Listings</p>
 						</a>
 					</Link>
