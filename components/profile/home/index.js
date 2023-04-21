@@ -10,10 +10,8 @@ const Home = () => {
 	const [homeListing, setHomeListing] = useState({});
 	const fetchListings = async () => {
 		const user = JSON.parse(sessionStorage.getItem("user"));
-		console.log(user);
 		let data = await getUserListings(user?.id);
 		setHomeListing(data[0]);
-		console.log(data);
 	};
 	useEffect(() => {
 		fetchListings();
