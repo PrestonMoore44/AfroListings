@@ -55,6 +55,9 @@
 	line-height: 45px;
 	font-size: 25px;
 }
+.headerUsername {
+}
+
 .linkButtonActive {
 	border-bottom: 3px solid black;
 }

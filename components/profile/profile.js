@@ -45,7 +45,9 @@ const Profile = () => {
 					<div className={styles.headerName}>
 						{profile.fn} {profile.ln}
 					</div>
-					<div>@{profile.username}</div>
+					<div className={styles.headerUsername}>
+						@{profile.username}
+					</div>
 				</div>
 				<div className={styles.btnContainer}>
 					{router.query.handle === user.username ? (

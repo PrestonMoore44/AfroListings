@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import styles from "./single-card.module.css";
 import { CardPopup } from "../homepage/card-popup/card-popup";
 
@@ -34,17 +35,28 @@ const SingleCard = ({ item, ind, alt }) => {
 				alt && styles.altContainerImgHold
 			}`}
 		>
-			<img
-				onClick={() => goToListing(id)}
-				className={`${styles.containerImg} ${
-					alt && styles.altContainerImg
-				}`}
-				key={ind}
-				src={src}
-			/>
+			<div className={styles.imgContainer}>
+				<img
+					onClick={() => goToListing(id)}
+					className={`${styles.containerImg} ${
+						alt && styles.altContainerImg
+					}`}
+					key={ind}
+					src={src}
+				/>
+			</div>
 			<div className={styles.containerBodyLow}>
 				<div className={styles.smallMe}>
-					<small>{username}</small>
+					<small>
+						<Link
+							href={{
+								pathname: "/profile/[handle]/listings",
+								query: { handle: username },
+							}}
+						>
+							<a>{username}</a>
+						</Link>
+					</small>
 				</div>
 				<div className={styles.titleContainer}>
 					<div
