@@ -8,8 +8,13 @@ import "../styles/global.css";
 
 export const AppTheme = React.createContext(); // Needed for context
 
-function reducer(state = { user: null }, action) {
+function reducer(state = { user: null, profile: null }, action) {
   switch (action.type) {
+    case "setProfile":
+      return {
+        ...state,
+        profile: action.profile,
+      };
     case "setUser":
       return {
         ...state,

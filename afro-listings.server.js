@@ -76,6 +76,37 @@ app
       }
     });
 
+    server.post("/getProfile", async (req, res) => {
+      // Fetch by username
+      const data = await client.query(
+        "SELECT username, type, email, fn, ln, picture FROM users WHERE username = ($1)",
+        [req.headers.handle.trim()]
+      );
+      if (data.rows.length) {
+        console.log(data.rows[0]);
+        res.end(JSON.stringify(data.rows[0]));
+      } else {
+        res.end(JSON.stringify({}));
+      }
+    });
+
+    server.post("/userlistings", async (req, res) => {
+      // Fetch by username
+      const data = await client.query(
+        "SELECT users.username, listings.id, listings.city, listings.subcategory, listings.userid, listings.title, listings.description, \
+        category.val AS category_name, subcategory.val AS subcategory_name, listings.category, listings.zip,\
+        listings.likes, listings.shares, listings.bookmarks, listings.creationdate, media.type AS mediatype, media.format, media.url \
+        FROM listings INNER JOIN media ON listings.id = media.listing_id INNER JOIN users ON listings.userid = users.id \
+        INNER JOIN category ON listings.category = category.id INNER JOIN subcategory ON listings.subcategory = subcategory.id WHERE users.username = ($1)",
+        [req.headers.handle.trim()]
+      );
+      if (data.rows.length) {
+        res.end(JSON.stringify(data.rows));
+      } else {
+        res.end(JSON.stringify([]));
+      }
+    });
+
     server.post("/listings", async (req, res) => {
       const data = await client.query(
         "SELECT users.username, listings.id, listings.city, listings.subcategory, listings.userid, listings.title, listings.description, \
@@ -83,6 +114,23 @@ app
         listings.likes, listings.shares, listings.bookmarks, listings.creationdate, media.type AS mediatype, media.format, media.url \
         FROM listings INNER JOIN media ON listings.id = media.listing_id INNER JOIN users ON listings.userid = users.id \
         INNER JOIN category ON listings.category = category.id INNER JOIN subcategory ON listings.subcategory = subcategory.id"
+      ); // Fetch by email then check encrypted password
+      if (data.rows.length) {
+        res.end(JSON.stringify(data.rows));
+      } else {
+        res.end(JSON.stringify({}));
+      }
+    });
+
+    server.post("/listingsByParams", async (req, res) => {
+      const { location } = req.headers;
+      const data = await client.query(
+        "SELECT users.username, listings.id, listings.city, listings.subcategory, listings.userid, listings.title, listings.description, \
+        category.val AS category_name, subcategory.val AS subcategory_name, listings.category, listings.zip,\
+        listings.likes, listings.shares, listings.bookmarks, listings.creationdate, media.type AS mediatype, media.format, media.url \
+        FROM listings INNER JOIN media ON listings.id = media.listing_id INNER JOIN users ON listings.userid = users.id \
+        INNER JOIN category ON listings.category = category.id INNER JOIN subcategory ON listings.subcategory = subcategory.id WHERE listings.zip LIKE ($1)",
+        [`%${location}%`]
       ); // Fetch by email then check encrypted password
       if (data.rows.length) {
         res.end(JSON.stringify(data.rows));

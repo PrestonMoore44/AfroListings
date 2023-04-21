@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./single-listing.module.css";
@@ -105,12 +106,14 @@ const SingleListings = ({ formValues, images, editorHTML }) => {
 							</span>
 						) : (
 							<span className=" user-select-all pe-auto">
-								<a type="button">{listing.username}</a>
+								<Link
+									href={`/profile/${listing.username}/listings`}
+									shallow={true}
+								>
+									<a type="button">{listing.username}</a>
+								</Link>
 							</span>
 						)}
-						<span className="text-decoration-underline user-select-all pe-auto">
-							{listing.username}
-						</span>
 						<span className={styles.greyMe}>
 							{" "}
 							|{" "}

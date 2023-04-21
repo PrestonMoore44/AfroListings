@@ -19,6 +19,7 @@ import { userDropDownOptions } from "../../public/utils/static-data";
 
 const Header = ({ theme }) => {
 	const router = useRouter();
+	const dispatch = useDispatch();
 	const [hoverItem, setHoverItem] = useState(null);
 	const [showLogin, setShowLogin] = useState(false);
 	const [dropDownType, setDropdownType] = useState({});
@@ -26,16 +27,16 @@ const Header = ({ theme }) => {
 	const [showCreateListing, setShowCreateListing] = useState(false);
 	const [categories, setCategories] = useState([]);
 	const [subCategories, setSubCategories] = useState([]);
-	const dispatch = useDispatch();
 	useEffect(() => {
 		if (sessionStorage.getItem("user")) {
-			console.log("Setting user... !");
 			dispatch({
 				type: "setUser",
 				user: JSON.parse(sessionStorage.getItem("user")),
 			});
+			console.log(user, " Hello user... ");
 		}
 	}, []);
+
 	const user = useSelector((store) => store.user);
 	const routesCtrl = {
 		"/business-listings": 1,
@@ -45,7 +46,6 @@ const Header = ({ theme }) => {
 		"/travel-listings": 1,
 	};
 	useEffect(() => {
-		console.log(user, " User from store  from header ", theme);
 		fetchCategories();
 	}, [user]);
 
@@ -69,7 +69,6 @@ const Header = ({ theme }) => {
 	const fetchCategories = async () => {
 		let data = await getCategories();
 		let subs = await getSubCategories();
-		console.log(userDropDownOptions);
 		dispatch({
 			type: "setSubCategories",
 			subCategories: subs,
@@ -90,7 +89,6 @@ const Header = ({ theme }) => {
 	};
 
 	const userNavigate = (type, type_two) => {
-		console.log(type, type_two);
 		if (type_two === "Sign Out") {
 			dispatch({
 				type: "setUser",

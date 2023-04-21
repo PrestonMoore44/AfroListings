@@ -1,0 +1,78 @@
+.bodyMain {
+	margin: 50px 150px;
+}
+
+.listBody {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.listBodyItem {
+	min-width: fit-content;
+	max-width: fit-content;
+	margin: 15px 17px;
+	flex: 1;
+}
+.btnContainer {
+	flex: 1;
+	align-self: center;
+	text-align: right;
+	align-items: flex-end;
+}
+.btnContainer button {
+	margin: 0 5px;
+	border-radius: 20px;
+}
+.topHalf {
+	display: flex;
+	padding: 20px;
+}
+.topHalfAlt {
+	border-bottom: 1px solid #e2e2e2;
+	display: flex;
+}
+.topHalfAlt div {
+	font-weight: 450;
+	font-size: 16px;
+	letter-spacing: 1px;
+	padding: 0 15px;
+	cursor: pointer;
+}
+.topHalfAlt div:hover {
+	color: #737373;
+}
+.topHalf img {
+	border-radius: 50px;
+	height: 100px;
+	width: 100px;
+	margin-right: 25px;
+	border: 1px solid #e2e2e2;
+	box-sizing: border-box;
+}
+.headerName {
+	font-weight: 700;
+	letter-spacing: 1px;
+	line-height: 45px;
+	font-size: 25px;
+}
+.linkButtonActive {
+	border-bottom: 3px solid black;
+}
+.linkButton a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.changePhoto {
+	position: absolute;
+	height: 100px;
+	width: 100px;
+	cursor: pointer;
+	top: 0;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.2);
+	margin: 0 auto;
+	color: white;
+	text-align: center;
+	line-height: 100px;
+}

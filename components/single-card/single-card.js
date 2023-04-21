@@ -1,20 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "./single-card.module.css";
 import { CardPopup } from "../homepage/card-popup/card-popup";
-/*
-		src: "/creditOption.jpeg",
-		user: "Credit Master Sean",
-		title: "Have an 800 Credit Score Yet",
-		desc: "We can get you there! 5 star credit repair at Valley Wide Credit Repair",
 
-			onMouseEnter={() =>
-				setfoodCtrl(foodCtrl.map((iti, nd) => ind === nd))
-			}
-			onMouseLeave={() => setfoodCtrl(foodCtrl.map((iti, nd) => false))}
-*/
-
-const SingleCard = ({ item, ind }) => {
+const SingleCard = ({ item, ind, alt }) => {
 	const router = useRouter();
 	const [showItem, setShowItem] = useState([false, false, false, false]);
 
@@ -24,7 +13,9 @@ const SingleCard = ({ item, ind }) => {
 		false,
 		false,
 	]);
-
+	useEffect(() => {
+		console.log(alt);
+	}, []);
 	const goToListing = (lid) => {
 		console.log(lid);
 		router.push(`/listing/${lid}`);
@@ -39,11 +30,15 @@ const SingleCard = ({ item, ind }) => {
 			onMouseLeave={() =>
 				setBusinessCtrl(businessCtrl.map((iti, nd) => false))
 			}
-			className={styles.containerImgHold}
+			className={` ${styles.containerImgHold} ${
+				alt && styles.altContainerImgHold
+			}`}
 		>
 			<img
 				onClick={() => goToListing(id)}
-				className={styles.containerImg}
+				className={`${styles.containerImg} ${
+					alt && styles.altContainerImg
+				}`}
 				key={ind}
 				src={src}
 			/>

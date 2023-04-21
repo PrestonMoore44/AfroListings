@@ -264,16 +264,32 @@
 .containerImg {
   height: 150px;
   width: 250px;
-  border-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
-
+.altContainerImg {
+  width: 400px;
+  height: 225px;
+}
 .containerImgHold {
-  border-radius: 5px;
   width: 250px;
   background-color: #fbfcfb;
   display: block;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
+  -webkit-box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
+  -moz-box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
+  transition: 0.3s ease;
+}
+.altContainerImgHold {
+  width: 400px;
+  height: 450px;
+}
+.containerImgHold:hover {
+  box-shadow: 1px 3px 5px 2px rgba(52, 52, 52, 0.47);
+  -webkit-box-shadow: 1px 3px 5px 2px rgba(52, 52, 52, 0.47);
+  -moz-box-shadow: 1px 3px 5px 2px rgba(52, 52, 52, 0.47);
 }
 .titleContainerTitle {
   width: 95%;

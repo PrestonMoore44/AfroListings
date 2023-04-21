@@ -5,6 +5,7 @@ import { BiLocationPlus } from "react-icons/bi";
 import { Button } from "@material-ui/core";
 import { pageTitles, convertToUrl } from "../../public/utils/static-data";
 import { useDispatch, useSelector } from "react-redux";
+import { listingsByParams } from "../../lib/services/listings-service";
 
 const Cover = ({
 	inputRef,
@@ -25,20 +26,23 @@ const Cover = ({
 		(store) => store
 	);
 
-	const searchByParams = () => {
-		const item = comboCategories.filter(
-			(it) => it.val.toLowerCase() === type.toLowerCase()
-		)[0];
-		const category = categories.filter(
-			(it) => it.id === item.categoryid
-		)[0];
-		if (item.categoryid && convertToUrl[category.val]) {
-			route.push({
-				pathname: convertToUrl[category.val],
-				query: { type: item.val },
-			});
-		} else {
-		}
+	const searchByParams = async () => {
+		console.log(location, type);
+		const listings = await listingsByParams(location, type);
+		console.log(listings);
+		// const item = comboCategories.filter(
+		// 	(it) => it.val.toLowerCase() === type.toLowerCase()
+		// )[0];
+		// const category = categories.filter(
+		// 	(it) => it.id === item.categoryid
+		// )[0];
+		// if (item.categoryid && convertToUrl[category.val]) {
+		// 	route.push({
+		// 		pathname: convertToUrl[category.val],
+		// 		query: { type: item.val },
+		// 	});
+		// } else {
+		// }
 	};
 	const findLocation = async () => {
 		function httpGetAsync(url, callback) {
@@ -177,7 +181,7 @@ const Cover = ({
 				)}
 			</div>
 			{route.pathname === "/" ? (
-				<video autoPlay muted id="myVideo">
+				<video autoPlay muted id="myVideo" loop>
 					<source src={bgMedia} type="video/mp4"></source>
 				</video>
 			) : (
