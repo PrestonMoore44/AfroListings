@@ -12,11 +12,11 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 var pg = require("pg");
-// pg.defaults.ssl = true;
+pg.defaults.ssl = true;
 var connectionString = process.env.CONNECTION_STRING;
 const client = new pg.Client({
   connectionString: connectionString,
-  ssl: { rejectUnauthorized: false },
+  ssl: true,
 });
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
