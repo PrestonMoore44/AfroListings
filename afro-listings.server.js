@@ -139,6 +139,7 @@ app
       }
     });
 
+    // Fetches presigned S3 URL
     server.post("/awsUploadURL", async (req, res) => {
       const rawBytes = await randomBytes(16);
       const imageName = rawBytes.toString("hex");
