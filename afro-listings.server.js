@@ -16,7 +16,7 @@ pg.defaults.ssl = true;
 var connectionString = process.env.CONNECTION_STRING;
 const client = new pg.Client({
   connectionString: connectionString,
-  ssl: true,
+  ssl: { rejectUnauthorized: false },
 });
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
