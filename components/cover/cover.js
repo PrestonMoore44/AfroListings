@@ -81,21 +81,25 @@ const Cover = ({
 	useEffect(() => {
 		if (showTitle) {
 			var yourElement = document.getElementById("title");
-			var split = new SplitText(yourElement);
-			var tl = gsap.timeline(),
-				mySplitText = new SplitText("#title", { type: "words,chars" }),
-				chars = mySplitText.chars; //an array of all the divs that wrap each character
+			if (yourElement) {
+				var split = new SplitText(yourElement);
+				var tl = gsap.timeline(),
+					mySplitText = new SplitText("#title", {
+						type: "words,chars",
+					}),
+					chars = mySplitText.chars; //an array of all the divs that wrap each character
 
-			gsap.set("#title", { perspective: 400 });
-			gsap.from(split.chars, {
-				duration: 0.6,
-				opacity: 0,
-				x: -25,
-				y: 3,
-				ease: "in",
-				autoAlpha: 0,
-				stagger: 0.02,
-			});
+				gsap.set("#title", { perspective: 400 });
+				gsap.from(split.chars, {
+					duration: 0.6,
+					opacity: 0,
+					x: -25,
+					y: 3,
+					ease: "in",
+					autoAlpha: 0,
+					stagger: 0.02,
+				});
+			}
 		}
 	}, [showTitle]);
 
@@ -112,7 +116,7 @@ const Cover = ({
 				delay: 0.9,
 				ease: "in",
 			});
-		});
+		}, 125);
 		setTimeout(() => {
 			gsap.set("#inputCont", { y: 65, opacity: 0 });
 			gsap.to("#inputCont", {
@@ -121,7 +125,7 @@ const Cover = ({
 				y: 0,
 				delay: 1.4,
 			});
-		});
+		}, 125);
 	}, []);
 
 	useState(() => {
