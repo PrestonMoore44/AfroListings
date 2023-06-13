@@ -81,6 +81,25 @@ const Cover = ({
 	useEffect(() => {
 		if (showTitle) {
 			var yourElement = document.getElementById("title");
+			setTimeout(() => {
+				gsap.set("#subTitle", { perspective: 400, x: -80, opacity: 0 });
+				gsap.to("#subTitle", {
+					duration: 1,
+					opacity: 1,
+					x: 0,
+					delay: 0.9,
+					ease: "in",
+				});
+			});
+			setTimeout(() => {
+				gsap.set("#inputCont", { y: 65, opacity: 0 });
+				gsap.to("#inputCont", {
+					opacity: 1,
+					duration: 0.7,
+					y: 0,
+					delay: 1.4,
+				});
+			});
 			if (yourElement) {
 				var split = new SplitText(yourElement);
 				var tl = gsap.timeline(),
@@ -107,25 +126,6 @@ const Cover = ({
 		setTitleObj(pageTitles[route.pathname]);
 		setComboCategories([...categories, ...subCategories]);
 		setShowTitle(true);
-		setTimeout(() => {
-			gsap.set("#subTitle", { perspective: 400, x: -80, opacity: 0 });
-			gsap.to("#subTitle", {
-				duration: 1,
-				opacity: 1,
-				x: 0,
-				delay: 0.9,
-				ease: "in",
-			});
-		}, 125);
-		setTimeout(() => {
-			gsap.set("#inputCont", { y: 65, opacity: 0 });
-			gsap.to("#inputCont", {
-				opacity: 1,
-				duration: 0.7,
-				y: 0,
-				delay: 1.4,
-			});
-		}, 125);
 	}, []);
 
 	useState(() => {
