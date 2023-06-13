@@ -104,13 +104,6 @@ const Cover = ({
 		setComboCategories([...categories, ...subCategories]);
 		setShowTitle(true);
 		setTimeout(() => {
-			var yourElement = document.getElementById("subTitle");
-			var split = new SplitText(yourElement);
-			var tl = gsap.timeline(),
-				mySplitText = new SplitText("#subTitle", {
-					type: "words,chars",
-				}),
-				chars = mySplitText.chars; //an array of all the divs that wrap each char
 			gsap.set("#subTitle", { perspective: 400, x: -80, opacity: 0 });
 			gsap.to("#subTitle", {
 				duration: 1,
