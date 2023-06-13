@@ -31,12 +31,24 @@ const Homepage = () => {
 	const [restArr, setRestArr] = useState([]);
 	const [influencerArr, setInfluencerArr] = useState([]);
 	const [travelArr, setTravelArr] = useState([]);
+	const [load, setLoad] = useState(false);
 	let start = false;
 
 	useEffect(() => {
-		setTimeout(() => {
-			[".apple", ".orange", ".grape", ".kiwi", ".lemon", ".lime"].forEach(
-				(name) => {
+		setLoad(true);
+	}, []);
+
+	useEffect(() => {
+		if (load) {
+			setTimeout(() => {
+				[
+					".apple",
+					".orange",
+					".grape",
+					".kiwi",
+					".lemon",
+					".lime",
+				].forEach((name) => {
 					gsap.fromTo(
 						name,
 						{
@@ -57,10 +69,10 @@ const Homepage = () => {
 							opacity: 1,
 						}
 					);
-				}
-			);
-		});
-	}, []);
+				});
+			});
+		}
+	}, [load]);
 
 	const scrollDown = () => {
 		dataRef.current.scrollIntoView({ behavior: "smooth" });
