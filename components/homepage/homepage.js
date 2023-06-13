@@ -20,7 +20,7 @@ import Cover from "../cover/cover";
 import { getListings } from "../../lib/services/listings-service";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+if (process.client) gsap.registerPlugin(ScrollTrigger);
 
 const Homepage = () => {
 	const router = useRouter();
