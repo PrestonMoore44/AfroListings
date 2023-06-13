@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { listingsByParams } from "../../lib/services/listings-service";
 import { gsap } from "gsap/dist/gsap";
 import { SplitText } from "gsap/dist/SplitText";
-gsap.registerPlugin(SplitText);
+if (process.client) gsap.registerPlugin(SplitText);
 
 const Cover = ({
 	inputRef,
