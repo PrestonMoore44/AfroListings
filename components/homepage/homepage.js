@@ -18,7 +18,6 @@ import CardPopup from "./card-popup/card-popup";
 import SingleCard from "../single-card/single-card";
 import Cover from "../cover/cover";
 import { getListings } from "../../lib/services/listings-service";
-
 const Homepage = () => {
 	const router = useRouter();
 	const dataRef = useRef();

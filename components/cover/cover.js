@@ -6,6 +6,9 @@ import { Button } from "@material-ui/core";
 import { pageTitles, convertToUrl } from "../../public/utils/static-data";
 import { useDispatch, useSelector } from "react-redux";
 import { listingsByParams } from "../../lib/services/listings-service";
+import { gsap } from "gsap/dist/gsap";
+import { SplitText } from "gsap/dist/SplitText";
+gsap.registerPlugin(SplitText);
 
 const Cover = ({
 	inputRef,
@@ -21,13 +24,13 @@ const Cover = ({
 	const route = useRouter();
 	const [titleObj, setTitleObj] = useState({});
 	const [location, setLocation] = useState("");
+	const [showTitle, setShowTitle] = useState(false);
 	const [comboCategories, setComboCategories] = useState([]);
 	const { categories = [], subCategories = [] } = useSelector(
 		(store) => store
 	);
 
 	const searchByParams = async () => {
-		console.log(location, type);
 		const listings = await listingsByParams(location, type);
 		console.log(listings);
 		// const item = comboCategories.filter(
@@ -75,9 +78,58 @@ const Cover = ({
 		handleCategoryChange(e);
 	};
 
+	useEffect(() => {
+		if (showTitle) {
+			var yourElement = document.getElementById("title");
+			var split = new SplitText(yourElement);
+			var tl = gsap.timeline(),
+				mySplitText = new SplitText("#title", { type: "words,chars" }),
+				chars = mySplitText.chars; //an array of all the divs that wrap each character
+
+			gsap.set("#title", { perspective: 400 });
+			gsap.from(split.chars, {
+				duration: 0.6,
+				opacity: 0,
+				x: -25,
+				y: 3,
+				ease: "in",
+				autoAlpha: 0,
+				stagger: 0.02,
+			});
+		}
+	}, [showTitle]);
+
 	useState(() => {
 		setTitleObj(pageTitles[route.pathname]);
 		setComboCategories([...categories, ...subCategories]);
+		setShowTitle(true);
+		setTimeout(() => {
+			var yourElement = document.getElementById("subTitle");
+			var split = new SplitText(yourElement);
+			var tl = gsap.timeline(),
+				mySplitText = new SplitText("#subTitle", {
+					type: "words,chars",
+				}),
+				chars = mySplitText.chars; //an array of all the divs that wrap each character
+
+			gsap.set("#subTitle", { perspective: 400, x: -80, opacity: 0 });
+			gsap.to("#subTitle", {
+				duration: 1,
+				opacity: 1,
+				x: 0,
+				delay: 0.9,
+				ease: "in",
+			});
+		});
+		setTimeout(() => {
+			gsap.set("#inputCont", { y: 65, opacity: 0 });
+			gsap.to("#inputCont", {
+				opacity: 1,
+				duration: 0.7,
+				y: 0,
+				delay: 1.4,
+			});
+		});
 	}, []);
 
 	useState(() => {
@@ -96,11 +148,19 @@ const Cover = ({
 		>
 			<div className={styles.homepageOverlay}>
 				<div className={`position-relative`}>
-					<div className={styles.titleText}>{titleObj.title}</div>
-					<h5 className="m-3">{titleObj.subTitle}</h5>
+					{showTitle && (
+						<div id="title" className={styles.titleText}>
+							{titleObj.title}
+						</div>
+					)}
+					<h5 id="subTitle" className="m-3" style={{ opacity: 0 }}>
+						{titleObj.subTitle}
+					</h5>
 					{route.pathname === "/" && (
 						<div
 							className={`${styles.searchContainer} p-3 mt-3 form-inline`}
+							id="inputCont"
+							style={{ opacity: 0 }}
 						>
 							<div
 								className={`${styles.itemHolder} form-group m-2 rounded`}
