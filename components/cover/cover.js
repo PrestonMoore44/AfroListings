@@ -110,8 +110,7 @@ const Cover = ({
 				mySplitText = new SplitText("#subTitle", {
 					type: "words,chars",
 				}),
-				chars = mySplitText.chars; //an array of all the divs that wrap each character
-
+				chars = mySplitText.chars; //an array of all the divs that wrap each char
 			gsap.set("#subTitle", { perspective: 400, x: -80, opacity: 0 });
 			gsap.to("#subTitle", {
 				duration: 1,
