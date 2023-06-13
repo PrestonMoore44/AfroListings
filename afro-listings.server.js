@@ -22,7 +22,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const randomBytes = promisify(crypto.randomBytes);
 
-// AWS Data below
+// AWS Data belo
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY,
