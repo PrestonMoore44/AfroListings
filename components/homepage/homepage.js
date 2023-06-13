@@ -18,6 +18,10 @@ import CardPopup from "./card-popup/card-popup";
 import SingleCard from "../single-card/single-card";
 import Cover from "../cover/cover";
 import { getListings } from "../../lib/services/listings-service";
+import { gsap } from "gsap/dist/gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 const Homepage = () => {
 	const router = useRouter();
 	const dataRef = useRef();
@@ -29,58 +33,35 @@ const Homepage = () => {
 	const [travelArr, setTravelArr] = useState([]);
 	let start = false;
 
-	// Item control by 4 categories --->
-	const [showFoodItem, setShowFoodItem] = useState([
-		false,
-		false,
-		false,
-		false,
-	]);
+	useEffect(() => {
+		setTimeout(() => {
+			[".apple", ".orange", ".grape", ".kiwi", ".lemon", ".lime"].forEach(
+				(name) => {
+					gsap.fromTo(
+						name,
+						{
+							y: 80,
+							opacity: 0,
+						},
+						{
+							scrollTrigger: {
+								trigger: name,
+								toggleActions:
+									"play complete complete complete",
+								start: "top bottom",
+							},
+							ease: "in",
+							duration: 0.5,
+							x: 0,
+							y: 0,
+							opacity: 1,
+						}
+					);
+				}
+			);
+		});
+	}, []);
 
-	const [showRealEstateItem, setShowRealEstateItem] = useState([
-		false,
-		false,
-		false,
-		false,
-	]);
-
-	const [showBusinessItem, setShowBusinessItem] = useState([
-		false,
-		false,
-		false,
-		false,
-	]);
-
-	const [showPoliticsItem, setShowPoliticsItem] = useState([
-		false,
-		false,
-		false,
-		false,
-	]);
-	// <--- End of item control
-
-	const [businessCtrl, setBusinessCtrl] = useState([
-		false,
-		false,
-		false,
-		false,
-	]);
-
-	const [foodCtrl, setfoodCtrl] = useState([false, false, false, false]);
-
-	const [housingCtrl, setHousingCtrl] = useState([
-		false,
-		false,
-		false,
-		false,
-	]);
-
-	const [politicsCtrl, setPoliticsCtrl] = useState([
-		false,
-		false,
-		false,
-		false,
-	]);
 	const scrollDown = () => {
 		dataRef.current.scrollIntoView({ behavior: "smooth" });
 	};
@@ -192,9 +173,12 @@ const Homepage = () => {
 				handleCategoryChange={handleCategoryChange}
 				bgMedia="https://newbucketpj.s3.us-west-1.amazonaws.com/BGMovieMin.mp4"
 			></Cover>
-			<div className={styles.containerTitle} ref={dataRef}>
-				<div className={styles.entireItemContainer}>
-					<div className={styles.titleItem}>
+			<div
+				className={`${styles.containerTitle} apple_container`}
+				ref={dataRef}
+			>
+				<div className={`${styles.entireItemContainer} apple`}>
+					<div className={`${styles.titleItem} `}>
 						Recommended Businesses
 					</div>
 					<div className={styles.style_container}>
@@ -213,7 +197,7 @@ const Homepage = () => {
 						</p>
 					</div>
 				</div>
-				<div className={styles.entireItemContainer}>
+				<div className={`${styles.entireItemContainer} orange`}>
 					<div className={styles.titleItem}>Recommended Travel</div>
 					<div className={styles.style_container}>
 						{travelArr.map((it, ind) => (
@@ -230,7 +214,7 @@ const Homepage = () => {
 						</p>
 					</div>
 				</div>
-				<div className={styles.entireItemContainer}>
+				<div className={`${styles.entireItemContainer} grape`}>
 					<div className={styles.titleItem}>
 						Recommended Social Media Influencers
 					</div>
@@ -249,7 +233,7 @@ const Homepage = () => {
 						</p>
 					</div>
 				</div>
-				<div className={styles.entireItemContainer}>
+				<div className={`${styles.entireItemContainer} kiwi`}>
 					<div className={styles.titleItem}>
 						Recommended Restaurants and Catering
 					</div>
@@ -268,7 +252,7 @@ const Homepage = () => {
 						</p>
 					</div>
 				</div>
-				<div className={styles.entireItemContainer}>
+				<div className={`${styles.entireItemContainer} lime`}>
 					<div className={styles.titleItem}>
 						Recommended Real Estate and Housing
 					</div>
@@ -287,7 +271,7 @@ const Homepage = () => {
 						</p>
 					</div>
 				</div>
-				<div className={styles.entireItemContainer}>
+				<div className={`${styles.entireItemContainer} lemon`}>
 					<div className={styles.titleItem}>
 						Politics and Social Media
 					</div>

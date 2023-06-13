@@ -282,20 +282,27 @@
   overflow: hidden;
   background-color: #fbfcfb;
   display: block;
-  border-radius: 5px;
-  box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
+  border-radius: 8px;
+  border: 1px solid #dfdfdf;
+  /*  box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
   -webkit-box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
-  -moz-box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
+  -moz-box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);*/
   transition: 0.3s ease;
 }
 .altContainerImgHold {
+  transition: all 0.3s;
   width: 400px;
   height: 450px;
+  box-shadow: 0 13px 20px transparent;
 }
 .containerImgHold:hover {
-  box-shadow: 1px 3px 5px 2px rgba(52, 52, 52, 0.47);
+  /*  box-shadow: 1px 3px 5px 2px rgba(52, 52, 52, 0.47);
   -webkit-box-shadow: 1px 3px 5px 2px rgba(52, 52, 52, 0.47);
-  -moz-box-shadow: 1px 3px 5px 2px rgba(52, 52, 52, 0.47);
+  -moz-box-shadow: 1px 3px 5px 2px rgba(52, 52, 52, 0.47);*/
+  box-shadow: 0 13px 20px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 13px 20px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 13px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1rem);
 }
 .titleContainerTitle {
   width: 95%;
@@ -309,9 +316,7 @@
 .containerImgHold:hover .titleContainer .titleContainerTitle {
   color: #416267;
 }
-.containerImg:hover {
-  transform: scale(1.1, 1.1);
-}
+
 .containerBodyLow {
   padding: 10px 10px 25px 10px;
 }

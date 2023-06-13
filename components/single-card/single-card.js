@@ -31,7 +31,7 @@ const SingleCard = ({ item, ind, alt }) => {
 			onMouseLeave={() =>
 				setBusinessCtrl(businessCtrl.map((iti, nd) => false))
 			}
-			className={` ${styles.containerImgHold} ${
+			className={` ${styles.containerImgHold} border ${
 				alt && styles.altContainerImgHold
 			}`}
 		>
