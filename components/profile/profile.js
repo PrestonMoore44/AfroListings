@@ -50,7 +50,7 @@ const Profile = () => {
 					</div>
 				</div>
 				<div className={styles.btnContainer}>
-					{router.query.handle === user.username ? (
+					{router.query.handle === user?.username ? (
 						<>
 							<button className={`btn btn-primary`}>
 								Edit Profile
