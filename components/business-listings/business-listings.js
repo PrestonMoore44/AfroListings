@@ -19,7 +19,7 @@ const BusinessListings = () => {
 		} else {
 			fetchListings();
 		}
-	}, []);
+	}, [router]);
 
 	const fetchListings = async () => {
 		let data = await getListings();

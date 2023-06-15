@@ -13,8 +13,12 @@ const EducationListings = () => {
 	const [arr, setArr] = useState([1, 2, 3, 4, 5, 6]);
 
 	useEffect(() => {
-		fetchListings();
-	}, []);
+		if (router?.query?.listings) {
+			setListings(JSON.parse(router.query.listings));
+		} else {
+			fetchListings();
+		}
+	}, [router]);
 
 	const fetchListings = async () => {
 		console.log(" Grabbing listings... ");

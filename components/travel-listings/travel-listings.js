@@ -15,8 +15,11 @@ const TravelListings = () => {
 	const { categories, subCategories } = useSelector((store) => store);
 
 	useEffect(() => {
-		console.log(" Router change ");
-		fetchListings();
+		if (router?.query?.listings) {
+			setListings(JSON.parse(router.query.listings));
+		} else {
+			fetchListings();
+		}
 	}, [router]);
 
 	const fetchListings = async () => {
