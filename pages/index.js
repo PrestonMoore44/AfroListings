@@ -5,9 +5,7 @@ import Testing from "../components/testing/testing";
 import { useDispatch, useSelector } from "react-redux";
 
 const Index = () => {
-	useEffect(() => {
-		console.log(" HERE YEE!");
-	}, []);
+	useEffect(() => {}, []);
 	return (
 		<>
 			<Layout></Layout>
