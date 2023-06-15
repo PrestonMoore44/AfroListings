@@ -14,11 +14,8 @@ const SingleCard = ({ item, ind, alt }) => {
 		false,
 		false,
 	]);
-	useEffect(() => {
-		console.log(alt);
-	}, []);
+	useEffect(() => {}, []);
 	const goToListing = (lid) => {
-		console.log(lid);
 		router.push(`/listing/${lid}`);
 	};
 

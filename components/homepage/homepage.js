@@ -42,7 +42,6 @@ const Homepage = () => {
 	useEffect(() => {
 		if (!!load) {
 			gsap.registerPlugin(ScrollTrigger);
-			console.log("ScrollTrigger", ScrollTrigger);
 			setTimeout(() => {
 				[
 					".apple",
