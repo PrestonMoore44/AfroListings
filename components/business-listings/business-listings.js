@@ -14,8 +14,12 @@ const BusinessListings = () => {
 	const [arr, setArr] = useState([1, 2, 3, 4, 5, 6]);
 
 	useEffect(() => {
-		console.log(router?.query?.type);
-		fetchListings();
+		console.log(router?.query);
+		if (router?.query?.listings) {
+			setListings(JSON.parse(router.query.listings));
+		} else {
+			fetchListings();
+		}
 	}, []);
 
 	const fetchListings = async () => {

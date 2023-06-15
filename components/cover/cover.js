@@ -5,7 +5,10 @@ import { BiLocationPlus } from "react-icons/bi";
 import { Button } from "@material-ui/core";
 import { pageTitles, convertToUrl } from "../../public/utils/static-data";
 import { useDispatch, useSelector } from "react-redux";
-import { listingsByParams } from "../../lib/services/listings-service";
+import {
+	listingsByParams,
+	routeMap,
+} from "../../lib/services/listings-service";
 import { gsap } from "gsap/dist/gsap";
 import { SplitText } from "gsap/dist/SplitText";
 if (process.client) gsap.registerPlugin(SplitText);
@@ -32,7 +35,16 @@ const Cover = ({
 
 	const searchByParams = async () => {
 		const listings = await listingsByParams(location, type);
-		console.log(listings);
+		console.log(listings, categories, comboCategories, routeMap, type);
+		if (routeMap[type]) {
+			route.push(
+				{
+					pathname: routeMap[type],
+					query: { listings: JSON.stringify(listings) },
+				},
+				routeMap[type]
+			);
+		}
 		// const item = comboCategories.filter(
 		// 	(it) => it.val.toLowerCase() === type.toLowerCase()
 		// )[0];
