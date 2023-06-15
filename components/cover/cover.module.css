@@ -114,6 +114,7 @@
 
 .homepageAltHeight {
   height: calc(50vh + 50px);
+  overflow-x: hidden;
 }
 .titleItem {
   font-size: 17px;
@@ -167,6 +168,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  overflow-x: hidden;
 }
 
 .homepageOverlay {
@@ -178,6 +180,7 @@
   width: 100%;
   color: white;
   padding-top: 200px;
+  overflow-x: hidden;
 }
 
 .searchContainer {

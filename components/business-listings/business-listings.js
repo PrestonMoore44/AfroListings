@@ -21,6 +21,7 @@ const BusinessListings = () => {
 	const fetchListings = async () => {
 		console.log(" Grabbing listings... ", router?.query?.type);
 		let data = await getListings();
+		// If type is listed filter else show business listings
 		if (!router?.query?.type) {
 			setListings(
 				data.filter(
@@ -36,7 +37,14 @@ const BusinessListings = () => {
 				)
 			);
 		}
-		console.log(data, " Listings filtered");
+		console.log(
+			data,
+			" Listings filtered",
+			data.filter(
+				({ category_name, subcategory_name }) =>
+					category_name.toLowerCase() === "business"
+			)
+		);
 	};
 
 	return (

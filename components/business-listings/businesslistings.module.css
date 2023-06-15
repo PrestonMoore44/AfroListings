@@ -5,6 +5,7 @@
 	height: 100%;
 	overflow: auto;
 	z-index: 1;
+	overflow-x: hidden;
 }
 
 .rightContainer {
@@ -35,9 +36,8 @@
 .style_container {
 	width: 25%;
 	height: auto;
-	margin: 0 auto;
 	margin-top: 5px;
-	justify-content: center;
+	justify-content: start;
 }
 .leftContainer {
 	margin-left: 101px;
