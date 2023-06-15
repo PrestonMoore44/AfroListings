@@ -34,16 +34,21 @@ const Cover = ({
 	);
 
 	const searchByParams = async () => {
-		const listings = await listingsByParams(location, type);
 		console.log(listings, categories, comboCategories, routeMap, type);
+		let listings;
 		if (routeMap[type]) {
+			listings = await listingsByParams(location, type);
+			console.log(listings);
 			route.push(
 				{
-					pathname: routeMap[type],
+					pathname: routeMap[type].split("?")[0],
 					query: { listings: JSON.stringify(listings) },
 				},
 				routeMap[type]
 			);
+		} else {
+			// Search by title maybe later by zip
+			route.push("/business-listings");
 		}
 		// const item = comboCategories.filter(
 		// 	(it) => it.val.toLowerCase() === type.toLowerCase()

@@ -130,13 +130,14 @@ app
         category.val AS category_name, subcategory.val AS subcategory_name, listings.category, listings.zip,\
         listings.likes, listings.shares, listings.bookmarks, listings.creationdate, media.type AS mediatype, media.format, media.url \
         FROM listings INNER JOIN media ON listings.id = media.listing_id INNER JOIN users ON listings.userid = users.id \
-        INNER JOIN category ON listings.category = category.id INNER JOIN subcategory ON listings.subcategory = subcategory.id WHERE listings.zip LIKE ($1) AND category.val LIKE ($2)",
+        INNER JOIN category ON listings.category = category.id INNER JOIN subcategory ON listings.subcategory = subcategory.id WHERE \
+        listings.zip LIKE ($1) AND (category.val LIKE ($2) OR subcategory.val LIKE ($2))",
         [`%${location}%`, `%${string}%`]
       ); // Fetch by email then check encrypted password
       if (data.rows.length) {
         res.end(JSON.stringify(data.rows));
       } else {
-        res.end(JSON.stringify({}));
+        res.end(JSON.stringify([]));
       }
     });
 
