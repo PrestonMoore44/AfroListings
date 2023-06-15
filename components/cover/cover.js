@@ -35,15 +35,16 @@ const Cover = ({
 
 	const searchByParams = async () => {
 		let listings;
-		if (routeMap[type]) {
+		let format_type = type.toLowerCase().trim();
+		if (routeMap[format_type]) {
 			listings = await listingsByParams(location, type);
 			console.log(listings);
 			route.push(
 				{
-					pathname: routeMap[type].split("?")[0],
+					pathname: routeMap[format_type].split("?")[0],
 					query: { listings: JSON.stringify(listings) },
 				},
-				routeMap[type]
+				routeMap[format_type]
 			);
 		} else {
 			// Search by title maybe later by zip

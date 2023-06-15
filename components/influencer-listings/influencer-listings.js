@@ -13,7 +13,11 @@ const InfluencerListings = () => {
 	const [arr, setArr] = useState([1, 2, 3, 4, 5, 6]);
 
 	useEffect(() => {
-		fetchListings();
+		if (router?.query?.listings) {
+			setListings(JSON.parse(router.query.listings));
+		} else {
+			fetchListings();
+		}
 	}, []);
 
 	const fetchListings = async () => {

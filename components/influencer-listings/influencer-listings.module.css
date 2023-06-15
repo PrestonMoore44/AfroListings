@@ -4,6 +4,7 @@
 	flex-direction: column;
 	height: 100%;
 	overflow: auto;
+	overflow-x: hidden;
 	z-index: 1;
 }
 
