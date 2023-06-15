@@ -161,19 +161,15 @@ const Homepage = () => {
 
 	const findLocation = async () => {
 		const data = await geoLocation();
-		console.log(data, " Locations ");
 		setLocation(data.postal);
 	};
 
 	const setCategory = (type) => {
-		console.log(type);
 		setType(type);
 		setShowCategories(false);
 	};
 
-	const responseGoogle = (response) => {
-		console.log(response);
-	};
+	const responseGoogle = (response) => {};
 
 	return (
 		<div className={styles.homepageContainerMain}>

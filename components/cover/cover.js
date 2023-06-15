@@ -34,7 +34,6 @@ const Cover = ({
 	);
 
 	const searchByParams = async () => {
-		console.log(listings, categories, comboCategories, routeMap, type);
 		let listings;
 		if (routeMap[type]) {
 			listings = await listingsByParams(location, type);
@@ -78,12 +77,10 @@ const Cover = ({
 		const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=33d8c230d12842a78de2dfbc2ca2cd13`;
 		httpGetAsync(url, (resp) => {
 			setLocation(JSON.parse(resp).postal_code);
-			console.log(resp, JSON.parse(resp).postal_code);
 		});
 	};
 
 	const updateInput = (e) => {
-		console.log(comboCategories, " Categories... ", e);
 		setComboCategories(
 			[...categories, ...subCategories]
 				.filter(({ val }) =>

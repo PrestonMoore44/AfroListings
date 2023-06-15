@@ -11,7 +11,6 @@ const DropDown = ({
 	type,
 	options,
 }) => {
-	useEffect(() => {}, [console.log(type, options)]);
 	const router = useRouter();
 	const iconFinder = {
 		Housing: <i class="bi bi-briefcase"></i>,

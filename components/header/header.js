@@ -33,7 +33,6 @@ const Header = ({ theme }) => {
 				type: "setUser",
 				user: JSON.parse(sessionStorage.getItem("user")),
 			});
-			console.log(user, " Hello user... ");
 		}
 	}, []);
 
