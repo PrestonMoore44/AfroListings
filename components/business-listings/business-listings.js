@@ -14,7 +14,6 @@ const BusinessListings = () => {
 	const [arr, setArr] = useState([1, 2, 3, 4, 5, 6]);
 
 	useEffect(() => {
-		console.log(router?.query);
 		if (router?.query?.listings) {
 			setListings(JSON.parse(router.query.listings));
 		} else {
@@ -23,7 +22,6 @@ const BusinessListings = () => {
 	}, []);
 
 	const fetchListings = async () => {
-		console.log(" Grabbing listings... ", router?.query?.type);
 		let data = await getListings();
 		// If type is listed filter else show business listings
 		if (!router?.query?.type) {
@@ -41,14 +39,6 @@ const BusinessListings = () => {
 				)
 			);
 		}
-		console.log(
-			data,
-			" Listings filtered",
-			data.filter(
-				({ category_name, subcategory_name }) =>
-					category_name.toLowerCase() === "business"
-			)
-		);
 	};
 
 	return (
@@ -67,7 +57,7 @@ const BusinessListings = () => {
 			<div className={"sectionTitle"}>BUSINESS</div>
 			<div className={`${styles.bussinessBody}`}>
 				{listings.map((it, ind) => (
-					<div className={styles.style_container} key={it.id}>
+					<div className={styles.style_container} key={ind}>
 						<SingleCard
 							item={it}
 							ind={ind}
