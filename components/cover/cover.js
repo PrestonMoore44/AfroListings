@@ -36,6 +36,7 @@ const Cover = ({
 	const searchByParams = async () => {
 		let listings;
 		let format_type = type.toLowerCase().trim();
+
 		if (routeMap[format_type]) {
 			listings = await listingsByParams(location, type);
 			console.log(listings);
@@ -180,13 +181,14 @@ const Cover = ({
 								<input
 									ref={inputRef}
 									type="search"
+									className={styles.inputMain}
 									id="inputItemSearch"
 									autoComplete="false"
 									onChange={(e) =>
 										updateInput(e.target.value)
 									}
 									value={type}
-									placeholder="Ex: business, service, food"
+									placeholder="Ex: listing title or category"
 								/>
 								<div
 									className={`${styles.categoriesContainer} ${
@@ -229,7 +231,7 @@ const Cover = ({
 										setLocation(e.target.value)
 									}
 									value={location}
-									placeholder="Zip code, city or state"
+									placeholder="zip, city or state"
 								/>
 							</div>
 							<Button

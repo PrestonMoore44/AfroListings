@@ -4,13 +4,16 @@
   width: calc(100%);
   left: 0;
   top: 50px;
-  overflow-y: scroll;
+  overflow-y: hidden;
   height: auto;
   z-index: 30;
   text-align: left;
   display: none;
   font-size: 14px;
   border-radius: 1px;
+  padding: 3px 0;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   webkitboxshadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   mozboxshadow: 0 4px 8px rgba(0, 0, 0, 0.4);
@@ -67,6 +70,9 @@
 }
 .itemHolder span {
   font-weight: 600;
+}
+.inputMain {
+  width: 275px;
 }
 .itemHolder input {
   border: none;
