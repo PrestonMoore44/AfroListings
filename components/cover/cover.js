@@ -192,7 +192,9 @@ const Cover = ({
 								/>
 								<div
 									className={`${styles.categoriesContainer} ${
-										showCategories ? styles.display : null
+										showCategories && comboCategories.length
+											? styles.display
+											: null
 									}`}
 								>
 									{comboCategories.map(function (item, i) {
