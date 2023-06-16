@@ -34,6 +34,13 @@ const Cover = ({
 		(store) => store
 	);
 
+	const handleKeyPress = (e) => {
+		console.log(e);
+		if (e.key === "Enter") {
+			searchByParams();
+		}
+	};
+
 	const searchByParams = async () => {
 		let listings;
 		let format_type = type.toLowerCase().trim();
@@ -175,6 +182,7 @@ const Cover = ({
 									ref={inputRef}
 									type="search"
 									className={styles.inputMain}
+									onKeyPress={handleKeyPress}
 									id="inputItemSearch"
 									autoComplete="false"
 									onChange={(e) =>
@@ -221,6 +229,7 @@ const Cover = ({
 								<input
 									className={styles.itemHolderLast}
 									type="search"
+									onKeyPress={handleKeyPress}
 									autoComplete="false"
 									onChange={(e) =>
 										setLocation(e.target.value)
@@ -233,6 +242,7 @@ const Cover = ({
 								className={`${styles.btn} m-2`}
 								onClick={searchByParams}
 								variant="contained"
+								onKeyPress={handleKeyPress}
 							>
 								Search
 							</Button>
