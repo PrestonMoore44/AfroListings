@@ -23,6 +23,9 @@ export const pageTitles = {
 	"/influencer-listings": {
 		title: "Influce is King",
 	},
+	"/listings": {
+		title: "",
+	},
 };
 
 export const userDropDownOptions = {

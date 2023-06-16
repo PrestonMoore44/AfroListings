@@ -7,6 +7,7 @@ import { pageTitles, convertToUrl } from "../../public/utils/static-data";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	listingsByParams,
+	listingsSearch,
 	routeMap,
 } from "../../lib/services/listings-service";
 import { gsap } from "gsap/dist/gsap";
@@ -38,6 +39,7 @@ const Cover = ({
 		let format_type = type.toLowerCase().trim();
 
 		if (routeMap[format_type]) {
+			// User selected category from dropdown
 			listings = await listingsByParams(location, type);
 			console.log(listings);
 			route.push(
@@ -49,21 +51,11 @@ const Cover = ({
 			);
 		} else {
 			// Search by title maybe later by zip
-			route.push("/business-listings");
+			route.push({
+				pathname: "/listings",
+				query: { search: type },
+			});
 		}
-		// const item = comboCategories.filter(
-		// 	(it) => it.val.toLowerCase() === type.toLowerCase()
-		// )[0];
-		// const category = categories.filter(
-		// 	(it) => it.id === item.categoryid
-		// )[0];
-		// if (item.categoryid && convertToUrl[category.val]) {
-		// 	route.push({
-		// 		pathname: convertToUrl[category.val],
-		// 		query: { type: item.val },
-		// 	});
-		// } else {
-		// }
 	};
 	const findLocation = async () => {
 		function httpGetAsync(url, callback) {
@@ -140,6 +132,7 @@ const Cover = ({
 
 	useState(() => {
 		setTitleObj(pageTitles[route.pathname]);
+		console.log(pageTitles[route.pathname]);
 		setComboCategories([...categories, ...subCategories]);
 		setShowTitle(true);
 	}, []);
@@ -162,11 +155,11 @@ const Cover = ({
 				<div className={`position-relative`}>
 					{showTitle && (
 						<div id="title" className={styles.titleText}>
-							{titleObj.title}
+							{titleObj?.title}
 						</div>
 					)}
 					<h5 id="subTitle" className="m-3" style={{ opacity: 0 }}>
-						{titleObj.subTitle}
+						{titleObj?.subTitle}
 					</h5>
 					{route.pathname === "/" && (
 						<div

@@ -122,6 +122,25 @@ app
       }
     });
 
+    server.post("/listingsSearch", async (req, res) => {
+      const { location, string } = req.headers;
+      console.log(location, string);
+      const data = await client.query(
+        "SELECT users.username, listings.id, listings.city, listings.subcategory, listings.userid, listings.title, listings.description, \
+        category.val AS category_name, subcategory.val AS subcategory_name, listings.category, listings.zip,\
+        listings.likes, listings.shares, listings.bookmarks, listings.creationdate, media.type AS mediatype, media.format, media.url \
+        FROM listings INNER JOIN media ON listings.id = media.listing_id INNER JOIN users ON listings.userid = users.id \
+        INNER JOIN category ON listings.category = category.id INNER JOIN subcategory ON listings.subcategory = subcategory.id WHERE \
+        listings.zip LIKE ($1) AND LOWER(listings.title) LIKE ($2)",
+        [`%${location}%`, `%${string.toLowerCase()}%`]
+      ); // Fetch by email then check encrypted password
+      if (data.rows.length) {
+        res.end(JSON.stringify(data.rows));
+      } else {
+        res.end(JSON.stringify([]));
+      }
+    });
+
     server.post("/listingsByParams", async (req, res) => {
       const { location, string } = req.headers;
       console.log(location, string);
