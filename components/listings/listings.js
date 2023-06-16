@@ -19,6 +19,7 @@ const Listings = () => {
 
 	const getListings = async (type) => {
 		const tmpListings = await listingsSearch("", type);
+		console.log(tmpListings);
 		setListings(tmpListings);
 	};
 
@@ -49,6 +50,9 @@ const Listings = () => {
 						></SingleCard>
 					</div>
 				))}
+				{listings.length === 0 && (
+					<i style={{ paddingLeft: 20 }}>No results found</i>
+				)}
 			</div>
 		</>
 	);
