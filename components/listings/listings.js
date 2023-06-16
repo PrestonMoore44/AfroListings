@@ -38,7 +38,16 @@ const Listings = () => {
 				<div className={styles.bussinessSides}></div>
 			</div>
 			<div className={"sectionTitle"}>
-				Listings <i>"{router?.query?.search}"</i>
+				Search{" "}
+				<i
+					style={{
+						background: "#F8F9FC",
+						borderRadius: 10,
+						padding: 5,
+					}}
+				>
+					"{router?.query?.search}"
+				</i>
 			</div>
 			<div className={`${styles.bussinessBody}`}>
 				{listings.map((it, ind) => (
