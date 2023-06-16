@@ -36,7 +36,9 @@ const Listings = () => {
 				<div className={styles.bussinessCenter}></div>
 				<div className={styles.bussinessSides}></div>
 			</div>
-			<div className={"sectionTitle"}>Listings</div>
+			<div className={"sectionTitle"}>
+				Listings <i>"{router?.query?.search}"</i>
+			</div>
 			<div className={`${styles.bussinessBody}`}>
 				{listings.map((it, ind) => (
 					<div className={styles.style_container} key={ind}>
