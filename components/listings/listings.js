@@ -41,7 +41,7 @@ const Listings = () => {
 				Search{" "}
 				<i
 					style={{
-						background: "#F8F9FC",
+						border: "1px solid #F8F9FC",
 						borderRadius: 10,
 						padding: 5,
 					}}
