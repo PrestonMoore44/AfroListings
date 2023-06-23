@@ -20,6 +20,38 @@ body {
 .lemon,
 .lime {
 }
+.btn_404 {
+	color: white;
+	font-weight: 600;
+	margin: 40px 0;
+	padding: 20px 40px;
+	background-color: #ef9802;
+}
+.btn_404:hover {
+	background-color: #d78801;
+}
+.background_404 {
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+		url("~/public/404Img.jpg");
+	height: 100vh;
+	background-position: center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover; /* Resize the background image to cover the entire container */
+	background-color: #cccccc;
+	color: white;
+	margin: 0 auto;
+	padding-top: 5%;
+	text-align: center;
+}
+.background_404 a {
+	text-decoration: none;
+	color: white;
+}
+.background_404 a:hover {
+	text-decoration: underline;
+	text-decoration-color: white;
+	-webkit-text-decoration-color: white;
+}
 .smallText {
 	font-size: 12px;
 	font-weight: 900;
