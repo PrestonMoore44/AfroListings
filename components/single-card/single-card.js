@@ -7,6 +7,7 @@ import Image from "next/image";
 
 const SingleCard = ({ item, ind, alt }) => {
 	const router = useRouter();
+	const [imgLoaded, setImgLoaded] = useState(false);
 	const [showItem, setShowItem] = useState([false, false, false, false]);
 
 	const [businessCtrl, setBusinessCtrl] = useState([
@@ -20,13 +21,17 @@ const SingleCard = ({ item, ind, alt }) => {
 		router.push(`/listing/${lid}`);
 	};
 
+	const shouldHover = () => {};
+
 	const { url: src, username, title, description, id } = item;
 	return (
 		<div
 			onMouseEnter={() =>
+				imgLoaded &&
 				setBusinessCtrl(businessCtrl.map((iti, nd) => ind === nd))
 			}
 			onMouseLeave={() =>
+				imgLoaded &&
 				setBusinessCtrl(businessCtrl.map((iti, nd) => false))
 			}
 			className={` ${styles.containerImgHold} border ${
@@ -35,6 +40,7 @@ const SingleCard = ({ item, ind, alt }) => {
 		>
 			<div className={styles.imgContainer}>
 				<Image
+					onLoadingComplete={() => setImgLoaded(true)}
 					onClick={() => goToListing(id)}
 					className={`${styles.containerImg} ${
 						alt && styles.altContainerImg
