@@ -51,6 +51,11 @@ app
     server.use(express.json());
     server.use(allowCrossDomain);
 
+    server.get("/getTestRequest", async (req, res) => {
+      console.log(req.headers, " Inside get request");
+      res.sendStatus(200);
+    });
+
     // Must be nextjs page...
     server.get("*", (req, res) => {
       return handle(req, res);

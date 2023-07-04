@@ -1,7 +1,35 @@
 .footer {
 	width: 100%;
-	height: 150px;
-	background: #3167b1;
 	position: absolute;
 	bottom: 0;
+	padding: 20px 150px;
+	font-family: Inter, sans-serif;
+	color: #474747;
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid blue;
+}
+.title {
+	font-size: 26px;
+	font-weight: bolder;
+	letter-spacing: 2px;
+}
+
+.itemsContainerAlt {
+	align-items: center;
+	align-self: center;
+	justify-content: center;
+	line-height: 45px;
+}
+.itemsContainer {
+	margin: 0 auto;
+	text-align: center;
+	font-size: 14px;
+}
+.itemsContainer div {
+}
+
+.footerFoot {
+	border-top: 1px solid grey;
+	padding: 25px 0;
 }

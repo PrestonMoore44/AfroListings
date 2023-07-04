@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "./single-card.module.css";
 import { CardPopup } from "../homepage/card-popup/card-popup";
+import Image from "next/image";
 
 const SingleCard = ({ item, ind, alt }) => {
 	const router = useRouter();
@@ -33,11 +34,15 @@ const SingleCard = ({ item, ind, alt }) => {
 			}`}
 		>
 			<div className={styles.imgContainer}>
-				<img
+				<Image
 					onClick={() => goToListing(id)}
 					className={`${styles.containerImg} ${
 						alt && styles.altContainerImg
 					}`}
+					placeholder="blur"
+					blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8dAYAAnYBoH+KtRgAAAAASUVORK5CYII="
+					width={250}
+					height={150}
 					key={ind}
 					src={src}
 				/>

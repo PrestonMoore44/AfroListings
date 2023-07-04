@@ -9,6 +9,7 @@ import {
 	listingsByParams,
 	listingsSearch,
 	routeMap,
+	getTestRequest,
 } from "../../lib/services/listings-service";
 import { gsap } from "gsap/dist/gsap";
 import { SplitText } from "gsap/dist/SplitText";
@@ -137,6 +138,11 @@ const Cover = ({
 		}
 	}, [showTitle]);
 
+	const postReqTest = async () => {
+		let data = await getTestRequest();
+		console.log(data);
+	};
+
 	useState(() => {
 		setTitleObj(pageTitles[route.pathname]);
 		console.log(pageTitles[route.pathname]);
@@ -238,6 +244,13 @@ const Cover = ({
 									placeholder="zip, city or state"
 								/>
 							</div>
+							<Button
+								className={`${styles.btn} m-2`}
+								onClick={postReqTest}
+								variant="contained"
+							>
+								Search POST
+							</Button>
 							<Button
 								className={`${styles.btn} m-2`}
 								onClick={searchByParams}

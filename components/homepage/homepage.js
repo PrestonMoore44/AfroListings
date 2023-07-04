@@ -16,6 +16,7 @@ import { categories } from "../../services/static-data";
 import { AppTheme } from "../../pages/_app";
 import CardPopup from "./card-popup/card-popup";
 import SingleCard from "../single-card/single-card";
+import Footer from "../footer/footer";
 import Cover from "../cover/cover";
 import { getListings } from "../../lib/services/listings-service";
 import { gsap } from "gsap/dist/gsap";
@@ -171,137 +172,156 @@ const Homepage = () => {
 	const responseGoogle = (response) => {};
 
 	return (
-		<div className={styles.homepageContainerMain}>
-			<Cover
-				scrollDown={scrollDown}
-				inputRef={inputRef}
-				type={type}
-				categories={categories}
-				setType={setType}
-				showCategories={showCategories}
-				setCategory={setCategory}
-				handleCategoryChange={handleCategoryChange}
-				bgMedia="https://newbucketpj.s3.us-west-1.amazonaws.com/BGMovieMin.mp4"
-			></Cover>
-			<div
-				className={`${styles.containerTitle} apple_container`}
-				ref={dataRef}
-			>
-				<div className={`${styles.entireItemContainer} apple`}>
-					<div className={`${styles.titleItem} `}>
-						Recommended Businesses
+		<>
+			<div className={styles.homepageContainerMain}>
+				<Cover
+					scrollDown={scrollDown}
+					inputRef={inputRef}
+					type={type}
+					categories={categories}
+					setType={setType}
+					showCategories={showCategories}
+					setCategory={setCategory}
+					handleCategoryChange={handleCategoryChange}
+					bgMedia="https://newbucketpj.s3.us-west-1.amazonaws.com/BGMovieMin.mp4"
+				></Cover>
+				<div
+					className={`${styles.containerTitle} apple_container`}
+					ref={dataRef}
+				>
+					<div className={`${styles.entireItemContainer} apple`}>
+						<div className={`${styles.titleItem} `}>
+							Recommended Businesses
+						</div>
+						<div className={styles.style_container}>
+							{businessArr.map((it, ind) => (
+								<SingleCard
+									item={it}
+									key={ind}
+									ind={ind}
+									categories={categories}
+								></SingleCard>
+							))}
+						</div>
+						<div className={styles.bottomSection}>
+							<p
+								onClick={() =>
+									navigateAway("business-listings")
+								}
+							>
+								View All Business Listings
+							</p>
+						</div>
 					</div>
-					<div className={styles.style_container}>
-						{businessArr.map((it, ind) => (
-							<SingleCard
-								item={it}
-								key={ind}
-								ind={ind}
-								categories={categories}
-							></SingleCard>
-						))}
+					<div className={`${styles.entireItemContainer} orange`}>
+						<div className={styles.titleItem}>
+							Recommended Travel
+						</div>
+						<div className={styles.style_container}>
+							{travelArr.map((it, ind) => (
+								<SingleCard
+									key={ind}
+									item={it}
+									ind={ind}
+								></SingleCard>
+							))}
+						</div>
+						<div className={styles.bottomSection}>
+							<p onClick={() => navigateAway("travel-listings")}>
+								View All Travel Listings
+							</p>
+						</div>
 					</div>
-					<div className={styles.bottomSection}>
-						<p onClick={() => navigateAway("business-listings")}>
-							View All Business Listings
-						</p>
+					<div className={`${styles.entireItemContainer} grape`}>
+						<div className={styles.titleItem}>
+							Recommended Social Media Influencers
+						</div>
+						<div className={styles.style_container}>
+							{influencerArr.map((it, ind) => (
+								<SingleCard
+									key={ind}
+									item={it}
+									ind={ind}
+								></SingleCard>
+							))}
+						</div>
+						<div className={styles.bottomSection}>
+							<p
+								onClick={() =>
+									navigateAway("influencer-listings")
+								}
+							>
+								View All Social Media Influencer Listings
+							</p>
+						</div>
+					</div>
+					<div className={`${styles.entireItemContainer} kiwi`}>
+						<div className={styles.titleItem}>
+							Recommended Restaurants and Catering
+						</div>
+						<div className={styles.style_container}>
+							{restArr.map((it, ind) => (
+								<SingleCard
+									key={ind}
+									item={it}
+									ind={ind}
+								></SingleCard>
+							))}
+						</div>
+						<div className={styles.bottomSection}>
+							<p
+								onClick={() =>
+									navigateAway("business-listings")
+								}
+							>
+								View All Restaurants and Catering Listings
+							</p>
+						</div>
+					</div>
+					<div className={`${styles.entireItemContainer} lime`}>
+						<div className={styles.titleItem}>
+							Recommended Real Estate and Housing
+						</div>
+						<div className={styles.style_container}>
+							{housingArr.map((it, ind) => (
+								<SingleCard
+									key={ind}
+									item={it}
+									ind={ind}
+								></SingleCard>
+							))}
+						</div>
+						<div className={styles.bottomSection}>
+							<p onClick={() => navigateAway("housing-listings")}>
+								View All Housing Listings
+							</p>
+						</div>
+					</div>
+					<div className={`${styles.entireItemContainer} lemon`}>
+						<div className={styles.titleItem}>
+							Politics and Social Media
+						</div>
+						<div className={styles.style_container}>
+							{politicsArr.map((it, ind) => (
+								<SingleCard
+									key={ind}
+									item={it}
+									ind={ind}
+								></SingleCard>
+							))}
+						</div>
+						<div className={styles.bottomSection}>
+							<p onClick={() => navigateAway("housing-listings")}>
+								View All Politic Listings
+							</p>
+						</div>
 					</div>
 				</div>
-				<div className={`${styles.entireItemContainer} orange`}>
-					<div className={styles.titleItem}>Recommended Travel</div>
-					<div className={styles.style_container}>
-						{travelArr.map((it, ind) => (
-							<SingleCard
-								key={ind}
-								item={it}
-								ind={ind}
-							></SingleCard>
-						))}
-					</div>
-					<div className={styles.bottomSection}>
-						<p onClick={() => navigateAway("travel-listings")}>
-							View All Travel Listings
-						</p>
-					</div>
-				</div>
-				<div className={`${styles.entireItemContainer} grape`}>
-					<div className={styles.titleItem}>
-						Recommended Social Media Influencers
-					</div>
-					<div className={styles.style_container}>
-						{influencerArr.map((it, ind) => (
-							<SingleCard
-								key={ind}
-								item={it}
-								ind={ind}
-							></SingleCard>
-						))}
-					</div>
-					<div className={styles.bottomSection}>
-						<p onClick={() => navigateAway("influencer-listings")}>
-							View All Social Media Influencer Listings
-						</p>
-					</div>
-				</div>
-				<div className={`${styles.entireItemContainer} kiwi`}>
-					<div className={styles.titleItem}>
-						Recommended Restaurants and Catering
-					</div>
-					<div className={styles.style_container}>
-						{restArr.map((it, ind) => (
-							<SingleCard
-								key={ind}
-								item={it}
-								ind={ind}
-							></SingleCard>
-						))}
-					</div>
-					<div className={styles.bottomSection}>
-						<p onClick={() => navigateAway("business-listings")}>
-							View All Restaurants and Catering Listings
-						</p>
-					</div>
-				</div>
-				<div className={`${styles.entireItemContainer} lime`}>
-					<div className={styles.titleItem}>
-						Recommended Real Estate and Housing
-					</div>
-					<div className={styles.style_container}>
-						{housingArr.map((it, ind) => (
-							<SingleCard
-								key={ind}
-								item={it}
-								ind={ind}
-							></SingleCard>
-						))}
-					</div>
-					<div className={styles.bottomSection}>
-						<p onClick={() => navigateAway("housing-listings")}>
-							View All Housing Listings
-						</p>
-					</div>
-				</div>
-				<div className={`${styles.entireItemContainer} lemon`}>
-					<div className={styles.titleItem}>
-						Politics and Social Media
-					</div>
-					<div className={styles.style_container}>
-						{politicsArr.map((it, ind) => (
-							<SingleCard
-								key={ind}
-								item={it}
-								ind={ind}
-							></SingleCard>
-						))}
-					</div>
-					<div className={styles.bottomSection}>
-						<p onClick={() => navigateAway("housing-listings")}>
-							View All Politic Listings
-						</p>
-					</div>
+				<div style={{ height: 250 }}>
+					<Footer></Footer>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

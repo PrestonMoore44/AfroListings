@@ -24,7 +24,7 @@ export const pageTitles = {
 		title: "Influce is King",
 	},
 	"/listings": {
-		title: "",
+		title: "Putting Community First",
 	},
 };
 
