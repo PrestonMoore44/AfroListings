@@ -23,7 +23,7 @@ const Listings = () => {
 		setListings(data);
 	};
 	return (
-		<div className={styles.bodyMain}>
+		<div className={styles.cardContainer}>
 			<div className={styles.listBody}>
 				{listings.map((it, i) => (
 					<div className={styles.listBodyItem} key={i}>

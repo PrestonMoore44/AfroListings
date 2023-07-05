@@ -20,6 +20,10 @@ const Profile = () => {
 	}, []);
 
 	useEffect(() => {
+		console.log(router?.query?.view);
+	}, [router]);
+
+	useEffect(() => {
 		if (router.isReady && !profile.username) {
 			getBasicProfile();
 		}
@@ -50,7 +54,7 @@ const Profile = () => {
 					</div>
 				</div>
 				<div className={styles.btnContainer}>
-					{router.query.handle === user?.username ? (
+					{router.query.handle === user?.username && (
 						<>
 							<button className={`btn btn-primary`}>
 								Edit Profile
@@ -59,20 +63,24 @@ const Profile = () => {
 								Manage Listings
 							</button>
 						</>
-					) : (
-						<button className={`btn btn-primary`}>Follow</button>
 					)}
+					{user?.username &&
+						router.query.handle !== user?.username && (
+							<button className={`btn btn-primary`}>
+								Follow
+							</button>
+						)}
 				</div>
 			</div>
 			<div className={styles.topHalfAlt}>
 				<div
 					className={`${styles.linkButton} ${
-						router.route === "/profile/[handle]/listings" &&
+						router?.query?.view === "listings" &&
 						styles.linkButtonActive
 					}`}
 				>
 					<Link
-						href={`/profile/${router.query.handle}/listings`}
+						href={`/profile/${router?.query?.handle}/listings`}
 						shallow={true}
 					>
 						<a>LISTINGS</a>
@@ -80,12 +88,12 @@ const Profile = () => {
 				</div>
 				<div
 					className={`${styles.linkButton} ${
-						router.route === "/profile/[handle]/followers" &&
+						router?.query?.view === "followers" &&
 						styles.linkButtonActive
 					}`}
 				>
 					<Link
-						href={`/profile/${router.query.handle}/followers`}
+						href={`/profile/${router?.query?.handle}/followers`}
 						shallow={true}
 					>
 						<a>FOLLOWERS</a>
@@ -93,12 +101,12 @@ const Profile = () => {
 				</div>
 				<div
 					className={`${styles.linkButton} ${
-						router.route === "/profile/[handle]/following" &&
+						router?.query?.view === "following" &&
 						styles.linkButtonActive
 					}`}
 				>
 					<Link
-						href={`/profile/${router.query.handle}/following`}
+						href={`/profile/${router?.query?.handle}/following`}
 						shallow={true}
 					>
 						<a>FOLLOWING</a>

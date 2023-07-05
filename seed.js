@@ -428,10 +428,32 @@ client.connect(function (err) {
     // );
 
     //Media table
+    // client.query(
+    //     "CREATE TABLE followers(id SERIAL PRIMARY KEY,\
+    //     followerid INTEGER REFERENCES users(id),\
+    //     userid INTEGER REFERENCES users(id))",
+    //     (err, resp) => {
+    //         if (err) {
+    //             console.log(err, " Error ");
+    //         } else {
+    //             console.log(resp, " SUCCESS ");
+    //         }
+    //     }
+    // );
+
     client.query(
-        "CREATE TABLE followers(id SERIAL PRIMARY KEY,\
-        followerid INTEGER REFERENCES users(id),\
-        userid INTEGER REFERENCES users(id))",
+        "ALTER TABLE users ADD COLUMN followers INTEGER []",
+        (err, resp) => {
+            if (err) {
+                console.log(err, " Error ");
+            } else {
+                console.log(resp, " SUCCESS ");
+            }
+        }
+    );
+
+    client.query(
+        "ALTER TABLE users ADD COLUMN following INTEGER []",
         (err, resp) => {
             if (err) {
                 console.log(err, " Error ");

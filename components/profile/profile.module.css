@@ -2,6 +2,11 @@
 	margin: 50px 150px;
 }
 
+.cardContainer {
+	margin: 50px 150px;
+	display: flex;
+	justify-content: space-between;
+}
 .listBody {
 	display: flex;
 	flex-wrap: wrap;
