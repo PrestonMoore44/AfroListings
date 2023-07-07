@@ -2,16 +2,19 @@
 	position: absolute;
 	right: 0;
 }
+.dropContainerAlt {
+}
 
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 .profilePic {
 	border-radius: 50%;
-	height: 25px;
-	width: 25px;
+	height: 28px;
+	width: 28px;
 	border: 1px solid black;
 	display: table-cell;
 	vertical-align: center;
-	margin-top: 5px;
+	margin: 0 auto;
+	margin-top: 2px;
 }
 .profilePicAlt {
 	margin: auto;
@@ -94,7 +97,7 @@
 	text-align: center;
 	margin: 0 20px;
 	height: 100%;
-	width: 68px;
+	width: 50px;
 	cursor: pointer;
 	font-weight: 800 !important;
 	font-size: 10px !important;

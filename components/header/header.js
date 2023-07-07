@@ -27,16 +27,18 @@ const Header = ({ theme }) => {
 	const [showCreateListing, setShowCreateListing] = useState(false);
 	const [categories, setCategories] = useState([]);
 	const [subCategories, setSubCategories] = useState([]);
+	const user = useSelector((store) => store.user);
+
 	useEffect(() => {
-		if (sessionStorage.getItem("user")) {
+		if (sessionStorage.getItem("user") && user === null) {
 			dispatch({
 				type: "setUser",
 				user: JSON.parse(sessionStorage.getItem("user")),
 			});
 		}
-	}, []);
+		fetchCategories();
+	}, [user]);
 
-	const user = useSelector((store) => store.user);
 	const routesCtrl = {
 		"/business-listings": 1,
 		"/influencer-listings": 1,
@@ -44,9 +46,6 @@ const Header = ({ theme }) => {
 		"/housing-listings": 1,
 		"/travel-listings": 1,
 	};
-	useEffect(() => {
-		fetchCategories();
-	}, [user]);
 
 	useEffect(() => {
 		if (
@@ -95,7 +94,12 @@ const Header = ({ theme }) => {
 			});
 			sessionStorage.removeItem("user");
 		}
-		router.push({ pathname: type.link });
+		console.log(type, type_two, user);
+		router.push({
+			pathname: type.link.includes("/profile")
+				? `${type.link}/${user.username}/listings`
+				: type.link,
+		});
 	};
 
 	const home = () => router.push("/");
@@ -364,7 +368,7 @@ const Header = ({ theme }) => {
 						onMouseOver={() => setHoverItem("Profile")}
 						onMouseLeave={() => setHoverItem(null)}
 					>
-						{user && user.id ? (
+						{!!user?.id ? (
 							<>
 								{user.picture !== "undefined" ? (
 									<div>
