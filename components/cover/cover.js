@@ -246,13 +246,6 @@ const Cover = ({
 							</div>
 							<Button
 								className={`${styles.btn} m-2`}
-								onClick={postReqTest}
-								variant="contained"
-							>
-								Search POST
-							</Button>
-							<Button
-								className={`${styles.btn} m-2`}
 								onClick={searchByParams}
 								variant="contained"
 								onKeyPress={handleKeyPress}
