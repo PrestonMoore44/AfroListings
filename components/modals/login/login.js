@@ -47,7 +47,7 @@ const Login = ({ setShowLogin }) => {
 		email: Yup.string().email("Invalid email").required("Required"),
 	});
 
-	useEffect(() => {}, [console.log(sessionStorage, " Session storeage ")]);
+	useEffect(() => {}, [console.log(localStorage, " Session storeage ")]);
 
 	const inheritData = async (data, updateMethod) => {
 		var dataObj = jwt_decode(data.credential);
@@ -60,7 +60,7 @@ const Login = ({ setShowLogin }) => {
 					user,
 				});
 				console.log(user, " User ");
-				sessionStorage.setItem("user", JSON.stringify(user));
+				localStorage.setItem("user", JSON.stringify(user));
 				setShowLogin(false);
 			} else {
 				setLoginErr(true);
@@ -99,7 +99,7 @@ const Login = ({ setShowLogin }) => {
 				type: "setUser",
 				user,
 			});
-			sessionStorage.setItem("user", JSON.stringify(user));
+			localStorage.setItem("user", JSON.stringify(user));
 			setShowLogin(false);
 		} else {
 			// User already exist with that email!
@@ -159,7 +159,7 @@ const Login = ({ setShowLogin }) => {
 										type: "setUser",
 										user,
 									});
-									sessionStorage.setItem(
+									localStorage.setItem(
 										"user",
 										JSON.stringify(user)
 									);

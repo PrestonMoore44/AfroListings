@@ -30,10 +30,10 @@ const Header = ({ theme }) => {
 	const user = useSelector((store) => store.user);
 
 	useEffect(() => {
-		if (sessionStorage.getItem("user") && user === null) {
+		if (localStorage.getItem("user") && user === null) {
 			dispatch({
 				type: "setUser",
-				user: JSON.parse(sessionStorage.getItem("user")),
+				user: JSON.parse(localStorage.getItem("user")),
 			});
 		}
 		fetchCategories();
@@ -51,7 +51,7 @@ const Header = ({ theme }) => {
 		if (
 			routesCtrl[router.pathname] &&
 			!user &&
-			!sessionStorage.getItem("user")
+			!localStorage.getItem("user")
 		) {
 			restrictUser();
 		}
@@ -92,7 +92,7 @@ const Header = ({ theme }) => {
 				type: "setUser",
 				user: null,
 			});
-			sessionStorage.removeItem("user");
+			localStorage.removeItem("user");
 		}
 		console.log(type, type_two, user);
 		router.push({
