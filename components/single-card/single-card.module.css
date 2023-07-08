@@ -283,7 +283,7 @@
   background-color: #fbfcfb;
   display: block;
   border-radius: 8px;
-  border: 1px solid #dfdfdf;
+  border: 1px solid #efefef;
   /*  box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
   -webkit-box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
   -moz-box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);*/
@@ -302,7 +302,7 @@
   box-shadow: 0 13px 20px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 13px 20px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 13px 20px rgba(0, 0, 0, 0.1);
-  transform: translateY(-1rem);
+  transform: translateY(-5px);
 }
 .titleContainerTitle {
   width: 95%;

@@ -48,14 +48,6 @@ import {
 
 const SingleListings = ({ formValues, images, editorHTML }) => {
 	const { user } = useSelector((store) => store);
-
-	useEffect(() => {
-		console.log(
-			formValues,
-			images,
-			sessionStorage.getItem("user", JSON.stringify(user))
-		);
-	}, []);
 	const captchaRef = useRef(null);
 	const longSTRING = htmlEncode(`<div>
 		<p >

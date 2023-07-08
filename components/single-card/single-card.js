@@ -34,7 +34,7 @@ const SingleCard = ({ item, ind, alt }) => {
 				imgLoaded &&
 				setBusinessCtrl(businessCtrl.map((iti, nd) => false))
 			}
-			className={` ${styles.containerImgHold} border ${
+			className={` ${styles.containerImgHold} ${
 				alt && styles.altContainerImgHold
 			}`}
 		>
