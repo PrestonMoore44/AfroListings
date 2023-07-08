@@ -4,13 +4,11 @@
 
 .cardContainer {
 	margin: 50px 150px;
-	display: flex;
-	justify-content: space-between;
 }
 .listBody {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
+	justify-content: space-between;
 }
 .listBodyItem {
 	min-width: fit-content;
