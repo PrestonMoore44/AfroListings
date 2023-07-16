@@ -3,31 +3,33 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./profile.module.css";
 import Home from "./home";
-import { getProfile } from "../../lib/services/listings-service";
+import { getProfile, followUser } from "../../lib/services/listings-service";
 
-const Profile = () => {
+const Profile = ({ profile: passedIn }) => {
 	const [user, setUser] = useState({});
 	const [profile, setProfile] = useState({});
 	const router = useRouter();
 	const getBasicProfile = async () => {
 		const user = await getProfile(router?.query?.handle);
-		console.log(user);
 		setProfile(user);
 	};
+
+	const follow = async () => {
+		const data = await followUser(user?.id, profile?.id);
+	};
 	useEffect(() => {
-		setUser(JSON.parse(sessionStorage.getItem("user")));
-		console.log(" Running ");
+		setUser(JSON.parse(localStorage.getItem("user")));
 	}, []);
 
 	useEffect(() => {
-		console.log(router?.query?.view);
-	}, [router]);
+		setProfile(passedIn);
+	}, [passedIn]);
 
-	useEffect(() => {
-		if (router.isReady && !profile.username) {
-			getBasicProfile();
-		}
-	}, [router.isReady]);
+	// useEffect(() => {
+	// 	if (router.isReady && !profile.username) {
+	// 		getBasicProfile();
+	// 	}
+	// }, [router.isReady]);
 
 	const [hovImg, setHovImg] = useState(false);
 	return (
@@ -38,7 +40,7 @@ const Profile = () => {
 					onMouseLeave={() => setHovImg(false)}
 					className={"position-relative"}
 				>
-					<img src={profile?.picture} />
+					<img className={styles.topHalfImg} src={profile?.picture} />
 					{hovImg && (
 						<div className={styles.changePhoto}>
 							<i className="bi bi-image"></i>
@@ -47,14 +49,14 @@ const Profile = () => {
 				</div>
 				<div>
 					<div className={styles.headerName}>
-						{profile.fn} {profile.ln}
+						{profile?.fn} {profile?.ln}
 					</div>
 					<div className={styles.headerUsername}>
-						@{profile.username}
+						@{profile?.username}
 					</div>
 				</div>
 				<div className={styles.btnContainer}>
-					{router.query.handle === user?.username && (
+					{router.query?.handle === user?.username && (
 						<>
 							<button className={`btn btn-primary`}>
 								Edit Profile
@@ -64,12 +66,14 @@ const Profile = () => {
 							</button>
 						</>
 					)}
-					{user?.username &&
-						router.query.handle !== user?.username && (
-							<button className={`btn btn-primary`}>
-								Follow
-							</button>
-						)}
+					{user?.email && router.query.handle !== user?.username && (
+						<button
+							onClick={() => follow()}
+							className={`btn btn-primary`}
+						>
+							Follow
+						</button>
+					)}
 				</div>
 			</div>
 			<div className={styles.topHalfAlt}>
@@ -99,19 +103,21 @@ const Profile = () => {
 						<a>FOLLOWERS</a>
 					</Link>
 				</div>
-				<div
-					className={`${styles.linkButton} ${
-						router?.query?.view === "following" &&
-						styles.linkButtonActive
-					}`}
-				>
-					<Link
-						href={`/profile/${router?.query?.handle}/following`}
-						shallow={true}
+				{!!user.id === passedIn.id && (
+					<div
+						className={`${styles.linkButton} ${
+							router?.query?.view === "following" &&
+							styles.linkButtonActive
+						}`}
 					>
-						<a>FOLLOWING</a>
-					</Link>
-				</div>
+						<Link
+							href={`/profile/${router?.query?.handle}/following`}
+							shallow={true}
+						>
+							<a>FOLLOWING</a>
+						</Link>
+					</div>
+				)}
 			</div>
 			<div className={styles.bottomHalf}></div>
 		</div>

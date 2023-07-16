@@ -45,15 +45,27 @@ var allowCrossDomain = function (req, res, next) {
 
 app
   .prepare()
-  .then(() => {
+  .then(async () => {
     const server = express();
     server.use(cors());
     server.use(express.json());
     server.use(allowCrossDomain);
 
     server.get("/getTestRequest", async (req, res) => {
-      console.log(req.headers, " Inside get request");
       res.sendStatus(200);
+    });
+
+    server.get("/getProfiles", async (req, res) => {
+      // Fetch by username
+      const data = await client.query(
+        "SELECT username, type, email, id, fn, ln, picture FROM users WHERE id = ANY($1)",
+        [JSON.parse(req.headers.followers)]
+      );
+      if (data.rows.length) {
+        res.end(JSON.stringify(data.rows));
+      } else {
+        res.end(JSON.stringify([]));
+      }
     });
 
     // Must be nextjs page...
@@ -81,10 +93,28 @@ app
       }
     });
 
+    server.post("/followUser", async (req, res) => {
+      const { follower, following } = req.headers;
+      try {
+        await client.query(
+          "UPDATE users SET following = ARRAY_APPEND(following, ($1)) WHERE id = ($2)",
+          [following, follower]
+        );
+        await client.query(
+          "UPDATE users SET followers = ARRAY_APPEND(followers, ($2)) WHERE id = ($1)",
+          [following, follower]
+        );
+        res.sendStatus(200);
+      } catch (er) {
+        console.log(er, " Error adding follower ");
+        res.sendStatus(404);
+      }
+    });
+
     server.post("/getProfile", async (req, res) => {
       // Fetch by username
       const data = await client.query(
-        "SELECT username, type, email, fn, ln, picture FROM users WHERE username = ($1)",
+        "SELECT username, type, email, followers, id, following, fn, ln, picture FROM users WHERE username = ($1)",
         [req.headers.handle.trim()]
       );
       if (data.rows.length) {
