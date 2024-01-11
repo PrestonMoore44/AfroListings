@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/layout";
-import Homepage from "../components/homepage/homepage";
-import Testing from "../components/testing/testing";
-import { useDispatch, useSelector } from "react-redux";
+import Homepage from "../components/homepage/homepage.tsx";
 
 const Index = () => {
 	useEffect(() => {}, []);

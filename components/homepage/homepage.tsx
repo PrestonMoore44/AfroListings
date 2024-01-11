@@ -14,19 +14,20 @@ import styles from "./homepage.module.css";
 import { geoLocation } from "../../services/userServices";
 import { categories } from "../../services/static-data";
 import { AppTheme } from "../../pages/_app";
-import CardPopup from "./card-popup/card-popup";
 import SingleCard from "../single-card/single-card";
 import Footer from "../footer/footer";
 import Cover from "../cover/cover";
 import { getListings } from "../../lib/services/listings-service";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+
 gsap.core.globals("ScrollTrigger", ScrollTrigger);
 gsap.registerPlugin(ScrollTrigger);
 
 const Homepage = () => {
 	const router = useRouter();
-	const dataRef = useRef();
+	const dataRef = useRef<HTMLInputElement>(null);
 	const [businessArr, setBusinessArr] = useState([]);
 	const [housingArr, setHousingArr] = useState([]);
 	const [politicsArr, setPoliticsArr] = useState([]);
@@ -86,14 +87,14 @@ const Homepage = () => {
 	const [location, setLocation] = useState("");
 
 	// useRef example
-	const inputRef = useRef();
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	//useContext example
 	const passedIn = useContext(AppTheme);
 
 	useEffect(() => {
 		fetchListings();
-		inputRef?.current?.focus();
+		if(inputRef.current && inputRef?.current !== null) inputRef.current?.focus();
 		var item = document.getElementById("inputItemSearch");
 	}, []);
 
