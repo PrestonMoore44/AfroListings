@@ -93,18 +93,36 @@ app
       }
     });
 
+    server.post("/unfollowUser", async (req, res) => {
+      const { follower, following } = req.headers;
+      try {
+        const { rows: rFollowing } = await client.query(
+          "UPDATE users SET following = ARRAY_REMOVE(following, ($1)) WHERE id = ($2) RETURNING following",
+          [following, follower]
+        );
+        const { rows: rRollowers } = await client.query(
+          "UPDATE users SET followers = ARRAY_REMOVE(followers, ($2)) WHERE id = ($1) RETURNING followers",
+          [following, follower]
+        );
+        res.end(JSON.stringify({ ...rRollowers[0], ...rFollowing[0] }));
+      } catch (er) {
+        console.log(er, " Error adding follower ");
+        res.sendStatus(404);
+      }
+    });
+
     server.post("/followUser", async (req, res) => {
       const { follower, following } = req.headers;
       try {
-        await client.query(
-          "UPDATE users SET following = ARRAY_APPEND(following, ($1)) WHERE id = ($2)",
+        const { rows: rFollowing } = await client.query(
+          "UPDATE users SET following = ARRAY_APPEND(following, ($1)) WHERE id = ($2) returning following",
           [following, follower]
         );
-        await client.query(
-          "UPDATE users SET followers = ARRAY_APPEND(followers, ($2)) WHERE id = ($1)",
+        const { rows: rRollowers } = await client.query(
+          "UPDATE users SET followers = ARRAY_APPEND(followers, ($2)) WHERE id = ($1) returning followers",
           [following, follower]
         );
-        res.sendStatus(200);
+        res.end(JSON.stringify({ ...rRollowers[0], ...rFollowing[0] }));
       } catch (er) {
         console.log(er, " Error adding follower ");
         res.sendStatus(404);

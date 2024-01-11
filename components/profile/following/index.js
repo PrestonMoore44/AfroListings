@@ -1,9 +1,11 @@
 import styles from "../profile.module.css";
+import React, { useState, useEffect } from "react";
 
 const Following = () => {
+	const [followers, setFollowers] = useState([]);
 	return (
 		<div className={styles.bodyMain}>
-			<div>TESTING THE WATER Following</div>
+			{followers.length === 0 && <div>You Are Following 0 Users</div>}
 		</div>
 	);
 };

@@ -36,6 +36,7 @@ const Followers = ({ profile }) => {
 						</div>
 					</div>
 				))}
+			{followers.length === 0 && <div>No followers</div>}
 		</div>
 	);
 };

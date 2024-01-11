@@ -16,11 +16,42 @@
 	margin: 15px 17px;
 	flex: 1;
 }
+.btnDropdownContainer {
+	position: relative;
+}
+.dropdownContainer {
+	position: absolute;
+	background-color: white;
+	width: 125px;
+	right: 0;
+	margin-right: 7px;
+	border-radius: 1px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	webkitboxshadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	mozboxshadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+	boxshadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+.dropdownContainer div {
+	padding: 5px 13px;
+	cursor: pointer;
+}
+.dropdownContainer div:hover {
+	background-color: #d2d2d2;
+}
+.dropdownContainer i {
+	padding-right: 15px;
+}
 .btnContainer {
 	flex: 1;
-	align-self: center;
 	text-align: right;
 	align-items: flex-end;
+	justify-content: space-between;
+	float: right;
+	padding: 7px;
+}
+.btnContainerInner {
+	width: fit-content;
+	float: right;
 }
 .btnContainer button {
 	margin: 0 5px;

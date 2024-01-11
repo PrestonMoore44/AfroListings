@@ -170,7 +170,7 @@ const Homepage = () => {
 	};
 
 	const responseGoogle = (response) => {};
-
+	console.log("Hello World" )
 	return (
 		<>
 			<div className={styles.homepageContainerMain}>
@@ -189,7 +189,7 @@ const Homepage = () => {
 					className={`${styles.containerTitle} apple_container`}
 					ref={dataRef}
 				>
-					<div className={`${styles.entireItemContainer} apple`}>
+					<div className={`${styles.entireItemContainer}`}>
 						<div className={`${styles.titleItem} `}>
 							Recommended Businesses
 						</div>
@@ -213,7 +213,7 @@ const Homepage = () => {
 							</p>
 						</div>
 					</div>
-					<div className={`${styles.entireItemContainer} orange`}>
+					<div className={`${styles.entireItemContainer}`}>
 						<div className={styles.titleItem}>
 							Recommended Travel
 						</div>
@@ -232,7 +232,7 @@ const Homepage = () => {
 							</p>
 						</div>
 					</div>
-					<div className={`${styles.entireItemContainer} grape`}>
+					<div className={`${styles.entireItemContainer}`}>
 						<div className={styles.titleItem}>
 							Recommended Social Media Influencers
 						</div>
@@ -255,7 +255,7 @@ const Homepage = () => {
 							</p>
 						</div>
 					</div>
-					<div className={`${styles.entireItemContainer} kiwi`}>
+					<div className={`${styles.entireItemContainer}`}>
 						<div className={styles.titleItem}>
 							Recommended Restaurants and Catering
 						</div>
@@ -278,7 +278,7 @@ const Homepage = () => {
 							</p>
 						</div>
 					</div>
-					<div className={`${styles.entireItemContainer} lime`}>
+					<div className={`${styles.entireItemContainer}`}>
 						<div className={styles.titleItem}>
 							Recommended Real Estate and Housing
 						</div>
@@ -297,7 +297,7 @@ const Homepage = () => {
 							</p>
 						</div>
 					</div>
-					<div className={`${styles.entireItemContainer} lemon`}>
+					<div className={`${styles.entireItemContainer}`}>
 						<div className={styles.titleItem}>
 							Politics and Social Media
 						</div>
