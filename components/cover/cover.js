@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import styles from "./cover.module.css";
 import { BiLocationPlus } from "react-icons/bi";
 import { Button } from "@material-ui/core";
-import { pageTitles, convertToUrl } from "../../public/utils/static-data";
-import { useDispatch, useSelector } from "react-redux";
+import { pageTitles } from "../../public/utils/static-data";
+import { useSelector } from "react-redux";
 import {
 	listingsByParams,
 	listingsSearch,
@@ -21,7 +21,6 @@ const Cover = ({
 	setCategory,
 	scrollDown,
 	type = "",
-	setType,
 	fromTop,
 	showCategories,
 	bgMedia,

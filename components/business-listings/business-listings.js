@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import styles from "./businesslistings.module.css";
 import { useRouter } from "next/router";
-import { BsEye, BsBookmark } from "react-icons/bs";
 import { getListings } from "../../lib/services/listings-service";
 import { categories } from "../../services/static-data";
 import Cover from "../cover/cover";
