@@ -262,14 +262,14 @@
 }
 .imgContainer {
   height: 150px;
-  width: 250px;
+  width: 367px;
   overflow: hidden;
   cursor: pointer;
 }
 .containerImg {
   transition: 0.5s ease-in-out;
   height: 150px;
-  width: 250px;
+  width: 367px;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 }
@@ -278,11 +278,16 @@
   height: 225px;
 }
 .containerImgHold {
-  width: 250px;
-  overflow: hidden;
+  width: 367px;
+  margin:5px;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  min-height: 320px;
   background-color: #fbfcfb;
   display: block;
   border-radius: 8px;
+  height:fit-content;
   border: 1px solid #efefef;
   /*  box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
   -webkit-box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
@@ -306,6 +311,7 @@
 }
 .titleContainerTitle {
   width: 95%;
+  margin-bottom: 5px;;
 }
 .titleContainerOption {
   width: 5%;
@@ -318,7 +324,10 @@
 }
 
 .containerBodyLow {
+  display: flex;
+  flex-direction: column;
   padding: 10px 10px 25px 10px;
+  flex:1
 }
 .titleContainer {
   display: flex;
@@ -326,13 +335,13 @@
 }
 .titleContainer div {
   font-size: 17px;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   line-height: 24px;
   font-weight: 600;
 }
 .containerImgHold small {
   font-size: 14px;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   line-height: 20px;
 }
 .containerImgHold:hover p {

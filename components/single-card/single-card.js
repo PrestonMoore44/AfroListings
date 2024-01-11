@@ -47,8 +47,8 @@ const SingleCard = ({ item, ind, alt }) => {
 					}`}
 					placeholder="blur"
 					blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8dAYAAnYBoH+KtRgAAAAASUVORK5CYII="
-					width={250}
-					height={150}
+					width={350}
+					height={209}
 					key={ind}
 					src={src}
 				/>
