@@ -6,12 +6,10 @@ const Footer = () => {
 		<div className={styles.footer}>
 			<div className={styles.itemsContainer}>
 				<div>info@afrolistings.com</div>
-				<div>@afrolistings</div>
 				<div>linkedin.com/company/afrolistings</div>
 				<div>
 					2023 @AfroListings Inc. All rights reserved Privacy & Legal
-					Policies Do Not Sell My Personal Information Cookie
-					Preferences
+					Policies
 				</div>
 			</div>
 		</div>
