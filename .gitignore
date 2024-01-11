@@ -19,3 +19,7 @@
 /.seed.js/
 /seed.js/
 
+# npm rc
+/.npmrc/
+/npmrc/
+
