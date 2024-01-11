@@ -441,27 +441,31 @@ client.connect(function (err) {
     //     }
     // );
 
-    client.query(
-        "ALTER TABLE users ADD COLUMN followers INTEGER []",
-        (err, resp) => {
-            if (err) {
-                console.log(err, " Error ");
-            } else {
-                console.log(resp, " SUCCESS ");
-            }
-        }
-    );
+    client.query("UPDATE users SET followers = ($1), following = ($2)", [
+        [],
+        [],
+    ]);
+    // client.query(
+    //     "ALTER TABLE users ADD COLUMN followers INTEGER []",
+    //     (err, resp) => {
+    //         if (err) {
+    //             console.log(err, " Error ");
+    //         } else {
+    //             console.log(resp, " SUCCESS ");
+    //         }
+    //     }
+    // );
 
-    client.query(
-        "ALTER TABLE users ADD COLUMN following INTEGER []",
-        (err, resp) => {
-            if (err) {
-                console.log(err, " Error ");
-            } else {
-                console.log(resp, " SUCCESS ");
-            }
-        }
-    );
+    // client.query(
+    //     "ALTER TABLE users ADD COLUMN following INTEGER []",
+    //     (err, resp) => {
+    //         if (err) {
+    //             console.log(err, " Error ");
+    //         } else {
+    //             console.log(resp, " SUCCESS ");
+    //         }
+    //     }
+    // );
 
     // city: "Fresno",
     // zip: 93722,
@@ -550,4 +554,28 @@ client.connect(function (err) {
     //         }
     //     }
     // );
+    /*
+    client.query(
+        "CREATE OR REPLACE FUNCTION log_last_name_changes() \
+          RETURNS TRIGGER \
+          LANGUAGE PLPGSQL \
+          AS \
+        $$ \
+        BEGIN \
+          IF NEW.fn <> OLD.fn THEN \
+             INSERT INTO users(fn) \
+             VALUES(OLD.fn); \
+          END IF; \
+          RETURN NEW; \
+        END; \
+        $$"
+    );
+    */
+    client.query(
+        "CREATE TRIGGER last_name_changes \
+          BEFORE UPDATE \
+          ON users \
+          FOR EACH ROW \
+          EXECUTE PROCEDURE log_last_name_changes();"
+    );
 });
