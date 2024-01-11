@@ -1,0 +1,166 @@
+.dropContainer {
+	position: absolute;
+	right: 0;
+}
+.dropContainerAlt {
+}
+
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+.profilePic {
+	border-radius: 50%;
+	height: 28px;
+	width: 28px;
+	border: 1px solid black;
+	display: table-cell;
+	vertical-align: center;
+	margin: 0 auto;
+	margin-top: 2px;
+}
+.profilePicAlt {
+	margin: auto;
+	color: #373737;
+	font-size: 20px;
+	vertical-align: middle;
+	color: black;
+}
+.darkTheme .profilePicAlt i {
+	color: white;
+}
+.darkTheme .leftContainer p {
+	color: white;
+}
+.profilePicAlt:hover {
+	color: black;
+}
+.headerContainer {
+	height: 35px;
+	background-color: white;
+	color: black;
+	position: fixed;
+	z-index: 3;
+	line-height: 35px;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 125px;
+
+	top: 0;
+	width: 100%;
+	font-size: 13px;
+	font-weight: 600;
+	border-bottom: 1px solid #f3f6f4;
+}
+
+.darkTheme {
+	background-color: #1a1d26;
+	color: white;
+}
+.leftContainer {
+	max-width: 350px;
+	width: 350px;
+	cursor: pointer;
+	font-weight: 700;
+	display: flex;
+}
+.leftContainer a {
+	text-decoration: none;
+	color: black;
+	display: flex;
+}
+.leftContainer img {
+	max-height: 30px;
+	height: 30px;
+}
+.rightContainer {
+	display: flex;
+	flex: 1;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+.signIn:hover {
+	text-decoration: underline;
+}
+.rightItem {
+	flex-shrink: 0;
+	padding: 0 12px;
+	margin: 0 8px;
+	height: 100%;
+	width: fit-content;
+	cursor: pointer;
+	position: relative;
+	font-weight: 800 !important;
+	font-size: 10px !important;
+	text-transform: uppercase;
+}
+
+.rightItemAlt {
+	flex-shrink: 0;
+	text-align: center;
+	margin: 0 20px;
+	height: 100%;
+	width: 50px;
+	cursor: pointer;
+	font-weight: 800 !important;
+	font-size: 10px !important;
+	text-transform: uppercase;
+	position: relative;
+}
+
+.rightItem:hover {
+	text-decoration: underline;
+}
+.active {
+	text-decoration: underline;
+}
+.rightItem:hover .toggle {
+	color: #f3aa70 !important;
+}
+
+.toggle {
+	padding-left: 7px;
+	color: black;
+}
+
+.hoverOptionsContainer {
+	border: 1px solid #ededed;
+	background: black;
+	border-radius: 5px;
+	padding: 7px 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-top: 35px;
+	display: block;
+	line-height: 36px;
+	width: 200px;
+	background-color: white;
+	border-radius: 3px;
+}
+
+.hoverOptionsContainer div {
+	cursor: pointer;
+	color: black;
+	text-align: left;
+	height: 36px;
+	padding: 0 20px;
+	display: flex;
+	margin: auto;
+	align-items: center;
+	display: flex;
+	font-family: "Roboto", "Noto", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-weight: 450 !important;
+	line-height: 36px;
+}
+
+.hoverOptionsContainer div:hover {
+	background-color: #f2f2f2;
+	border-radius: inherit;
+}
+
+.profileItems {
+	padding-left: 15px;
+}
+.containerImg {
+	height: 300px;
+	width: auto;
+}
