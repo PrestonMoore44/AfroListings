@@ -267,7 +267,7 @@
   cursor: pointer;
 }
 .containerImg {
-  transition: 0.5s ease-in-out;
+  transition: 0.5s ease;
   height: 150px;
   width: 367px;
   border-top-right-radius: 5px;
