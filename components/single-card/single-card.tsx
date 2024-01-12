@@ -40,7 +40,7 @@ const SingleCard = ({ item, ind, alt, categories }: {key: Number, item: any, ind
 		>
 			<div className={styles.imgContainer}>
 				<Image
-					onLoadingComplete={() => setImgLoaded(true)}
+					onLoad={() => setImgLoaded(true)}
 					onClick={() => goToListing(id)}
 					className={`${styles.containerImg} ${
 						alt && styles.altContainerImg
