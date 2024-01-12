@@ -45,8 +45,6 @@ const SingleCard = ({ item, ind, alt, categories }: {key: Number, item: any, ind
 					className={`${styles.containerImg} ${
 						alt && styles.altContainerImg
 					}`}
-					placeholder="blur"
-					blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8dAYAAnYBoH+KtRgAAAAASUVORK5CYII="
 					width={350}
 					height={209}
 					src={src}
