@@ -18,7 +18,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@ctrl/react-adsense": "^1.6.1",
+        "@ctrl/react-adsense": "^1.7.0",
         "@emotion/react": "^11.10.6",
         "@emotion/styled": "^11.10.6",
         "@fortawesome/fontawesome-svg-core": "^1.2.36",
