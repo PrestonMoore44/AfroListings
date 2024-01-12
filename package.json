@@ -50,7 +50,7 @@
         "form-data": "^3.0.0",
         "formik": "^2.2.9",
         "fs": "0.0.1-security",
-        "gsap": "npm:@gsap/shockingly@^3.12.1",
+        "gsap": "npm:@gsap/shockingly@^3.12.4",
         "htmlencode": "0.0.4",
         "https": "^1.0.0",
         "i": "^0.3.7",
