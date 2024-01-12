@@ -5,7 +5,7 @@ import styles from "./single-card.module.css";
 import { CardPopup } from "../homepage/card-popup/card-popup";
 import Image from "next/image";
 
-const SingleCard = ({ item, ind, alt, categories }: {key: Number, item: any, ind: Number, alt?: Boolean, categories?: String[]}) => {
+const SingleCard = ({ item, ind, alt, categories }: {key: Number, item: any, ind: number, alt?: Boolean, categories?: String[]}) => {
 	const router = useRouter();
 	const [imgLoaded, setImgLoaded] = useState(false);
 	const [showItem, setShowItem] = useState([false, false, false, false]);
@@ -49,7 +49,6 @@ const SingleCard = ({ item, ind, alt, categories }: {key: Number, item: any, ind
 					blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8dAYAAnYBoH+KtRgAAAAASUVORK5CYII="
 					width={350}
 					height={209}
-					key={ind}
 					src={src}
 				/>
 			</div>
