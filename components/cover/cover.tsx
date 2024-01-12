@@ -7,7 +7,6 @@ import { pageTitles } from "../../public/utils/static-data";
 import { useSelector } from "react-redux";
 import {
 	listingsByParams,
-	listingsSearch,
 	routeMap,
 	getTestRequest,
 } from "../../lib/services/listings-service";
