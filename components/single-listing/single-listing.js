@@ -18,7 +18,6 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import ReCAPTCHA from "react-google-recaptcha";
-import { Adsense } from "@ctrl/react-adsense";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	FacebookIcon,
