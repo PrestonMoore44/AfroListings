@@ -14,7 +14,6 @@ import { gsap } from "gsap/dist/gsap";
 import { SplitText } from "gsap/dist/SplitText";
 
 if (process['client']) gsap.registerPlugin(SplitText);
-
 interface Title {
 	title: string;
 	subTitle?: string;
