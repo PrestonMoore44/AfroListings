@@ -171,7 +171,6 @@ const Homepage = () => {
 	};
 
 	const responseGoogle = (response) => {};
-	console.log("Hello World" )
 	return (
 		<>
 			<div className={styles.homepageContainerMain}>
@@ -179,8 +178,6 @@ const Homepage = () => {
 					scrollDown={scrollDown}
 					inputRef={inputRef}
 					type={type}
-					categories={categories}
-					setType={setType}
 					showCategories={showCategories}
 					setCategory={setCategory}
 					handleCategoryChange={handleCategoryChange}

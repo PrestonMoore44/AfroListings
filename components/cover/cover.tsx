@@ -13,7 +13,13 @@ import {
 } from "../../lib/services/listings-service";
 import { gsap } from "gsap/dist/gsap";
 import { SplitText } from "gsap/dist/SplitText";
-if (process.client) gsap.registerPlugin(SplitText);
+
+if (process['client']) gsap.registerPlugin(SplitText);
+
+interface Title {
+	title: string;
+	subTitle?: string;
+  }
 
 const Cover = ({
 	inputRef,
@@ -24,14 +30,23 @@ const Cover = ({
 	fromTop,
 	showCategories,
 	bgMedia,
+}: {
+	inputRef: any;
+	handleCategoryChange: any;
+	setCategory: any;
+	scrollDown: any;
+	type: string;
+	fromTop?: string;
+	showCategories: boolean;
+	bgMedia: string;
 }) => {
 	const route = useRouter();
-	const [titleObj, setTitleObj] = useState({});
+	const [titleObj, setTitleObj] = useState<Title | null>(null);
 	const [location, setLocation] = useState("");
 	const [showTitle, setShowTitle] = useState(false);
 	const [comboCategories, setComboCategories] = useState([]);
 	const { categories = [], subCategories = [] } = useSelector(
-		(store) => store
+		(store) => store as any
 	);
 
 	const handleKeyPress = (e) => {
@@ -142,14 +157,13 @@ const Cover = ({
 		console.log(data);
 	};
 
-	useState(() => {
+	useEffect(() => {
 		setTitleObj(pageTitles[route.pathname]);
-		console.log(pageTitles[route.pathname]);
 		setComboCategories([...categories, ...subCategories]);
 		setShowTitle(true);
-	}, []);
+	},[]);
 
-	useState(() => {
+	useEffect(() => {
 		if (route.pathname === "/" && inputRef.current) {
 			setTimeout(() => {
 				inputRef.current.focus();
