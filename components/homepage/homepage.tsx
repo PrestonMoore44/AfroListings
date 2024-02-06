@@ -189,7 +189,7 @@ const Homepage = () => {
 				>
 					<div className={`${styles.entireItemContainer}`}>
 						<div className={`${styles.titleItem} `}>
-							Recommended Businesses
+							5 Star Businesses
 						</div>
 						<div className={styles.style_container}>
 							{businessArr.map((it, ind) => (
