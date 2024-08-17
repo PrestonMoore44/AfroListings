@@ -8,6 +8,9 @@
 /next/
 /out/
 
+.npmrc
+.netrc
+
 # production
 /build
 
