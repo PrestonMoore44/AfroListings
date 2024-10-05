@@ -82,7 +82,7 @@ const SingleCard = ({ item, ind, alt, categories }: {key: Number, item: any, ind
 										)
 									)
 								}
-								className="bi bi-three-dots-vertical"
+								className="bi bi-three-dots-vertical "
 							></i>
 						)}
 					</div>
