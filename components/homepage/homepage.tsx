@@ -107,7 +107,7 @@ const Homepage = () => {
 					({ category_name }) =>
 						category_name.toLowerCase() === "business"
 				)
-				.slice(0, 4)
+				.slice(0, 6)
 		);
 		setPoliticsArr(
 			data
@@ -115,7 +115,7 @@ const Homepage = () => {
 					({ category_name }) =>
 						category_name.toLowerCase() === "politics"
 				)
-				.slice(0, 4)
+				.slice(0, 3)
 		);
 		setRestArr(
 			data
@@ -123,7 +123,7 @@ const Homepage = () => {
 					({ category_name }) =>
 						category_name.toLowerCase() === "food"
 				)
-				.slice(0, 4)
+				.slice(0, 3)
 		);
 		setHousingArr(
 			data
@@ -131,7 +131,7 @@ const Homepage = () => {
 					({ category_name }) =>
 						category_name.toLowerCase() === "housing"
 				)
-				.slice(0, 4)
+				.slice(0, 3)
 		);
 		setInfluencerArr(
 			data
@@ -139,7 +139,7 @@ const Homepage = () => {
 					({ category_name }) =>
 						category_name.toLowerCase() === "media influencers"
 				)
-				.slice(0, 4)
+				.slice(0, 3)
 		);
 		setTravelArr(
 			data
@@ -147,7 +147,7 @@ const Homepage = () => {
 					({ category_name }) =>
 						category_name.toLowerCase() === "travel"
 				)
-				.slice(0, 4)
+				.slice(0, 3)
 		);
 	};
 
@@ -191,7 +191,7 @@ const Homepage = () => {
 						<div className={`${styles.titleItem} `}>
 							5 Star Businesses
 						</div>
-						<div className={styles.style_container}>
+						<div className={styles.gridContainer}>
 							{businessArr.map((it, ind) => (
 								<SingleCard
 									item={it}

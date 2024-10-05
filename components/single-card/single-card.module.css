@@ -281,11 +281,12 @@
   flex-direction: column;
   overflow-x: hidden;
   min-height: 320px;
-  background-color: #fbfcfb;
+  max-height: 320px;
+  background-color: white;
   display: block;
   border-radius: 7px;
   height:fit-content;
-  border: 1px solid #efefef;
+  border: 1px solid rgba(0, 0, 0, 0.05);
   /*  box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
   -webkit-box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);
   -moz-box-shadow: 2px 3px 4px 0px rgba(52, 52, 52, 0.47);*/
@@ -317,14 +318,23 @@
   justify-content: center;
 }
 .containerImgHold:hover .titleContainer .titleContainerTitle {
-  color: #416267;
+  /* color: #416267; */
+}
+
+.description {
+  display: -webkit-box; /* Create a box for text */
+  -webkit-line-clamp: 2; /* Number of lines to show before truncating */
+  -webkit-box-orient: vertical; /* Required for ellipsis */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Display ... for truncated text */
+  white-space: normal; /* Allow multi-line */
 }
 
 .containerBodyLow {
   display: flex;
   flex-direction: column;
   padding: 10px 10px 25px 10px;
-  flex:1
+  flex:1;
 }
 .titleContainer {
   display: flex;
@@ -335,6 +345,7 @@
   -webkit-line-clamp: 4;
   line-height: 24px;
   font-weight: 600;
+  color: black
 }
 .containerImgHold small {
   font-size: 14px;
@@ -399,8 +410,10 @@
 }
 .smallMe a {
   text-decoration: none;
+  color: #495057;
 }
 
 .smallMe a:hover {
   text-decoration: underline;
+  color: black;
 }

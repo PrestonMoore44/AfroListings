@@ -45,7 +45,7 @@ const SingleCard = ({ item, ind, alt, categories }: {key: Number, item: any, ind
 					className={`${styles.containerImg} ${
 						alt && styles.altContainerImg
 					}`}
-					width={350}
+					width={370}
 					height={209}
 					src={src}
 				/>
@@ -87,7 +87,7 @@ const SingleCard = ({ item, ind, alt, categories }: {key: Number, item: any, ind
 						)}
 					</div>
 				</div>
-				<small>{description}</small>
+				<small className={styles.description}>{description}</small>
 			</div>
 		</div>
 	);

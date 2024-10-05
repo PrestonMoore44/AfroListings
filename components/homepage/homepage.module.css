@@ -172,6 +172,23 @@
 .entireItemContainer {
   margin-top: 40px;
 }
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+  gap: 0px; /* Adjust the spacing as needed */
+}
+
+@media (max-width: 768px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr); /* Adjust for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .gridContainer {
+    grid-template-columns: 1fr; /* Single column for small screens */
+  }
+}
 .style_container {
   border-radius: 3px;
   padding-top: 30px;
