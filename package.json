@@ -9,7 +9,7 @@
         "build:server": "tsc --project tsconfig.server.json",
         "build": "next build",
         "start": "NODE_ENV=production node afro-listings.server.js",
-        "postinstall": "echo '//npm.greensock.com/:_authToken=${NPM_TOKEN_GSAP}' > .npmrc"
+        "postinstall": "echo '//npm.greensock.com/:_authToken=${NPM_TOKEN}' > .npmrc"
     },
     "engines": {
         "node": "16.17.0",
